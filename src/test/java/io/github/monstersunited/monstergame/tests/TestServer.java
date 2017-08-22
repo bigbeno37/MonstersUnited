@@ -1,4 +1,4 @@
 package io.github.monstersunited.monstergame.tests;
 
-public class TestServer {
+class TestServer {
 }

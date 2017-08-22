@@ -1,5 +1,5 @@
 package io.github.monstersunited.monstergame.objects;
 
 public class User {
-    String username;
+    public String username;
 }

@@ -11,8 +11,8 @@ import java.util.List;
 
 import static io.github.monstersunited.monstergame.objects.RequestType.NEW_USER;
 
-public class MonsterGame {
-    public static List<User> users = new ArrayList<>();
+class MonsterGame {
+    static List<User> users = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println("Client started!");
@@ -62,13 +62,16 @@ public class MonsterGame {
         Request sendUsername = new Request();
         // NEW_USER is an enum found in RequestType
         sendUsername.type = NEW_USER;
-        sendUsername.data = username;
+        User user = new User();
+        user.username = username;
+        sendUsername.data = user;
+
         client.sendTCP(sendUsername);
 
         State.preGameScreen(client);
     }
 
-    static void createGame(Client client) {
+    private static void createGame(Client client) {
 
         String nickname = State.getNickname();
         int amountOfPlayers = State.getAmountOfPlayers();
