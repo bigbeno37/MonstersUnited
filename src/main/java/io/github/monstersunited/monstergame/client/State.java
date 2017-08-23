@@ -1,7 +1,15 @@
 package io.github.monstersunited.monstergame.client;
 
-import com.esotericsoftware.kryonet.Client;
 import io.github.monstersunited.monstergame.objects.Request;
+import io.github.monstersunited.monstergame.objects.User;
+import io.github.monstersunited.monstergame.objects.Users;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 import static io.github.monstersunited.monstergame.objects.RequestType.GET_USERS;
 
@@ -12,15 +20,21 @@ class State {
         return "macron";
     }
 
-    static void preGameScreen(Client client) {
-        // Send a request to server to get all users
-        Request request = new Request();
-        // GET_USERS is an enum found in RequestType
-        request.type = GET_USERS;
-        client.sendTCP(request);
+    static void preGameScreen(Socket client) {
+        List<User> users = new ArrayList<>();
 
-        // Listen for response from server
-        client.addListener(new ClientListener());
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
+
+            Request request = new Request(GET_USERS, null);
+            out.writeObject(request);
+
+            ObjectInputStream in = new ObjectInputStream(client.getInputStream());
+            users = ((Users) in.readObject()).users;
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // TODO
         // Update the view and display users in a side panel

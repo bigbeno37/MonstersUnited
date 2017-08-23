@@ -1,24 +1,21 @@
 package io.github.monstersunited.monstergame.client;
 
-import com.esotericsoftware.kryonet.Client;
+import com.sun.security.ntlm.Client;
 import io.github.monstersunited.monstergame.objects.Request;
 import io.github.monstersunited.monstergame.objects.User;
 import io.github.monstersunited.monstergame.server.MonsterServer;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 import static io.github.monstersunited.monstergame.objects.RequestType.NEW_USER;
 
-class MonsterGame {
-    static List<User> users = new ArrayList<>();
-
+class MonsterGame implements Runnable{
     public static void main(String[] args) {
         System.out.println("Client started!");
-
-        Client client = new Client();
-        new Thread(client).start();
 
         // TODO
         // Display two buttons; one to create a new game
@@ -29,49 +26,44 @@ class MonsterGame {
         boolean createGame = false;
 
         if (createGame) {
-            createGame(client);
+            createGame();
         } else {
-            joinGame(client);
+            joinGame();
         }
 
 
     }
 
-    private static void joinGame(Client client) {
+    private static void joinGame() {
         // TODO
         // Get from User
         String serverAddress = "localhost";
-        int tcpPort = 3000, udpPort = 3001;
+        int port = 3000;
+
+        Socket client;
 
         // TODO
         // When user hits 'connect'...
         try {
-            client.connect(5000, serverAddress, tcpPort, udpPort);
+            client = new Socket(serverAddress, port);
+
+            // User is connected
+            String username = State.getNickname();
+
+            // Send username to server
+            ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
+            out.writeObject(new Request(NEW_USER, new User(username)));
+
+            State.preGameScreen(client);
         } catch (IOException e) {
             // TODO
             // Display error to user
             // Go back to connect screen
             System.out.println("Unable to connect. Confirm IP address is correct");
         }
-
-        // User is connected
-
-        String username = State.getNickname();
-
-        // Send username to server
-        Request sendUsername = new Request();
-        // NEW_USER is an enum found in RequestType
-        sendUsername.type = NEW_USER;
-        User user = new User();
-        user.username = username;
-        sendUsername.data = user;
-
-        client.sendTCP(sendUsername);
-
-        State.preGameScreen(client);
     }
 
-    private static void createGame(Client client) {
+    private static void createGame() {
 
         String nickname = State.getNickname();
         int amountOfPlayers = State.getAmountOfPlayers();
@@ -79,12 +71,17 @@ class MonsterGame {
         MonsterServer.start(nickname, amountOfPlayers);
 
         try {
-            client.connect(5000, "localhost", 3000, 3001);
+            Socket client = new Socket("localhost", 3000);
+
+            State.preGameScreen(client);
         } catch (IOException e) {
             System.out.println("Unable to connect to local server! This is probably bad");
         }
 
-        State.preGameScreen(client);
+    }
+
+    @Override
+    public void run() {
 
     }
 }
