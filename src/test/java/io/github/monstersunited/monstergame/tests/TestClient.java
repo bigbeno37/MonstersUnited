@@ -1,4 +1,10 @@
 package io.github.monstersunited.monstergame.tests;
 
-class TestClient {
+import org.junit.Test;
+
+public class TestClient {
+    @Test
+    public void errorShowsIfUnableToConnectToServer() {
+
+    }
 }

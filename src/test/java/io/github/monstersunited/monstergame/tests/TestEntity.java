@@ -1,4 +1,10 @@
 package io.github.monstersunited.monstergame.tests;
 
-class TestEntity {
+import org.junit.Test;
+
+public class TestEntity {
+    @Test
+    public void moveUpMovesEntityUp() {
+
+    }
 }

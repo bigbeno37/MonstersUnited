@@ -1,4 +1,10 @@
 package io.github.monstersunited.monstergame.tests;
 
-class TestBoard {
+import org.junit.Test;
+
+public class TestBoard {
+    @Test
+    public void playersAreSetInCorrectPositions() {
+
+    }
 }

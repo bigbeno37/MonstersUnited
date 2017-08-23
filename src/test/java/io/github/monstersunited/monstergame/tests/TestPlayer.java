@@ -1,4 +1,10 @@
 package io.github.monstersunited.monstergame.tests;
 
-class TestPlayer {
+import org.junit.Test;
+
+public class TestPlayer {
+    @Test
+    public void monsterMovesUp() {
+
+    }
 }

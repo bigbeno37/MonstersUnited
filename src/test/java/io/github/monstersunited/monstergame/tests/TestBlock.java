@@ -1,4 +1,10 @@
 package io.github.monstersunited.monstergame.tests;
 
-class TestBlock {
+import org.junit.Test;
+
+public class TestBlock {
+    @Test
+    public void playerCanPlaceBlock() {
+
+    }
 }
