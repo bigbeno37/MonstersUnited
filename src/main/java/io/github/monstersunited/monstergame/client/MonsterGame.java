@@ -1,6 +1,6 @@
 package io.github.monstersunited.monstergame.client;
 
-import io.github.monstersunited.monstergame.main.Game;
+import io.github.monstersunited.monstergame.client.gui.Game;
 import io.github.monstersunited.monstergame.objects.Request;
 import io.github.monstersunited.monstergame.objects.User;
 import io.github.monstersunited.monstergame.server.MonsterServer;

@@ -1,4 +1,4 @@
-package io.github.monstersunited.monstergame.main;
+package io.github.monstersunited.monstergame.client.gui;
 
 import java.awt.*;
 
