@@ -1,4 +1,4 @@
-package io.github.monstersunited.monstergame.Box;
+package io.github.monstersunited.monstergame.objects;
 
 public class Box {
 
