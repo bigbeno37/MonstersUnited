@@ -1,3 +1,7 @@
+package io.github.monstersunited.monstergame.main;
+
+import io.github.monstersunited.monstergame.main.Game;
+
 import java.awt.Canvas;
 import java.awt.Dimension;
 

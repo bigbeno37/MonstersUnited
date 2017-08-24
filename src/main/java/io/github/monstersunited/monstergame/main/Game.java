@@ -1,4 +1,6 @@
-import java.awt.Canvas;
+package io.github.monstersunited.monstergame.main;
+
+import java.awt.*;
 
 public class Game extends Canvas implements Runnable{
 
@@ -15,8 +17,4 @@ public class Game extends Canvas implements Runnable{
     public void run(){
 
     }
-
-    public static void main(String args[]){
-
-        }
 }

@@ -1,6 +1,6 @@
 package io.github.monstersunited.monstergame.client;
 
-import com.sun.security.ntlm.Client;
+import io.github.monstersunited.monstergame.main.Game;
 import io.github.monstersunited.monstergame.objects.Request;
 import io.github.monstersunited.monstergame.objects.User;
 import io.github.monstersunited.monstergame.server.MonsterServer;
@@ -8,14 +8,14 @@ import io.github.monstersunited.monstergame.server.MonsterServer;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 import static io.github.monstersunited.monstergame.objects.RequestType.NEW_USER;
 
 class MonsterGame implements Runnable{
     public static void main(String[] args) {
         System.out.println("Client started!");
+
+        new Game();
 
         // TODO
         // Display two buttons; one to create a new game
