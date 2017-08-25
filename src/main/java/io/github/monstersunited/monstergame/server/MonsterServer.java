@@ -9,13 +9,14 @@ import java.util.List;
 
 public class MonsterServer {
 
-    public static int amountOfPlayers;
-    static List<Player> players = new ArrayList<>();
+    public static int amountOfPlayers = 0;
+    static List<Player> players;
 
-    public static void start(String nickname, int players) {
+    public static void initialiseGame(String nickname, int players) {
         // TODO
         // Start the server and add the first player
         amountOfPlayers = players;
+        MonsterServer.players = new ArrayList<>();
     }
 
     public static void addPlayers(List<Player> players) throws TooManyPlayersException {
@@ -23,11 +24,13 @@ public class MonsterServer {
         if (players.size() > amountOfPlayers) {
             throw new TooManyPlayersException();
         }
+
+        MonsterServer.players.addAll(players);
     }
 
 
     public static void beginGame() throws InvalidAmountOfPlayersException {
-        if (players.size() != amountOfPlayers) {
+        if (MonsterServer.players.size() != amountOfPlayers) {
             throw new InvalidAmountOfPlayersException();
         }
     }
