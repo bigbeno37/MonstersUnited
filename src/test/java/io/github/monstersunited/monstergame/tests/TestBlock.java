@@ -1,6 +1,6 @@
 package io.github.monstersunited.monstergame.tests;
 
-import io.github.monstersunited.monstergame.Box.Box;
+import io.github.monstersunited.monstergame.objects.Box;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

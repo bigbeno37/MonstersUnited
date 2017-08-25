@@ -1,6 +1,6 @@
 package io.github.monstersunited.monstergame.objects;
 
-public class Monster {
+public class Monster extends Entity {
     public int monsterCanEatPlayer(int i) {
         return i+5;
     }

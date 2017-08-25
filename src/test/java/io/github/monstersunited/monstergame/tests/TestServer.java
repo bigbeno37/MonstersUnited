@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class TestServer {
     @Test(expected = InvalidAmountOfPlayersException.class)
     public void gameWillNotStartWithLessThanProvidedPlayers() throws TooManyPlayersException, InvalidAmountOfPlayersException {
-        MonsterServer.start("nick", 3);
+        MonsterServer.initialiseGame("nick", 3);
 
         List<Player> players = new ArrayList<>();
         players.add(new Player("Jeoffrey"));
@@ -25,7 +25,7 @@ public class TestServer {
 
     @Test(expected = TooManyPlayersException.class)
     public void gameWillNotStartWithMoreThanProvidedPlayers() throws TooManyPlayersException {
-        MonsterServer.start("nick", 2);
+        MonsterServer.initialiseGame("nick", 2);
 
         List<Player> players = new ArrayList<>();
         players.add(new Player("Jeoffrey"));
@@ -37,7 +37,7 @@ public class TestServer {
 
     @Test
     public void addPlayersCorrectlyUpdatesPlayerCount() throws TooManyPlayersException {
-        MonsterServer.start("nick", 2);
+        MonsterServer.initialiseGame("nick", 2);
 
         List<Player> players = new ArrayList<>();
         players.add(new Player("Jeoffrey"));

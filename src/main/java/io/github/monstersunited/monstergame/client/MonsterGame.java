@@ -68,7 +68,7 @@ class MonsterGame implements Runnable{
         String nickname = State.getNickname();
         int amountOfPlayers = State.getAmountOfPlayers();
 
-        MonsterServer.start(nickname, amountOfPlayers);
+        MonsterServer.initialiseGame(nickname, amountOfPlayers);
 
         try {
             Socket client = new Socket("localhost", 3000);
