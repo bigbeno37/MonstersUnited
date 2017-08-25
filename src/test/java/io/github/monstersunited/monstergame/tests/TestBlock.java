@@ -5,7 +5,12 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class TestBlock {
+public class
+
+
+
+
+TestBlock {
     @Test
     public void getBoxType() {
         Box test = new Box();
