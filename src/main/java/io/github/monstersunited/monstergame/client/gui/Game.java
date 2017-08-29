@@ -16,7 +16,6 @@ public class Game extends Canvas implements Runnable{
 
 
     public Game(){
-        MonsterServer.start(4);
         handler = new Handler();
         new Window(WIDTH, HEIGHT, "Monsters United", this);
 
