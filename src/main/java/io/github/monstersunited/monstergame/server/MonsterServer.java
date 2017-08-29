@@ -34,4 +34,7 @@ public class MonsterServer {
             throw new InvalidAmountOfPlayersException();
         }
     }
+
+    public static void start(int amountOfPlayers) {
+    }
 }
