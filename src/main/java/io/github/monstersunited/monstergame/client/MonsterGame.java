@@ -1,17 +1,14 @@
 package io.github.monstersunited.monstergame.client;
 
 import io.github.monstersunited.monstergame.client.gui.Game;
-import io.github.monstersunited.monstergame.objects.Request;
-import io.github.monstersunited.monstergame.objects.User;
+import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 import io.github.monstersunited.monstergame.server.MonsterServer;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 
-import static io.github.monstersunited.monstergame.objects.RequestType.NEW_USER;
-
-class MonsterGame implements Runnable{
+class MonsterGame {
     public static void main(String[] args) {
         System.out.println("Client started!");
 
@@ -40,26 +37,18 @@ class MonsterGame implements Runnable{
         String serverAddress = "localhost";
         int port = 3000;
 
-        Socket client;
-
-        // TODO
-        // When user hits 'connect'...
         try {
-            client = new Socket(serverAddress, port);
+            MonsterServerInterface server = (MonsterServerInterface) LocateRegistry.getRegistry(serverAddress, port).lookup("server");
 
-            // User is connected
-            String username = State.getNickname();
+            server.initialise(new MonsterGameHandler());
 
-            // Send username to server
-            ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
-            out.writeObject(new Request(NEW_USER, new User(username)));
+            String nickname = State.getNickname();
 
-            State.preGameScreen(client);
-        } catch (IOException e) {
-            // TODO
-            // Display error to user
-            // Go back to connect screen
-            System.out.println("Unable to connect. Confirm IP address is correct");
+            server.newPlayer(nickname);
+
+            State.preGameScreen(server);
+        } catch (RemoteException | NotBoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -68,20 +57,19 @@ class MonsterGame implements Runnable{
         String nickname = State.getNickname();
         int amountOfPlayers = State.getAmountOfPlayers();
 
-        MonsterServer.initialiseGame(nickname, amountOfPlayers);
+        MonsterServer.start(amountOfPlayers);
 
         try {
-            Socket client = new Socket("localhost", 3000);
+            MonsterServerInterface server = (MonsterServerInterface) LocateRegistry.getRegistry(3000).lookup("server");
 
-            State.preGameScreen(client);
-        } catch (IOException e) {
-            System.out.println("Unable to connect to local server! This is probably bad");
+            server.initialise(new MonsterGameHandler());
+            server.newPlayer(nickname);
+
+            State.preGameScreen(server);
+        } catch (RemoteException | NotBoundException e) {
+            e.printStackTrace();
         }
 
     }
 
-    @Override
-    public void run() {
-
-    }
 }
