@@ -44,7 +44,7 @@ class MonsterGame {
 
             String nickname = State.getNickname();
 
-            server.newUser(nickname);
+            server.newPlayer(nickname);
 
             State.preGameScreen(server);
         } catch (RemoteException | NotBoundException e) {
@@ -63,7 +63,7 @@ class MonsterGame {
             MonsterServerInterface server = (MonsterServerInterface) LocateRegistry.getRegistry(3000).lookup("server");
 
             server.initialise(new MonsterGameHandler());
-            server.newUser(nickname);
+            server.newPlayer(nickname);
 
             State.preGameScreen(server);
         } catch (RemoteException | NotBoundException e) {

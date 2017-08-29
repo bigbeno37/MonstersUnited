@@ -8,9 +8,9 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface MonsterServerInterface extends Remote {
-    void initialise(MonsterGameHandler monsterGameHandler) throws RemoteException;
+    void initialise(MonsterGameInterface client) throws RemoteException;
 
-    void newUser(String nickname) throws RemoteException;
+    void newPlayer(String nickname) throws RemoteException;
 
-    List<Player> getAllUsers() throws RemoteException;
+    List<Player> getAllPlayers() throws RemoteException;
 }

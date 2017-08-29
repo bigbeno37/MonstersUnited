@@ -2,18 +2,9 @@ package io.github.monstersunited.monstergame.client;
 
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 import io.github.monstersunited.monstergame.objects.Player;
-import io.github.monstersunited.monstergame.objects.Request;
-import io.github.monstersunited.monstergame.objects.User;
-import io.github.monstersunited.monstergame.objects.Users;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
-
-import static io.github.monstersunited.monstergame.objects.RequestType.GET_USERS;
 
 class State {
     public static String getNickname() {
@@ -26,7 +17,7 @@ class State {
         List<Player> players;
 
         try {
-            players = server.getAllUsers();
+            players = server.getAllPlayers();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
