@@ -1,5 +1,7 @@
 package io.github.monstersunited.monstergame.client.gui;
 
+import io.github.monstersunited.monstergame.client.gui.objects.Player;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -8,6 +10,7 @@ public class Game extends Canvas implements Runnable{
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
     private Thread thread;
     public boolean running = false;
+    private Handler handler;
 
 
 
@@ -22,6 +25,11 @@ public class Game extends Canvas implements Runnable{
         //Starting thread
         thread.start();
         running = true;
+
+        handler = new Handler();
+
+        //Temporary Object Placement
+        handler.addObject(new Player(100,100,ID.Player));
     }
 
     //Stops Thread
@@ -67,7 +75,7 @@ public class Game extends Canvas implements Runnable{
 
     private void tick(){
         //This should be the GM equivelant of "Step"
-
+        handler.tick();
 
     }
 
@@ -86,6 +94,8 @@ public class Game extends Canvas implements Runnable{
         //Background
         g.setColor(Color.black);
         g.fillRect(0,0,WIDTH,HEIGHT);
+
+        handler.render(g);
 
         g.dispose();
         bs.show();
