@@ -1,6 +1,8 @@
 package io.github.monstersunited.monstergame.objects;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     public String name;
 
     public Player(String name) {

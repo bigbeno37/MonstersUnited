@@ -27,6 +27,7 @@ public class MonsterServer {
     public static void start(int amountOfPlayers) {
         MonsterServer.amountOfPlayers = amountOfPlayers;
         players = new ArrayList<>();
+        clients = new ArrayList<>();
 
         try {
             Registry registry = LocateRegistry.createRegistry(3000);

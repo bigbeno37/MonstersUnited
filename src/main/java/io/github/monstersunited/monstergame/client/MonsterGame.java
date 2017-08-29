@@ -14,6 +14,8 @@ class MonsterGame {
 
         new Game();
 
+        MonsterServer.start(4);
+
         // TODO
         // Display two buttons; one to create a new game
         // and the other to join a game
