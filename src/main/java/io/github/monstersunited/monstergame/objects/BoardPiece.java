@@ -2,7 +2,7 @@ package io.github.monstersunited.monstergame.objects;
 
 import java.io.Serializable;
 
-public class BoardPiece implements Serializable {
+public abstract class BoardPiece implements Serializable {
     private int x;
     private int y;
 
