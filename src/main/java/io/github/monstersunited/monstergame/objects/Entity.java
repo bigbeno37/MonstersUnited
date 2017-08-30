@@ -2,28 +2,28 @@ package io.github.monstersunited.monstergame.objects;
 
 import java.io.Serializable;
 
-public abstract class Entity implements Serializable{
-    private int x;
-    private int y;
+public abstract class Entity extends BoardPiece implements Serializable{
+    private int velX;
+    private int velY;
 
-    public int getX() {
-        return x;
+    public int getVelX() {
+        return velX;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setVelX(int velX) {
+        this.velX = velX;
     }
 
-    public int getY() {
-        return y;
+    public int getVelY() {
+        return velY;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setVelY(int velY) {
+        this.velY = velY;
     }
 
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public void setVelocity(int velX, int velY) {
+        this.velX = velX;
+        this.velY = velY;
     }
 }

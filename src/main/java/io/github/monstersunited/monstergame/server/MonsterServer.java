@@ -1,6 +1,7 @@
 package io.github.monstersunited.monstergame.server;
 
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
+import io.github.monstersunited.monstergame.objects.Board;
 import io.github.monstersunited.monstergame.objects.Monster;
 import io.github.monstersunited.monstergame.objects.Player;
 
@@ -10,13 +11,14 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.github.monstersunited.monstergame.server.MonsterServer.Corner.*;
+import static io.github.monstersunited.monstergame.objects.enums.Corner.*;
 
 public class MonsterServer {
 
     public static int amountOfPlayers;
     public static List<Player> players;
     public static Monster monster;
+    public static Board board;
     public static List<MonsterGameInterface> clients;
 
     public MonsterServer() throws RemoteException {
@@ -28,6 +30,7 @@ public class MonsterServer {
         players = new ArrayList<>();
         clients = new ArrayList<>();
         monster = new Monster(5, 5);
+        board = new Board();
 
         try {
             Registry registry = LocateRegistry.createRegistry(3000);
@@ -35,10 +38,6 @@ public class MonsterServer {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-    }
-
-    public enum Corner {
-        TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT
     }
 
     public static void beginGame() {
@@ -67,11 +66,13 @@ public class MonsterServer {
                 player.setCorner(BOTTOM_RIGHT);
             }
 
-            MonsterServer.players.remove(player);
-            MonsterServer.players.add(player);
+            players.remove(player);
+            players.add(player);
         }
 
-        for (MonsterGameInterface client: MonsterServer.clients) {
+        for (MonsterGameInterface client: clients) {
+
+            board.update(players, monster);
 
             try {
                 client.beginGame(players, monster);
@@ -81,13 +82,17 @@ public class MonsterServer {
 
         }
 
-        MonsterServer.gameLoop();
+        gameLoop();
     }
 
     private static void gameLoop() {
         // TODO
         // Every 5 ticks
-        for (MonsterGameInterface client: MonsterServer.clients) {
+
+        monster.moveTowardsClosestPlayer(players, board);
+        board.update(players, monster);
+
+        for (MonsterGameInterface client: clients) {
             try {
                 client.update(players, monster);
             } catch (RemoteException e) {

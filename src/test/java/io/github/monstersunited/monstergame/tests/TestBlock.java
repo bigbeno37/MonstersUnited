@@ -14,25 +14,25 @@ TestBlock {
     @Test
     public void getBoxType() {
         Box test = new Box();
-        String result = test.NAME("FIN","ISHED");
+        String result = test.name("FIN","ISHED");
         assertEquals("FINISHED",result);
     }
     @Test
     public void TESTDeathAnimation() {
         Box testDeath = new Box();
-        int result = testDeath.DeathAnimation(0);
+        int result = testDeath.deathAnimation(0);
         assertEquals(1,result);
     }
     @Test
     public void TESTPlaceBoxes() {
         Box testPlace = new Box();
-        int result = testPlace.PlaceBoxes(60);
+        int result = testPlace.placeBoxes(60);
         assertEquals(0,result);
     }
     @Test
     public void TESTBoxRecharge() {
         Box testReCharge = new Box();
-        boolean result = testReCharge.BoxRecharge(false);
+        boolean result = testReCharge.boxRecharge(false);
         assertEquals(false,result);
     }
 

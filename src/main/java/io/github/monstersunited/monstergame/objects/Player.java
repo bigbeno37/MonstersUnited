@@ -1,11 +1,12 @@
 package io.github.monstersunited.monstergame.objects;
 
-import io.github.monstersunited.monstergame.server.MonsterServer;
+import io.github.monstersunited.monstergame.objects.enums.Corner;
+import io.github.monstersunited.monstergame.objects.enums.PlayerState;
 
 import java.io.Serializable;
 
-import static io.github.monstersunited.monstergame.objects.PlayerState.ALIVE;
-import static io.github.monstersunited.monstergame.objects.PlayerState.DEAD;
+import static io.github.monstersunited.monstergame.objects.enums.PlayerState.ALIVE;
+import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
 
 public class Player extends Entity implements Serializable {
     private String name;
@@ -37,7 +38,7 @@ public class Player extends Entity implements Serializable {
         return this.state == DEAD;
     }
 
-    public void setCorner(MonsterServer.Corner corner) {
+    public void setCorner(Corner corner){
         switch (corner) {
             case TOP_LEFT:
                 super.setPosition(1, 1);

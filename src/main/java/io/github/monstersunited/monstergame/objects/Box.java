@@ -1,52 +1,54 @@
 package io.github.monstersunited.monstergame.objects;
 
-public class Box {
+import java.io.Serializable;
 
-    public int DEATH=1;
-    public boolean ALIVE=true;
-    public int PLACED = 1;
-    public int HEALTH=5;
+public class Box extends BoardPiece implements Serializable{
 
-    public String NAME(String FIN, String ISHED) {
-        return FIN+ISHED;
+    public int death =1;
+    public boolean alive=true;
+    public int placed = 1;
+    public int health=5;
+
+    public String name(String fin, String ished) {
+        return fin+ished;
 
     }
 
-    public int DeathAnimation(int HEALTH) {
-        if (HEALTH<DEATH){
-            ALIVE = false;
+    public int deathAnimation(int health) {
+        if (health< death){
+            alive = false;
            /*playDeathAnimation();*/
-            return DEATH;
+            return death;
         }
 
-        return HEALTH;
+        return health;
 
     }
 
-    public void PlayAnimationBox() {
+    public void playAnimationBox() {
         System.out.println("placeholder");
     }
 
-    public int PlaceBoxes(int PLACED){
-        if (PLACED>0 && PLACED <3) {
-            /*PlayAnimationBox();*/
-            return PLACED;
+    public int placeBoxes(int placed){
+        if (placed>0 && placed <3) {
+            /*playAnimationBox();*/
+            return placed;
         } else {
             System.out.printf("your Box is on recharge!");
-            PLACED =0;
+            placed =0;
         }
 
-        return PLACED;
+        return placed;
     }
 
-    public boolean BoxRecharge(boolean RECHARGED){
-        if (RECHARGED==true){
-            PlaceBoxes(PLACED);
+    public boolean boxRecharge(boolean recharged){
+        if (recharged==true){
+            placeBoxes(placed);
         } else {
             System.out.printf("please wait for recharge");
-            RECHARGED=false;
+            recharged=false;
         }
 
-        return RECHARGED;
+        return recharged;
     }
 }
