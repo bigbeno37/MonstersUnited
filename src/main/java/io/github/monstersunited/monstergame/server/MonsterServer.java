@@ -21,7 +21,7 @@ public class MonsterServer {
     public static Board board;
     public static List<MonsterGameInterface> clients;
 
-    public MonsterServer() throws RemoteException {
+    public MonsterServer() {
         super();
     }
 

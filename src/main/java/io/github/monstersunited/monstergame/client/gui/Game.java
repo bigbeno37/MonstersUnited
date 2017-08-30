@@ -1,7 +1,6 @@
 package io.github.monstersunited.monstergame.client.gui;
 
 import io.github.monstersunited.monstergame.client.gui.objects.Player;
-import io.github.monstersunited.monstergame.server.MonsterServer;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;

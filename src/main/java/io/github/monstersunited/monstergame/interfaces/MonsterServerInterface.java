@@ -1,6 +1,5 @@
 package io.github.monstersunited.monstergame.interfaces;
 
-import io.github.monstersunited.monstergame.client.MonsterGameHandler;
 import io.github.monstersunited.monstergame.objects.Player;
 
 import java.rmi.Remote;

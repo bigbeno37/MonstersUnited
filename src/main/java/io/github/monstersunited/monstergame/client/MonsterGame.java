@@ -29,8 +29,6 @@ class MonsterGame {
         } else {
             joinGame();
         }
-
-
     }
 
     private static void joinGame() {
