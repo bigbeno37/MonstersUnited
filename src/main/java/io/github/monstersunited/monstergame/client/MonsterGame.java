@@ -14,15 +14,13 @@ class MonsterGame {
     public static void main(String[] args) {
         System.out.println("Client started!");
 
-        MonsterServer.start(4);
-
         // TODO
         // Display two buttons; one to create a new game
         // and the other to join a game
 
         // TODO
         // Replace with user choice
-        boolean createGame = false;
+        boolean createGame = true;
 
         if (createGame) {
             createGame();
@@ -37,13 +35,25 @@ class MonsterGame {
         String serverAddress = "localhost";
         int port = 3000;
 
+        joinLobby(serverAddress, port);
+    }
+
+    private static void createGame() {
+
+        int amountOfPlayers = State.getAmountOfPlayers();
+
+        MonsterServer.start(amountOfPlayers);
+
+        joinLobby("localhost", 3000);
+    }
+
+    private static void joinLobby(String serverAddress, int port) {
         try {
             MonsterServerInterface server = (MonsterServerInterface) LocateRegistry.getRegistry(serverAddress, port).lookup("server");
 
             server.initialise(new MonsterGameHandler());
 
             String nickname = State.getNickname();
-
             Player player = server.newPlayer(nickname);
 
             new Game(server, player);
@@ -54,30 +64,6 @@ class MonsterGame {
         } catch (ServerFullException e) {
             System.out.println("Lobby is full!");
         }
-    }
-
-    private static void createGame() {
-
-        String nickname = State.getNickname();
-        int amountOfPlayers = State.getAmountOfPlayers();
-
-        MonsterServer.start(amountOfPlayers);
-
-        try {
-            MonsterServerInterface server = (MonsterServerInterface) LocateRegistry.getRegistry(3000).lookup("server");
-
-            server.initialise(new MonsterGameHandler());
-            Player player = server.newPlayer(nickname);
-
-            new Game(server, player);
-
-            State.preGameScreen(server);
-        } catch (RemoteException | NotBoundException e) {
-            e.printStackTrace();
-        } catch (ServerFullException e) {
-            System.out.println("Lobby is full!");
-        }
-
     }
 
 }
