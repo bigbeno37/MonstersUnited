@@ -3,6 +3,7 @@ package io.github.monstersunited.monstergame.server;
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 import io.github.monstersunited.monstergame.objects.Player;
+import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
 
 import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
@@ -20,7 +21,11 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
     }
 
     @Override
-    public Player newPlayer(String nickname) throws RemoteException {
+    public Player newPlayer(String nickname) throws RemoteException, ServerFullException {
+
+        if (MonsterServer.players.size() + 1 > MonsterServer.amountOfPlayers) {
+            throw new ServerFullException();
+        }
 
         Player player = new Player(nickname, 0, 0);
 

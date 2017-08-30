@@ -3,6 +3,7 @@ package io.github.monstersunited.monstergame.client;
 import io.github.monstersunited.monstergame.client.gui.Game;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 import io.github.monstersunited.monstergame.objects.Player;
+import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
 import io.github.monstersunited.monstergame.server.MonsterServer;
 
 import java.rmi.NotBoundException;
@@ -50,6 +51,8 @@ class MonsterGame {
             State.preGameScreen(server);
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
+        } catch (ServerFullException e) {
+            System.out.println("Lobby is full!");
         }
     }
 
@@ -71,6 +74,8 @@ class MonsterGame {
             State.preGameScreen(server);
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
+        } catch (ServerFullException e) {
+            System.out.println("Lobby is full!");
         }
 
     }
