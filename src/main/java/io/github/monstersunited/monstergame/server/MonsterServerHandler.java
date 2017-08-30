@@ -20,7 +20,15 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
 
     @Override
     public void newPlayer(String nickname) throws RemoteException {
-        MonsterServer.players.add(new Player(nickname));
+        MonsterServer.players.add(new Player(nickname, 0, 0));
+
+        for (MonsterGameInterface client: MonsterServer.clients) {
+            client.refreshPlayerList(MonsterServer.players);
+        }
+
+        if (MonsterServer.players.size() == MonsterServer.amountOfPlayers) {
+            MonsterServer.beginGame();
+        }
     }
 
     @Override

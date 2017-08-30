@@ -18,6 +18,6 @@ public class TestServer {
 
         server.newPlayer("nick");
 
-        assertEquals("nick", server.getAllPlayers().get(0).name);
+        assertEquals("nick", server.getAllPlayers().get(0).getName());
     }
 }
