@@ -26,11 +26,10 @@ public class MonsterServer {
     }
 
     public static void start(int amountOfPlayers) {
+
         MonsterServer.amountOfPlayers = amountOfPlayers;
-        players = new ArrayList<>();
-        clients = new ArrayList<>();
-        monster = new Monster(5, 5);
-        board = new Board();
+
+        reset();
 
         try {
             Registry registry = LocateRegistry.createRegistry(3000);
@@ -96,5 +95,12 @@ public class MonsterServer {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void reset() {
+        players = new ArrayList<>();
+        clients = new ArrayList<>();
+        monster = new Monster(5, 5);
+        board = new Board();
     }
 }
