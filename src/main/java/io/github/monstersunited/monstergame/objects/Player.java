@@ -3,6 +3,7 @@ package io.github.monstersunited.monstergame.objects;
 import io.github.monstersunited.monstergame.objects.enums.Corner;
 import io.github.monstersunited.monstergame.objects.enums.PlayerState;
 
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
 import static io.github.monstersunited.monstergame.objects.enums.PlayerState.ALIVE;
@@ -53,5 +54,13 @@ public class Player extends Entity implements Serializable {
                 super.setPosition(9, 9);
                 break;
         }
+    }
+
+    public void processMove(KeyEvent event, Board board) {
+        // TODO
+        // Process move and set new position accordingly
+        // Make sure to check for collisions through the board passed in
+        // A player cannot be on the same square as a BoardPiece, AKA
+        // another Player, Monster, Box or Wall
     }
 }

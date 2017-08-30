@@ -2,6 +2,7 @@ package io.github.monstersunited.monstergame.client;
 
 import io.github.monstersunited.monstergame.client.gui.Game;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
+import io.github.monstersunited.monstergame.objects.Player;
 import io.github.monstersunited.monstergame.server.MonsterServer;
 
 import java.rmi.NotBoundException;
@@ -11,8 +12,6 @@ import java.rmi.registry.LocateRegistry;
 class MonsterGame {
     public static void main(String[] args) {
         System.out.println("Client started!");
-
-        new Game();
 
         MonsterServer.start(4);
 
@@ -44,7 +43,9 @@ class MonsterGame {
 
             String nickname = State.getNickname();
 
-            server.newPlayer(nickname);
+            Player player = server.newPlayer(nickname);
+
+            new Game(server, player);
 
             State.preGameScreen(server);
         } catch (RemoteException | NotBoundException e) {
@@ -63,7 +64,9 @@ class MonsterGame {
             MonsterServerInterface server = (MonsterServerInterface) LocateRegistry.getRegistry(3000).lookup("server");
 
             server.initialise(new MonsterGameHandler());
-            server.newPlayer(nickname);
+            Player player = server.newPlayer(nickname);
+
+            new Game(server, player);
 
             State.preGameScreen(server);
         } catch (RemoteException | NotBoundException e) {

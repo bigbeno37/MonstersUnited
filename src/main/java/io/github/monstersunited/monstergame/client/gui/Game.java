@@ -1,6 +1,7 @@
 package io.github.monstersunited.monstergame.client.gui;
 
 import io.github.monstersunited.monstergame.client.gui.objects.Player;
+import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -12,9 +13,22 @@ public class Game extends Canvas implements Runnable{
     public boolean running = false;
     private Handler handler;
 
+    private MonsterServerInterface server;
+    private io.github.monstersunited.monstergame.objects.Player player;
 
 
-    public Game(){
+    public Game(MonsterServerInterface server, io.github.monstersunited.monstergame.objects.Player player){
+        handler = new Handler();
+        new Window(WIDTH, HEIGHT, "Monsters United", this);
+
+        //Temporary Object Placement
+        handler.addObject(new Player(WIDTH/2-16,HEIGHT/2-16,ID.Player));
+
+        this.server = server;
+        this.player = player;
+    }
+
+    public Game() {
         handler = new Handler();
         new Window(WIDTH, HEIGHT, "Monsters United", this);
 

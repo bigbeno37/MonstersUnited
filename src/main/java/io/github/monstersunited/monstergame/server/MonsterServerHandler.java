@@ -4,6 +4,7 @@ import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 import io.github.monstersunited.monstergame.objects.Player;
 
+import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -19,8 +20,11 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
     }
 
     @Override
-    public void newPlayer(String nickname) throws RemoteException {
-        MonsterServer.players.add(new Player(nickname, 0, 0));
+    public Player newPlayer(String nickname) throws RemoteException {
+
+        Player player = new Player(nickname, 0, 0);
+
+        MonsterServer.players.add(player);
 
         for (MonsterGameInterface client: MonsterServer.clients) {
             client.refreshPlayerList(MonsterServer.players);
@@ -29,10 +33,21 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
         if (MonsterServer.players.size() == MonsterServer.amountOfPlayers) {
             MonsterServer.beginGame();
         }
+
+        return player;
     }
 
     @Override
     public List<Player> getAllPlayers() throws RemoteException {
         return MonsterServer.players;
+    }
+
+    @Override
+    public void sendInput(KeyEvent event, Player currentPlayer) throws RemoteException {
+        for (Player player: MonsterServer.players) {
+            if (player == currentPlayer) {
+                player.processMove(event, MonsterServer.board);
+            }
+        }
     }
 }

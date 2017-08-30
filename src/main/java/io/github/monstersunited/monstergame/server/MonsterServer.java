@@ -65,9 +65,6 @@ public class MonsterServer {
             } else {
                 player.setCorner(BOTTOM_RIGHT);
             }
-
-            players.remove(player);
-            players.add(player);
         }
 
         for (MonsterGameInterface client: clients) {
