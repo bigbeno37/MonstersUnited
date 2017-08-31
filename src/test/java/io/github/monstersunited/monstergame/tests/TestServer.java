@@ -1,6 +1,5 @@
 package io.github.monstersunited.monstergame.tests;
 
-import io.github.monstersunited.monstergame.objects.Monster;
 import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
 import io.github.monstersunited.monstergame.server.MonsterServer;
 import io.github.monstersunited.monstergame.server.MonsterServerHandler;
@@ -29,18 +28,18 @@ public class TestServer {
 
     @Test
     public void addUserCorrectlyAddsUser() throws RemoteException, ServerFullException {
-        server.newPlayer("nick");
+        server.addPlayer("nick");
 
         assertEquals("nick", server.getAllPlayers().get(0).getName());
     }
 
     @Test(expected = ServerFullException.class)
     public void newUserWillThrowExceptionIfTooManyPlayers() throws ServerFullException, RemoteException {
-        server.newPlayer("nick");
-        server.newPlayer("nick");
-        server.newPlayer("nick");
-        server.newPlayer("nick");
-        server.newPlayer("nick");
+        server.addPlayer("nick");
+        server.addPlayer("nick");
+        server.addPlayer("nick");
+        server.addPlayer("nick");
+        server.addPlayer("nick");
     }
 
 

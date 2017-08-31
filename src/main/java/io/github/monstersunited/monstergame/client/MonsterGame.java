@@ -51,10 +51,10 @@ class MonsterGame {
         try {
             MonsterServerInterface server = (MonsterServerInterface) LocateRegistry.getRegistry(serverAddress, port).lookup("server");
 
-            server.initialise(new MonsterGameHandler());
+            server.addClient(new MonsterGameHandler());
 
             String nickname = State.getNickname();
-            Player player = server.newPlayer(nickname);
+            Player player = server.addPlayer(nickname);
 
             new Game(server, player);
 
