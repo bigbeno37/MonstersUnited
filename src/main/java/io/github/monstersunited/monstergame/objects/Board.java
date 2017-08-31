@@ -23,6 +23,10 @@ public class Board implements Serializable{
     public void setPieceAt(int x, int y, BoardPiece pieceToBePlaced) {
         this.board[y][x] = pieceToBePlaced;
     }
+    
+    public BoardPiece getPieceAt(int x, int y) {
+        return this.board[y][x];
+    }
 
     public void update(List<Player> players, Monster monster) {
         // TODO
