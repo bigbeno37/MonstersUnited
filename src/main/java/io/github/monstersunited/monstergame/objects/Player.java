@@ -39,7 +39,7 @@ public class Player extends Entity implements Serializable {
         return this.state == DEAD;
     }
 
-    public void setCorner(Corner corner){
+    public void setCorner(Corner corner) {
         switch (corner) {
             case TOP_LEFT:
                 super.setPosition(1, 1);
@@ -62,5 +62,59 @@ public class Player extends Entity implements Serializable {
         // Make sure to check for collisions through the board passed in
         // A player cannot be on the same square as a BoardPiece, AKA
         // another Player, Monster, Box or Wall
+
+
+        switch (event.getKeyCode()) {
+            case KeyEvent.VK_W:
+                //check if there is entity on the position that will move to
+                if (board.getPieceAt(super.getX(), super.getY() - 1) instanceof Entity) {
+                    System.out.println("Can't move!");
+                } else {
+                    moveUp();
+                }
+                System.out.println("W is pressed");
+                break;
+            case KeyEvent.VK_S:
+                if (board.getPieceAt(super.getX(), super.getY() + 1) instanceof Entity) {
+                    System.out.println("Can't move!");
+                } else {
+                    moveDown();
+                }
+                System.out.println("S is pressed");
+                break;
+            case KeyEvent.VK_A:
+                if (board.getPieceAt(super.getX() - 1, super.getY()) instanceof Entity) {
+                    System.out.println("Can't move!");
+                } else {
+                    moveLeft();
+                }
+                System.out.println("A is pressed");
+                break;
+            case KeyEvent.VK_D:
+                if (board.getPieceAt(super.getX() + 1, super.getY()) instanceof Entity) {
+                    System.out.println("Can't move!");
+                } else {
+                    moveRight();
+                }
+                System.out.println("D is pressed");
+                break;
+        }
     }
+
+    public void moveUp() {
+        super.setY(super.getY() - 1);
+    }
+
+    public void moveDown() {
+        super.setY(super.getY() + 1);
+    }
+
+    public void moveLeft() {
+        super.setX(super.getX() - 1);
+    }
+
+    public void moveRight() {
+        super.setX(super.getX() + 1);
+    }
+
 }
