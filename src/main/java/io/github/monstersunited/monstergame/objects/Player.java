@@ -58,12 +58,6 @@ public class Player extends Entity implements Serializable {
     }
 
     public void processMove(KeyEvent event, Board board) {
-        // TODO
-        // Process move and set new position accordingly
-        // Make sure to check for collisions through the board passed in
-        // A player cannot be on the same square as a BoardPiece, AKA
-        // another Player, Monster, Box or Wall
-
         switch (event.getKeyCode()) {
             case KeyEvent.VK_W:
                 //check if there is entity on the position that will move to

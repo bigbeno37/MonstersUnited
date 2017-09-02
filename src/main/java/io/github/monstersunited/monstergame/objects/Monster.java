@@ -1,7 +1,6 @@
 package io.github.monstersunited.monstergame.objects;
 
 import java.io.Serializable;
-import java.util.List;
 
 // The Monster that chases the nearest player around
 public class Monster extends Entity implements Serializable{
@@ -17,7 +16,7 @@ public class Monster extends Entity implements Serializable{
         super.setPosition(x, y);
     }
 
-    public void moveTowardsClosestPlayer(List<Player> players, Board board) {
+    public void moveTowardsClosestPlayer(Board board) {
         // TODO
         // Move towards the closest player
         // Given is a list of Players which you need to loop through

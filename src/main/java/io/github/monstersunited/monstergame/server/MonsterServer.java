@@ -2,7 +2,6 @@ package io.github.monstersunited.monstergame.server;
 
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Board;
-import io.github.monstersunited.monstergame.objects.Monster;
 import io.github.monstersunited.monstergame.objects.Player;
 
 import java.rmi.RemoteException;
@@ -16,16 +15,14 @@ import static io.github.monstersunited.monstergame.objects.enums.Corner.*;
 public class MonsterServer {
     // The amount of players allowed to connect to the current
     // game lobby
-    public static int amountOfPlayers;
-    public static List<Player> players;
-    public static Monster monster;
+    public static int maxPlayers;
     public static Board board;
 
     // Currently connected clients; used for callbacks through RMI
     public static List<MonsterGameInterface> clients;
 
     public static void start(int amountOfPlayers) {
-        MonsterServer.amountOfPlayers = amountOfPlayers;
+        MonsterServer.maxPlayers = amountOfPlayers;
 
         // Set the players, monster and board to default values
         reset();
@@ -44,7 +41,7 @@ public class MonsterServer {
         boolean topLeft = false, topRight = false,
                 bottomLeft = false;
 
-        for (Player player: players) {
+        for (Player player: board.getPlayers()) {
 
             if (!topLeft) {
 
@@ -72,10 +69,10 @@ public class MonsterServer {
         for (MonsterGameInterface client: clients) {
             // Update the board with the positions of the players
             // reflected in the board itself
-            board.update(players, monster);
+            board.update();
 
             try {
-                client.beginGame(players, monster);
+                client.beginGame(board);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -93,13 +90,13 @@ public class MonsterServer {
         // Every loop, the monster should move towards the closest
         // player, and each player have their position updated
         // according to what direction they input
-        monster.moveTowardsClosestPlayer(players, board);
-        board.update(players, monster);
+        board.getMonster().moveTowardsClosestPlayer(board);
+        board.update();
 
         // Afterwards, send the new positions to the clients
         for (MonsterGameInterface client: clients) {
             try {
-                client.update(players, monster);
+                client.update(board);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -108,9 +105,7 @@ public class MonsterServer {
 
     // Reset variables back to an empty default
     public static void reset() {
-        players = new ArrayList<>();
         clients = new ArrayList<>();
-        monster = new Monster(5, 5);
         board = new Board();
     }
 }

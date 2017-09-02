@@ -19,7 +19,7 @@ public class TestBoard {
 
         Monster monster = new Monster(3, 4);
 
-        board.update(players, monster);
+        board.update();
 
         // TODO
         // Make this an actual check instead of always being correct

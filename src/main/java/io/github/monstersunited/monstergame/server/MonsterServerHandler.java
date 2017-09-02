@@ -26,23 +26,23 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
     @Override
     public Player addPlayer(String nickname) throws RemoteException, ServerFullException {
 
-        if (MonsterServer.players.size() + 1 > MonsterServer.amountOfPlayers) {
+        if (MonsterServer.board.getAmountOfPlayers() + 1 > MonsterServer.maxPlayers) {
             throw new ServerFullException();
         }
 
         Player player = new Player(nickname, 0, 0);
 
-        MonsterServer.players.add(player);
+        MonsterServer.board.addPlayer(player);
 
         // Once the player has been added, refresh the player lists
         // on all connected clients
         for (MonsterGameInterface client: MonsterServer.clients) {
-            client.refreshPlayerList(MonsterServer.players);
+            client.refreshPlayerList(MonsterServer.board.getPlayers());
         }
 
         // If this was the last necessary client to connect,
         // start the game
-        if (MonsterServer.players.size() == MonsterServer.amountOfPlayers) {
+        if (MonsterServer.board.getAmountOfPlayers() == MonsterServer.maxPlayers) {
             MonsterServer.beginGame();
         }
 
@@ -52,7 +52,7 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
     // Returns the server held list of all players
     @Override
     public List<Player> getAllPlayers() throws RemoteException {
-        return MonsterServer.players;
+        return MonsterServer.board.getPlayers();
     }
 
     // If the user enters an input during the game loop, determine which
@@ -60,7 +60,7 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
     // if possible
     @Override
     public void sendInput(KeyEvent event, Player currentPlayer) throws RemoteException {
-        for (Player player: MonsterServer.players) {
+        for (Player player: MonsterServer.board.getPlayers()) {
             if (player == currentPlayer) {
                 player.processMove(event, MonsterServer.board);
             }
