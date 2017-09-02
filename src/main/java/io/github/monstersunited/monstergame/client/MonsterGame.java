@@ -10,7 +10,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-class MonsterGame {
+public class MonsterGame {
     public static void main(String[] args) {
         System.out.println("Client started!");
 
