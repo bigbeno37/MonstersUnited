@@ -1,4 +1,4 @@
-package io.github.monstersunited.monstergame.client.gui;
+package io.github.monstersunited.monstergame.client.gui.features;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
