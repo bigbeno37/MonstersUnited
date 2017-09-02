@@ -63,12 +63,12 @@ public class Player extends Entity implements Serializable {
         // A player cannot be on the same square as a BoardPiece, AKA
         // another Player, Monster, Box or Wall
 
-
         switch (event.getKeyCode()) {
             case KeyEvent.VK_W:
                 //check if there is entity on the position that will move to
                 if (board.getPieceAt(super.getX(), super.getY() - 1) instanceof Entity) {
                     System.out.println("Can't move!");
+                    break;
                 } else {
                     moveUp();
                 }
@@ -77,6 +77,7 @@ public class Player extends Entity implements Serializable {
             case KeyEvent.VK_S:
                 if (board.getPieceAt(super.getX(), super.getY() + 1) instanceof Entity) {
                     System.out.println("Can't move!");
+                    break;
                 } else {
                     moveDown();
                 }
@@ -85,6 +86,7 @@ public class Player extends Entity implements Serializable {
             case KeyEvent.VK_A:
                 if (board.getPieceAt(super.getX() - 1, super.getY()) instanceof Entity) {
                     System.out.println("Can't move!");
+                    break;
                 } else {
                     moveLeft();
                 }
@@ -93,6 +95,7 @@ public class Player extends Entity implements Serializable {
             case KeyEvent.VK_D:
                 if (board.getPieceAt(super.getX() + 1, super.getY()) instanceof Entity) {
                     System.out.println("Can't move!");
+                    break;
                 } else {
                     moveRight();
                 }
