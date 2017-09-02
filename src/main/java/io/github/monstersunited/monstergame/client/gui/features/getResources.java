@@ -9,10 +9,12 @@ public class getResources {
 
     public static BufferedImage loadImage(String resource) {
         try{
-            return ImageIO.read(getResources.class.getResource(resource));
+            return ImageIO.read(getResources.class.getResourceAsStream(resource));
         } catch(IOException e) {
             e.printStackTrace();
+            System.out.println(getResources.class.getResource(resource));
             System.exit(1);
+
         }
         return null;
     }
