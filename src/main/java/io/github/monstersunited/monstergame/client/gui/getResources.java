@@ -6,21 +6,14 @@ import java.io.IOException;
 
 
 public class getResources {
-    public String resource;
-    public int width;
-    public int height;
 
-    public getResources(String resource) {
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(getResources.class.getResource(resource));
-        } catch (IOException e){
+    public static BufferedImage loadImage(String resource) {
+        try{
+            return ImageIO.read(getResources.class.getResource(resource));
+        } catch(IOException e) {
             e.printStackTrace();
+            System.exit(1);
         }
-        this.resource = resource;
-        this.width = image.getWidth();
-        this.height = image.getHeight();
-
+        return null;
     }
 }
