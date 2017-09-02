@@ -3,6 +3,10 @@ package io.github.monstersunited.monstergame.objects;
 import java.io.Serializable;
 import java.util.List;
 
+// The instance that hosts the board itself. It contains all
+// current BoardPieces that occupy the board, and contain
+// convenience methods such as getPieceAt and setPieceAt
+// to help development
 public class Board implements Serializable{
     private BoardPiece[][] board;
 

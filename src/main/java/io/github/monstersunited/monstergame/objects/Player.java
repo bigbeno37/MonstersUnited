@@ -9,6 +9,7 @@ import java.io.Serializable;
 import static io.github.monstersunited.monstergame.objects.enums.PlayerState.ALIVE;
 import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
 
+// The player instance itself, housing position, state, velocity, and name
 public class Player extends Entity implements Serializable {
     private String name;
     private PlayerState state;

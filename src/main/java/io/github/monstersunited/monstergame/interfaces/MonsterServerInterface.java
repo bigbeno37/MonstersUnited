@@ -8,6 +8,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+/*
+ * Methods accessible in the MonsteServer by the MonsterClient,
+ * implemented in MonsterServerHandler
+ */
+
 public interface MonsterServerInterface extends Remote {
     void addClient(MonsterGameInterface client) throws RemoteException;
 
