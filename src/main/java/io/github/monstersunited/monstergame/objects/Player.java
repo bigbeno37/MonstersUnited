@@ -123,9 +123,7 @@ public class Player extends Entity implements Serializable {
             super.setX(8);
         } else if (super.getX() + 1 > 8) {
             super.setX(0);
-        }
-
-        if (super.getY() - 1 < 0) {
+        } else if (super.getY() - 1 < 0) {
             super.setY(8);
         } else if (super.getY() + 1 > 8) {
             super.setY(0);
