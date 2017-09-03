@@ -48,46 +48,58 @@ public class Player extends Entity implements Serializable {
         switch (event.getKeyCode()) {
             case KeyEvent.VK_W:
                 //check if there is entity on the position that will move to
-                if (board.getPieceAt(super.getX(), super.getY() - 1) instanceof Entity) {
-                    System.out.println("Can't move!");
-                    break;
-                } else if (!(inBound())) {
-                    changePosition();
+                if (!(super.getY() - 1 < 0)) {
+                    //if position that player moving to has something, stop player moving to that position
+                    if (board.getPieceAt(super.getX(), super.getY() - 1) instanceof Entity) {
+                        System.out.println("Can't move!");
+                        break;
+                    } else {
+                        //move up 1 unit
+                        moveUp();
+                    }
                 } else {
-                    moveUp();
+                    //wrap player position
+                    super.setY(8);
                 }
                 System.out.println("W is pressed");
                 break;
             case KeyEvent.VK_S:
-                if (board.getPieceAt(super.getX(), super.getY() + 1) instanceof Entity) {
-                    System.out.println("Can't move!");
-                    break;
-                } else if (!(inBound())) {
-                    changePosition();
+                if (!(super.getY() + 1 > 8)) {
+                    if (board.getPieceAt(super.getX(), super.getY() + 1) instanceof Entity) {
+                        System.out.println("Can't move!");
+                        break;
+                    } else {
+                        //move down 1 unit
+                        moveDown();
+                    }
                 } else {
-                    moveDown();
+                    super.setY(0);
                 }
                 System.out.println("S is pressed");
                 break;
             case KeyEvent.VK_A:
-                if (board.getPieceAt(super.getX() - 1, super.getY()) instanceof Entity) {
-                    System.out.println("Can't move!");
-                    break;
-                } else if (!(inBound())) {
-                    changePosition();
+                if (!(super.getX() - 1 < 0)) {
+                    if (board.getPieceAt(super.getX() - 1, super.getY()) instanceof Entity) {
+                        System.out.println("Can't move!");
+                        break;
+                    } else {
+                        moveLeft();
+                    }
                 } else {
-                    moveLeft();
+                    super.setX(8);
                 }
                 System.out.println("A is pressed");
                 break;
             case KeyEvent.VK_D:
-                if (board.getPieceAt(super.getX() + 1, super.getY()) instanceof Entity) {
-                    System.out.println("Can't move!");
-                    break;
-                } else if (!(inBound())) {
-                    changePosition();
+                if (!(super.getX() + 1 > 8)) {
+                    if (board.getPieceAt(super.getX() + 1, super.getY()) instanceof Entity) {
+                        System.out.println("Can't move!");
+                        break;
+                    } else {
+                        moveRight();
+                    }
                 } else {
-                    moveRight();
+                    super.setX(0);
                 }
                 System.out.println("D is pressed");
                 break;
@@ -108,26 +120,6 @@ public class Player extends Entity implements Serializable {
 
     public void moveRight() {
         super.setX(super.getX() + 1);
-    }
-
-    public boolean inBound () {
-        if(((super.getX() + 1 > 8 || super.getX() - 1 < 0) || (super.getY() + 1 > 8 || super.getY() - 1 < 0))) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public void changePosition() {
-        if (super.getX() - 1 < 0) {
-            super.setX(8);
-        } else if (super.getX() + 1 > 8) {
-            super.setX(0);
-        } else if (super.getY() - 1 < 0) {
-            super.setY(8);
-        } else if (super.getY() + 1 > 8) {
-            super.setY(0);
-        }
     }
 
 }
