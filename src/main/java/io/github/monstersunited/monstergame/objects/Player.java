@@ -41,20 +41,7 @@ public class Player extends Entity implements Serializable {
     }
 
     public void setCorner(Corner corner) {
-        switch (corner) {
-            case TOP_LEFT:
-                super.setPosition(1, 1);
-                break;
-            case TOP_RIGHT:
-                super.setPosition(9, 1);
-                break;
-            case BOTTOM_LEFT:
-                super.setPosition(1, 9);
-                break;
-            case BOTTOM_RIGHT:
-                super.setPosition(9, 9);
-                break;
-        }
+        super.setPosition(corner.x, corner.y);
     }
 
     public void processMove(KeyEvent event, Board board) {
