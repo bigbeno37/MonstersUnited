@@ -47,7 +47,7 @@ public class Player extends Entity implements Serializable {
     public void processMove(KeyEvent event, Board board) {
         switch (event.getKeyCode()) {
             case KeyEvent.VK_W:
-                //check if there is entity on the position that will move to
+                //check if player move out of bound
                 if (!(super.getY() - 1 < 0)) {
                     //if position that player moving to has something, stop player moving to that position
                     if (board.getPieceAt(super.getX(), super.getY() - 1) instanceof Entity) {
@@ -83,6 +83,7 @@ public class Player extends Entity implements Serializable {
                         System.out.println("Can't move!");
                         break;
                     } else {
+                        //move left 1 unit
                         moveLeft();
                     }
                 } else {
@@ -96,6 +97,7 @@ public class Player extends Entity implements Serializable {
                         System.out.println("Can't move!");
                         break;
                     } else {
+                        //move right 1 unit
                         moveRight();
                     }
                 } else {
