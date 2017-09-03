@@ -51,6 +51,8 @@ public class Player extends Entity implements Serializable {
                 if (board.getPieceAt(super.getX(), super.getY() - 1) instanceof Entity) {
                     System.out.println("Can't move!");
                     break;
+                } else if (!(inBound())) {
+                    changePosition();
                 } else {
                     moveUp();
                 }
@@ -60,6 +62,8 @@ public class Player extends Entity implements Serializable {
                 if (board.getPieceAt(super.getX(), super.getY() + 1) instanceof Entity) {
                     System.out.println("Can't move!");
                     break;
+                } else if (!(inBound())) {
+                    changePosition();
                 } else {
                     moveDown();
                 }
@@ -69,6 +73,8 @@ public class Player extends Entity implements Serializable {
                 if (board.getPieceAt(super.getX() - 1, super.getY()) instanceof Entity) {
                     System.out.println("Can't move!");
                     break;
+                } else if (!(inBound())) {
+                    changePosition();
                 } else {
                     moveLeft();
                 }
@@ -78,6 +84,8 @@ public class Player extends Entity implements Serializable {
                 if (board.getPieceAt(super.getX() + 1, super.getY()) instanceof Entity) {
                     System.out.println("Can't move!");
                     break;
+                } else if (!(inBound())) {
+                    changePosition();
                 } else {
                     moveRight();
                 }
@@ -100,6 +108,28 @@ public class Player extends Entity implements Serializable {
 
     public void moveRight() {
         super.setX(super.getX() + 1);
+    }
+
+    public boolean inBound () {
+        if(((super.getX() + 1 > 8 || super.getX() - 1 < 0) || (super.getY() + 1 > 8 || super.getY() - 1 < 0))) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void changePosition() {
+        if (super.getX() - 1 < 0) {
+            super.setX(8);
+        } else if (super.getX() + 1 > 8) {
+            super.setX(0);
+        }
+
+        if (super.getY() - 1 < 0) {
+            super.setY(8);
+        } else if (super.getY() + 1 > 8) {
+            super.setY(0);
+        }
     }
 
 }
