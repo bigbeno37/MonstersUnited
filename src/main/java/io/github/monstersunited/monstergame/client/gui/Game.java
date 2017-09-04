@@ -22,6 +22,10 @@ public class Game extends Canvas implements Runnable {
 
     public Game(MonsterServerInterface server, io.github.monstersunited.monstergame.objects.Player player) {
         handler = new Handler();
+
+        //Adding a keyinput of class KeyListener (hope that makes sense)
+        this.addKeyListener(new KeyInput());
+
         new Window(WIDTH, HEIGHT, "Monsters United", this);
 
         //Temporary Object Placement
