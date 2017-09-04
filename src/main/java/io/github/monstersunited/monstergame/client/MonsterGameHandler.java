@@ -33,6 +33,7 @@ public class MonsterGameHandler extends UnicastRemoteObject implements MonsterGa
     @Override
     public void update(Board board) throws RemoteException {
         // TODO
+        board.loadworld();
         // Update board with new positions of players and monster
     }
 }
