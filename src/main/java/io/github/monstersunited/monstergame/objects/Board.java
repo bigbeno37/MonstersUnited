@@ -17,7 +17,6 @@ import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.
 // to help development
 public class Board implements Serializable{
     private BoardPiece[][] board;
-    private int[][] tiles;
     private List<Player> players;
     private Monster monster;
 
@@ -39,45 +38,10 @@ public class Board implements Serializable{
 
     public Board() {
         board = new BoardPiece[9][9];
-        tiles = new int[9][9];
         players = new ArrayList<>();
         monster = new Monster(5,5);
         // TODO
         // Initialise the board to include walls
-        loadworld();
-    }
-
-    public void tick() {
-
-    }
-
-    public void render(Graphics g) {
-        for (int j = 0; j < 9; j++) {
-            for (int i = 0; i < 9; i++) {
-                tiles[j][i] = 0;
-                getTile(i,j).render(g,i*TILEWIDTH,j*TILEHEIGHT);
-            }
-        }
-    }
-
-    public TileGrid getTile(int x, int y) {
-        /*this is just to prevent errors temporarily*/
-        if (x<0||y>0||x>=9||y>=9){
-            return TileGrid.boardTile;
-        }
-
-        TileGrid t = TileGrid.tile[tiles[x][y]];
-        if (t==null){
-            return TileGrid.boardTile;
-        }
-        return t;
-    }
-    public void loadworld() {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                tiles[i][j] = 0;
-            }
-        }
     }
 
     public BoardPiece[][] getBoard() {
