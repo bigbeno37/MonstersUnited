@@ -1,6 +1,6 @@
 package io.github.monstersunited.monstergame.client.gui;
 
-import io.github.monstersunited.monstergame.client.gui.features.world;
+import io.github.monstersunited.monstergame.objects.Board;
 
 import java.awt.*;
 
@@ -11,7 +11,7 @@ public abstract class GameObject {
     protected int x, y;
     protected ID id;
     protected int velX, velY;
-    private world map;
+    private Board map;
 
     public GameObject(int x, int y, ID id){
         this.x = x;

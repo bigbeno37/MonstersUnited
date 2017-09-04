@@ -1,15 +1,12 @@
 package io.github.monstersunited.monstergame.client.gui;
 
 import io.github.monstersunited.monstergame.client.gui.features.Assets;
-import io.github.monstersunited.monstergame.client.gui.features.SpriteSheet;
-import io.github.monstersunited.monstergame.client.gui.features.getResources;
-import io.github.monstersunited.monstergame.client.gui.features.world;
 import io.github.monstersunited.monstergame.client.gui.objects.Player;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
+import io.github.monstersunited.monstergame.objects.Board;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 
 public class Game extends Canvas implements Runnable {
@@ -18,7 +15,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     public boolean running = false;
     private Handler handler;
-    private world map;
+    private Board map;
 
 
     private MonsterServerInterface server;
@@ -26,7 +23,7 @@ public class Game extends Canvas implements Runnable {
 
     public Game(MonsterServerInterface server, io.github.monstersunited.monstergame.objects.Player player) {
         handler = new Handler();
-        map = new world("");
+        map = new Board();
         new Window(WIDTH, HEIGHT, "Monsters United", this);
 
         //Temporary Object Placement
