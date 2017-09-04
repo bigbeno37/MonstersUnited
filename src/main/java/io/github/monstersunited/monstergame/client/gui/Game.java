@@ -1,7 +1,6 @@
 package io.github.monstersunited.monstergame.client.gui;
 
 import io.github.monstersunited.monstergame.client.gui.features.getResources;
-import io.github.monstersunited.monstergame.client.gui.objects.Player;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 
 import java.awt.*;
@@ -17,19 +16,18 @@ public class Game extends Canvas implements Runnable {
     private Handler handler;
 
 
-    private MonsterServerInterface server;
-    private io.github.monstersunited.monstergame.objects.Player player;
+    public static MonsterServerInterface server;
+    public static io.github.monstersunited.monstergame.objects.Player player;
 
     public Game(MonsterServerInterface server, io.github.monstersunited.monstergame.objects.Player player) {
         handler = new Handler();
 
         //Adding a keyinput of class KeyListener (hope that makes sense)
-        this.addKeyListener(new KeyInput());
+        this.addKeyListener(new KeyInput(handler));
 
         new Window(WIDTH, HEIGHT, "Monsters United", this);
 
-        //Temporary Object Placement
-        handler.addObject(new Player(WIDTH / 2 - 16, HEIGHT / 2 - 16, ID.Player));
+
 
         this.server = server;
         this.player = player;
@@ -39,8 +37,7 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         new Window(WIDTH, HEIGHT, "Monsters United", this);
 
-        //Temporary Object Placement
-        handler.addObject(new Player(WIDTH/2-16,HEIGHT/2-16,ID.Player));
+
     }
 
 
