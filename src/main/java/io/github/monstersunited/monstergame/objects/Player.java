@@ -1,8 +1,10 @@
 package io.github.monstersunited.monstergame.objects;
 
+import io.github.monstersunited.monstergame.client.gui.features.Assets;
 import io.github.monstersunited.monstergame.objects.enums.Corner;
 import io.github.monstersunited.monstergame.objects.enums.PlayerState;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
@@ -145,5 +147,6 @@ public class Player extends Entity implements Serializable {
     public void moveRight() {
         super.setX(super.getX() + 1);
     }
+
 
 }

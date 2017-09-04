@@ -1,5 +1,9 @@
 package io.github.monstersunited.monstergame.objects;
 
+import io.github.monstersunited.monstergame.client.gui.features.Assets;
+import io.github.monstersunited.monstergame.client.gui.features.TileGrid;
+
+import java.awt.*;
 import java.io.Serializable;
 
 public class Box extends BoardPiece implements Serializable{
@@ -8,6 +12,27 @@ public class Box extends BoardPiece implements Serializable{
     public boolean alive=true;
     public int placed = 1;
     public int health=5;
+    protected Rectangle bounds;
+    public int x,y,width,height;
+
+
+    public Box(int x, int y,int width,int height){
+        this.x=x;
+        this.y=y;
+        this.width=width;
+        this.height=height;
+        bounds = new Rectangle(0,0,width,height);
+
+        bounds.x=16;
+        bounds.y = 16;
+
+        bounds.width=32;
+        bounds.height=32;
+    }
+
+    public void render(){
+
+    }
 
     public String name(String fin, String ished) {
         return fin+ished;
