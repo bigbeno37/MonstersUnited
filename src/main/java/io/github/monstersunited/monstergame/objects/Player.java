@@ -58,8 +58,14 @@ public class Player extends Entity implements Serializable {
                         moveUp();
                     }
                 } else {
-                    //wrap player position
-                    super.setY(8);
+                    //stop player wrap position if the position player wrapping to has something
+                    if (board.getPieceAt(super.getX(), 8) instanceof Entity) {
+                        System.out.println("Can't move!");
+                        break;
+                    } else {
+                        //wrap player position
+                        super.setY(8);
+                    }
                 }
                 System.out.println("W is pressed");
                 break;
@@ -73,7 +79,13 @@ public class Player extends Entity implements Serializable {
                         moveDown();
                     }
                 } else {
-                    super.setY(0);
+                    if (board.getPieceAt(super.getX(), 0) instanceof Entity) {
+                        System.out.println("Can't move!");
+                        break;
+                    } else {
+                        //wrap player position
+                        super.setY(0);
+                    }
                 }
                 System.out.println("S is pressed");
                 break;
@@ -87,7 +99,12 @@ public class Player extends Entity implements Serializable {
                         moveLeft();
                     }
                 } else {
-                    super.setX(8);
+                    if (board.getPieceAt(8, super.getY()) instanceof Entity) {
+                        System.out.println("Can't move!");
+                        break;
+                    } else {
+                        super.setX(8);
+                    }
                 }
                 System.out.println("A is pressed");
                 break;
@@ -101,7 +118,12 @@ public class Player extends Entity implements Serializable {
                         moveRight();
                     }
                 } else {
-                    super.setX(0);
+                    if (board.getPieceAt(0, super.getY()) instanceof Entity) {
+                        System.out.println("Can't move!");
+                        break;
+                    } else {
+                        super.setX(0);
+                    }
                 }
                 System.out.println("D is pressed");
                 break;
