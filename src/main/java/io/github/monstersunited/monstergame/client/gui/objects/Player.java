@@ -8,18 +8,39 @@ import java.awt.*;
 
 public class Player extends GameObject {
 
-    public Player(int x, int y, ID id){
+    public Player(int x, int y, ID id) {
         super(x, y, id);
-
-
-    }
-
-    public void tick(){
+        x = 0;
+        y = 0;
 
     }
 
+    public void tick() {
 
-    public void render(Graphics g){
-        g.drawImage(Assets.player1,x,y,null);
+    }
+
+
+    //to be fixed
+    public void render(Graphics g) {
+        int counter = 0;
+        if (counter == 0) {
+            x = 1;
+            y = 1;
+            counter++;
+        } else if (counter == 1) {
+            x = 20;
+            y = 20;
+            counter++;
+        } else if (counter == 2) {
+            x = 5;
+            y = 5;
+            counter++;
+        } else if (counter == 3) {
+            x = 30;
+            y = 30;
+            counter++;
+        }
+
+        g.drawImage(Assets.player, x, y, null);
     }
 }

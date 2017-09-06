@@ -9,10 +9,11 @@ public class TileGrid {
     //Static variables here
     public static TileGrid[] tile = new TileGrid[256];
     public static TileGrid boardTile = new boardTile(0);
-    public static TileGrid boxTile= new boxTile(1);
+    public static TileGrid boxTile = new boxTile(1);
+    public static TileGrid playerTile = new playerTiles(2);
 
     //class
-    public static final int TILEWIDTH=32,TILEHEIGHT=32;
+    public static final int TILEWIDTH = 32, TILEHEIGHT = 32;
     protected BufferedImage texture;
     protected final int id;
 
@@ -20,20 +21,21 @@ public class TileGrid {
         this.texture = texture;
         this.id = id;
 
-        tile[id]=this;
+        tile[id] = this;
     }
 
     public void tick() {
 
     }
 
-    public void render (Graphics g, int x, int y){
-        g.drawImage(texture,x,y,TILEWIDTH,TILEHEIGHT,null);
+    public void render(Graphics g, int x, int y) {
+        g.drawImage(texture, x, y, TILEWIDTH, TILEHEIGHT, null);
     }
 
     public boolean isSolid() {
         return false;
     }
+
     public int getId() {
         return id;
     }
