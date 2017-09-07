@@ -1,15 +1,9 @@
 package io.github.monstersunited.monstergame.objects;
 
-import io.github.monstersunited.monstergame.client.gui.features.*;
-import io.github.monstersunited.monstergame.objects.Box;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEHEIGHT;
-import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEWIDTH;
+import java.util.stream.Collectors;
 
 // The instance that hosts the board itself. It contains all
 // current BoardPieces that occupy the board, and contain
@@ -17,33 +11,39 @@ import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.
 // to help development
 public class Board implements Serializable{
     private BoardPiece[][] board;
-    private List<Player> players;
-    private List<Box> boxes;
-    private Monster monster;
+    private List<BoardPiece> boardPieces;
 
     public Board() {
         board = new BoardPiece[9][9];
-        players = new ArrayList<>();
-        boxes = new ArrayList<>();
-        monster = new Monster(5,5);
+        boardPieces = new ArrayList<>();
+        boardPieces.add(new Monster(5,5));
         // TODO
         // Initialise the board to include walls
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return (List<Player>) filterByBoardPiece(Player.class);
+    }
+
+    // Go through the boardPieces list and return elements that match the
+    // class that is passed in, eg. filterByBoardPiece(Player.class) will
+    // return all Players in boardPiece as a List
+    private List<?> filterByBoardPiece(Class<?> boardPiece) {
+        return boardPieces.stream().filter(x -> x.getClass().equals(boardPiece))
+                .map(boardPiece::cast)
+                .collect(Collectors.toList());
     }
 
     public void addPlayer(Player player) {
-        this.players.add(player);
+        this.boardPieces.add(player);
     }
 
     public int getAmountOfPlayers() {
-        return this.players.size();
+        return filterByBoardPiece(Player.class).size();
     }
 
     public Monster getMonster() {
-        return monster;
+        return (Monster) filterByBoardPiece(Monster.class).get(0);
     }
 
     public BoardPiece[][] getBoard() {
@@ -60,18 +60,6 @@ public class Board implements Serializable{
     
     public BoardPiece getPieceAt(int x, int y) {
         return this.board[y][x];
-    }
-
-    public List<Box> getBoxes() {
-        return boxes;
-    }
-
-    public void addBox(Box box) {
-        this.boxes.add(box);
-    }
-
-    public void removeBox(Box box) {
-        this.boxes.remove(box);
     }
 
     public void update() {

@@ -8,12 +8,14 @@ import io.github.monstersunited.monstergame.server.MonsterServerHandler;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.rmi.RemoteException;
 
 import static io.github.monstersunited.monstergame.objects.enums.EntityState.DEAD;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -95,7 +97,7 @@ public class TestServer {
             two.setState(DEAD);
             three.setState(DEAD);
 
-            verify(client).endGame();
+            verify(client, atLeastOnce()).endGame();
 
         } catch (RemoteException | ServerFullException e) {
             e.printStackTrace();
