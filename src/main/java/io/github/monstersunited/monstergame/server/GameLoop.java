@@ -1,6 +1,7 @@
 package io.github.monstersunited.monstergame.server;
 
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
+import io.github.monstersunited.monstergame.objects.Player;
 
 import java.rmi.RemoteException;
 import java.util.TimerTask;
@@ -15,6 +16,17 @@ public class GameLoop extends TimerTask {
         // Every loop, the monster should move towards the closest
         // player, and each player have their position updated
         // according to what direction they input
+
+        for (Player player: MonsterServer.board.getPlayers()) {
+            if (player.getBox() != null) {
+
+                if (player.getBox().reduceTimer() == 0) {
+                    player.removeBox();
+                }
+
+            }
+        }
+
         MonsterServer.board.getMonster().moveTowardsClosestPlayer(MonsterServer.board);
         MonsterServer.board.update();
 

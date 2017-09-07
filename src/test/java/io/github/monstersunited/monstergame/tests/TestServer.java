@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import java.rmi.RemoteException;
 
-import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
+import static io.github.monstersunited.monstergame.objects.enums.EntityState.DEAD;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;

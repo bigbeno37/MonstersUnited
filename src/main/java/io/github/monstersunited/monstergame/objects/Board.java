@@ -18,7 +18,17 @@ import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.
 public class Board implements Serializable{
     private BoardPiece[][] board;
     private List<Player> players;
+    private List<Box> boxes;
     private Monster monster;
+
+    public Board() {
+        board = new BoardPiece[9][9];
+        players = new ArrayList<>();
+        boxes = new ArrayList<>();
+        monster = new Monster(5,5);
+        // TODO
+        // Initialise the board to include walls
+    }
 
     public List<Player> getPlayers() {
         return players;
@@ -36,14 +46,6 @@ public class Board implements Serializable{
         return monster;
     }
 
-    public Board() {
-        board = new BoardPiece[9][9];
-        players = new ArrayList<>();
-        monster = new Monster(5,5);
-        // TODO
-        // Initialise the board to include walls
-    }
-
     public BoardPiece[][] getBoard() {
         return board;
     }
@@ -58,6 +60,18 @@ public class Board implements Serializable{
     
     public BoardPiece getPieceAt(int x, int y) {
         return this.board[y][x];
+    }
+
+    public List<Box> getBoxes() {
+        return boxes;
+    }
+
+    public void addBox(Box box) {
+        this.boxes.add(box);
+    }
+
+    public void removeBox(Box box) {
+        this.boxes.remove(box);
     }
 
     public void update() {
