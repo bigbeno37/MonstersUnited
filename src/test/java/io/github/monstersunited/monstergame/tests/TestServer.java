@@ -44,10 +44,7 @@ public class TestServer {
 
     @Test
     public void addPlayerCorrectlySetsID() {
-        MonsterServer.start(4);
-
         try {
-            MonsterServerHandler server = new MonsterServerHandler();
             server.addPlayer("Hello");
             server.addPlayer("World!");
 

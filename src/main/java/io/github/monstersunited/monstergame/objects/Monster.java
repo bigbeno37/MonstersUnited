@@ -24,9 +24,9 @@ public class Monster extends Entity implements Serializable{
           closedSet stores the list of nodes which are either walls or are nodes which are marked as closed when a better
           path is found.
         */
-        for(i=0;i<81;i++)
+        for(i=0;i<9;i++)
         {
-            for(j=0;j<81;j++)
+            for(j=0;j<9;j++)
             {
                 if(board.getBoard()[i][j] instanceof Monster)
                 {
