@@ -55,7 +55,7 @@ public class Board implements Serializable{
     }
 
     public void setPieceAt(int x, int y, BoardPiece pieceToBePlaced) {
-        this.board[y][x] = pieceToBePlaced;
+        this.board[x][y] = pieceToBePlaced;
     }
     
     public BoardPiece getPieceAt(int x, int y) {

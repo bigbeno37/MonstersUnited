@@ -3,6 +3,7 @@ package io.github.monstersunited.monstergame.objects;
 
 
 public class Position {
+    public Position parent;
     private int x,y;
     public Position(int x,int y)
     {
@@ -28,7 +29,14 @@ public class Position {
     {
         return x;
     }
-
+    public void setGCost(int gCost)
+    {
+        this.gCost = gCost;
+    }
+    public void setHCost(int hCost)
+    {
+        this.hCost = hCost;
+    }
     public int getY()
     {
         return y;
