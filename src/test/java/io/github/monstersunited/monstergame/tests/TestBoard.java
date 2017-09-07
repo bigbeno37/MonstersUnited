@@ -14,8 +14,8 @@ public class TestBoard {
         Board board = new Board();
 
         List<Player> players = new ArrayList<>();
-        players.add(new Player("nick", 2, 4));
-        players.add(new Player("ncik2", 3, 6));
+        players.add(new Player("nick", 2, 4, 1));
+        players.add(new Player("ncik2", 3, 6, 2));
 
         Monster monster = new Monster(3, 4);
 

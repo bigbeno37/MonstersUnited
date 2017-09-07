@@ -13,21 +13,23 @@ import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEA
 
 // The player instance itself, housing position, state, velocity, and name
 public class Player extends Entity implements Serializable {
-    private String name;
+    private final int id;
+    private final String name;
     private PlayerState state;
 
-    public Player(String name, int x, int y) {
+    public Player(String name, int x, int y, int id) {
         this.name = name;
         super.setPosition(x, y);
         this.state = ALIVE;
+        this.id = id;
+    }
+
+    public int getID() {
+        return this.id;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public PlayerState getState() {
@@ -36,10 +38,6 @@ public class Player extends Entity implements Serializable {
 
     public void setState(PlayerState state) {
         this.state = state;
-    }
-
-    public boolean playerIsDead() {
-        return this.state == DEAD;
     }
 
     public void setCorner(Corner corner) {

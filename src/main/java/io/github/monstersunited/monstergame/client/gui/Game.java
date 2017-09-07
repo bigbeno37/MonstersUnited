@@ -34,6 +34,7 @@ public class Game extends Canvas implements Runnable {
 
         this.server = server;
         this.player = player;
+
     }
 
     public Game() {
