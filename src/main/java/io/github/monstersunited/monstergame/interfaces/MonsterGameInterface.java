@@ -18,4 +18,6 @@ public interface MonsterGameInterface extends Remote {
     void beginGame(Board board) throws RemoteException;
 
     void update(Board board) throws RemoteException;
+
+    void endGame() throws RemoteException;
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static io.github.monstersunited.monstergame.objects.enums.Corner.*;
+import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
 
 public class MonsterServer {
     // The amount of players allowed to connect to the current
@@ -93,6 +94,9 @@ public class MonsterServer {
         board.getMonster().moveTowardsClosestPlayer(board);
         board.update();
 
+        // Check to see if there's only one player alive
+        checkEatenPlayers();
+
         // Afterwards, send the new positions to the clients
         for (MonsterGameInterface client: clients) {
             try {
@@ -107,5 +111,24 @@ public class MonsterServer {
     public static void reset() {
         clients = new ArrayList<>();
         board = new Board();
+    }
+
+    public static void checkEatenPlayers() {
+        int playersDead = 0;
+
+        for (Player player: board.getPlayers()) {
+            // If the player is dead, add one to playersDead
+            playersDead += (player.getState() == DEAD) ? 1 : 0;
+        }
+
+        if (playersDead == maxPlayers-1) {
+            for (MonsterGameInterface client: clients) {
+                try {
+                    client.endGame();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

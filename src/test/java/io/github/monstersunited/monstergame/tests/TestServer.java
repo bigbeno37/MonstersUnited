@@ -1,5 +1,6 @@
 package io.github.monstersunited.monstergame.tests;
 
+import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Player;
 import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
 import io.github.monstersunited.monstergame.server.MonsterServer;
@@ -10,7 +11,10 @@ import org.junit.Test;
 
 import java.rmi.RemoteException;
 
+import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
 import static junit.framework.TestCase.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class TestServer {
 
@@ -52,6 +56,48 @@ public class TestServer {
             assertEquals(MonsterServer.board.getAmountOfPlayers(), 2);
             assertEquals(playerOne.getID(), 1);
             assertEquals(playerTwo.getID(), 2);
+        } catch (RemoteException | ServerFullException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void gameStartsAfterPlayersHaveConnected() {
+        MonsterGameInterface client = mock(MonsterGameInterface.class);
+        try {
+            server.addClient(client);
+
+            server.addPlayer("Nick1");
+            server.addPlayer("Nick1");
+            server.addPlayer("Nick1");
+            server.addPlayer("Nick1");
+
+            verify(client).beginGame(MonsterServer.board);
+        } catch (RemoteException | ServerFullException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void gameFinishesAfterPlayersAreEaten() {
+        MonsterGameInterface client = mock(MonsterGameInterface.class);
+
+        try {
+            server.addClient(client);
+
+            Player one = server.addPlayer("Nick1");
+            Player two = server.addPlayer("Nick1");
+            Player three = server.addPlayer("Nick1");
+            Player four = server.addPlayer("Nick1");
+
+            one.setState(DEAD);
+            two.setState(DEAD);
+            three.setState(DEAD);
+
+            MonsterServer.checkEatenPlayers();
+
+            verify(client).endGame();
+
         } catch (RemoteException | ServerFullException e) {
             e.printStackTrace();
         }

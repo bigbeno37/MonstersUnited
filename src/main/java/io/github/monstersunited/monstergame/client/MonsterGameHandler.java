@@ -37,4 +37,11 @@ public class MonsterGameHandler extends UnicastRemoteObject implements MonsterGa
         new world(board);
         // Update board with new positions of players and monster
     }
+
+    // Method is called once all players but one are eaten
+    @Override
+    public void endGame() throws RemoteException {
+        // TODO
+        // Display end game screen and go back to main menu
+    }
 }
