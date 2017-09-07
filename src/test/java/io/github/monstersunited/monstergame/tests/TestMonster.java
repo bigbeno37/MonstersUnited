@@ -109,11 +109,11 @@ public class TestMonster {
 
     }
 
-    @Test public void TESTgetPath(){
-
-    }
-
-    @Test public void TESTmoveTowardsClosestPlayer(){
-
-    }
+//    @Test public void TESTgetPath(){
+//
+//    }
+//
+//    @Test public void TESTmoveTowardsClosestPlayer(){
+//
+//    }
 }
