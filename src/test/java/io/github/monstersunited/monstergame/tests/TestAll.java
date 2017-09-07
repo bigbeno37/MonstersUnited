@@ -10,7 +10,6 @@ import org.junit.runners.Suite;
         TestBlock.class,
         TestBoard.class,
         TestClient.class,
-        TestEntity.class,
         TestMonster.class,
         TestPlayer.class,
         TestServer.class

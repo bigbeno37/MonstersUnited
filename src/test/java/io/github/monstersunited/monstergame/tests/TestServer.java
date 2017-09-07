@@ -13,6 +13,7 @@ import java.rmi.RemoteException;
 
 import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
 import static junit.framework.TestCase.assertEquals;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -72,7 +73,7 @@ public class TestServer {
             server.addPlayer("Nick1");
             server.addPlayer("Nick1");
 
-            verify(client).beginGame(MonsterServer.board);
+            verify(client).beginGame(any());
         } catch (RemoteException | ServerFullException e) {
             e.printStackTrace();
         }
