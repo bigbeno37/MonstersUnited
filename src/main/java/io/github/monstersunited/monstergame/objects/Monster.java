@@ -5,25 +5,28 @@ import java.util.*;
 
 // The Monster that chases the nearest player around
 public class Monster extends Entity implements Serializable{
-    public void monsterGoesToNearestPlayer() {
-
-    }
-
+    public List<Position> openSet = new ArrayList<Position>();
+    public List<Position> closedSet = new ArrayList<Position>();
+    public List<Position> players = new ArrayList<>();
+    /*openSet stores the list of nodes which are still to be evaluated for finding shortest path.
+      closedSet stores the list of nodes which are either walls or are nodes which are marked as closed when a better
+      path is found.
+    */
     public Monster(int x, int y) {
         super.setPosition(x, y);
     }
-
     public void moveTowardsClosestPlayer(Board board) {
-        int i,j,monsterX,monsterY,playerCount=0;
-        int playerPositionX[] = new int [4];
-        int playerPositionY[] = new int[4];
-        List<Position> openSet = new ArrayList<Position>();
-        List<Position> closedSet = new ArrayList<Position>();
-        /*playerPositionX[] and playerPositionY[] stores the position of the players and playerCount counts the number of players
-          openSet stores the list of nodes which are still to be evaluated for finding shortest path.
-          closedSet stores the list of nodes which are either walls or are nodes which are marked as closed when a better
-          path is found.
-        */
+        addPositions(board);
+    }
+
+
+    /*addPositions creates all the Positions objects necessary for the a star algorithm to work.
+     It creates a monster,players,closedSet,openSet objects for the a star algorithm*/
+
+    public void addPositions(Board board) {
+        int i,j;
+
+
         for(i=0;i<9;i++)
         {
             for(j=0;j<9;j++)
@@ -32,28 +35,22 @@ public class Monster extends Entity implements Serializable{
                 {
                     Position monster = new Position(i,j);
                     openSet.add(new Position(i,j));
-                    //Finds the current position of the monster
+                    //Saves the current position of the monster
                 }
                 else if(board.getBoard()[i][j] instanceof Player)
 
                 {
-                    playerPositionX[playerCount] = i;
-                    playerPositionY[playerCount] = j;
-                    playerCount++;
-                    //Saves the position of players according to the number of players in the game and playerCount is incremented
+                    players.add(new Position(i,j));
+                    //Saves the position of players
                 }
-                else if(board.getBoard()[i][j] instanceof Wall)
-                {
-
+                else if(board.getBoard()[i][j] instanceof Wall) {
+                    closedSet.add(new Position(i, j));
+                    //walls are added to closed set
                 }
             }
         }
 
 
-        for(i=0;i<playerCount;i++)
-        {
-
-        }
         // TODO
         // Move towards the closest player
         // Given is a list of Players which you need to loop through
