@@ -16,12 +16,35 @@ public class Player extends Entity implements Serializable {
     private final int id;
     private final String name;
     private PlayerState state;
+    private int timer;
 
     public Player(String name, int x, int y, int id) {
         this.name = name;
         super.setPosition(x, y);
         this.state = ALIVE;
         this.id = id;
+        timer = 10;
+    }
+
+    //reduceTime in the range of reduce timer, player can't place box
+    public int reduceTimer() {
+        //if timer is greater than 0
+        if (getTimer() > 0) {
+            //reduce timer by 1
+            return timer--;
+        } else {
+            //reset timer
+            resetTimer();
+            return timer;
+        }
+    }
+
+    public int getTimer() {
+        return timer;
+    }
+    
+    public void resetTimer() {
+        timer = 10;
     }
 
     public int getID() {
