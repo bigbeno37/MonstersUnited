@@ -89,13 +89,11 @@ public class TestServer {
             Player one = server.addPlayer("Nick1");
             Player two = server.addPlayer("Nick1");
             Player three = server.addPlayer("Nick1");
-            Player four = server.addPlayer("Nick1");
+            server.addPlayer("Nick1");
 
             one.setState(DEAD);
             two.setState(DEAD);
             three.setState(DEAD);
-
-            MonsterServer.checkEatenPlayers();
 
             verify(client).endGame();
 
