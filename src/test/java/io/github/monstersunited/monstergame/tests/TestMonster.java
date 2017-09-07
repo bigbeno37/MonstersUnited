@@ -70,6 +70,7 @@ public class TestMonster {
     }
     @Test
     public void TESTfindPath(){
+        //Still needs work
         Board board = new Board();
         Monster monster = new Monster(4,4);
         board.setPieceAt(4,4,monster);
@@ -78,6 +79,14 @@ public class TestMonster {
 
 //        monster.moveTowardsClosestPlayer(board);
 //        assertEquals(monster.path.size(),3);
+
+    }
+
+    @Test public void TESTgetPath(){
+        
+    }
+
+    @Test public void TESTmoveTowardsClosestPlayer(){
 
     }
 }
