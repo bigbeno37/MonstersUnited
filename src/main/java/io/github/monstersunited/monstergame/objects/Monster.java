@@ -35,6 +35,7 @@ public class Monster extends Entity implements Serializable{
                     //Finds the current position of the monster
                 }
                 else if(board.getBoard()[i][j] instanceof Player)
+
                 {
                     playerPositionX[playerCount] = i;
                     playerPositionY[playerCount] = j;
