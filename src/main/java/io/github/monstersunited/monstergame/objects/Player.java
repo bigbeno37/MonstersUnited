@@ -1,50 +1,24 @@
 package io.github.monstersunited.monstergame.objects;
 
-import io.github.monstersunited.monstergame.client.gui.features.Assets;
 import io.github.monstersunited.monstergame.objects.enums.Corner;
-import io.github.monstersunited.monstergame.objects.enums.PlayerState;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
-import static io.github.monstersunited.monstergame.objects.enums.PlayerState.ALIVE;
-import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
+import static io.github.monstersunited.monstergame.objects.enums.EntityState.ALIVE;
 
 // The player instance itself, housing position, state, velocity, and name
 public class Player extends Entity implements Serializable {
     private final int id;
     private final String name;
-    private PlayerState state;
-    private int timer;
+    private Box box;
 
     public Player(String name, int x, int y, int id) {
         this.name = name;
-        super.setPosition(x, y);
-        this.state = ALIVE;
         this.id = id;
-        timer = 10;
-    }
 
-    //reduceTime in the range of reduce timer, player can't place box
-    public int reduceTimer() {
-        //if timer is greater than 0
-        if (getTimer() > 0) {
-            //reduce timer by 1
-            return timer--;
-        } else {
-            //reset timer
-            resetTimer();
-            return timer;
-        }
-    }
-
-    public int getTimer() {
-        return timer;
-    }
-    
-    public void resetTimer() {
-        timer = 10;
+        super.setPosition(x, y);
+        super.setState(ALIVE);
     }
 
     public int getID() {
@@ -55,12 +29,12 @@ public class Player extends Entity implements Serializable {
         return name;
     }
 
-    public PlayerState getState() {
-        return state;
+    public Box getBox() {
+        return box;
     }
 
-    public void setState(PlayerState state) {
-        this.state = state;
+    public void removeBox() {
+        this.box = null;
     }
 
     public void setCorner(Corner corner) {

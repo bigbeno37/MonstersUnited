@@ -1,7 +1,11 @@
 package io.github.monstersunited.monstergame.objects;
 
+import io.github.monstersunited.monstergame.objects.enums.EntityState;
+
 import java.io.Serializable;
 import java.util.*;
+
+import static io.github.monstersunited.monstergame.objects.enums.EntityState.CHASING;
 
 // The Monster that chases the nearest player around
 public class Monster extends Entity implements Serializable{
@@ -12,8 +16,10 @@ public class Monster extends Entity implements Serializable{
       closedSet stores the list of nodes which are either walls or are nodes which are marked as closed when a better
       path is found.
     */
+
     public Monster(int x, int y) {
         super.setPosition(x, y);
+        super.setState(CHASING);
     }
     public void moveTowardsClosestPlayer(Board board) {
         addPositions(board);

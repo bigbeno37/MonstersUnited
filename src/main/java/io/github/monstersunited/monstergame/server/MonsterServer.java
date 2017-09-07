@@ -10,10 +10,9 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import static io.github.monstersunited.monstergame.objects.enums.Corner.*;
-import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
+import static io.github.monstersunited.monstergame.objects.enums.EntityState.DEAD;
 
 public class MonsterServer {
     // The amount of players allowed to connect to the current
