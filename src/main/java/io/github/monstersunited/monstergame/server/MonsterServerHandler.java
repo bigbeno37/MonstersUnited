@@ -63,7 +63,7 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
     @Override
     public void sendInput(KeyEvent event, Player currentPlayer) throws RemoteException {
         for (Player player: MonsterServer.board.getPlayers()) {
-            if (player == currentPlayer) {
+            if (player.getID() == currentPlayer.getID()) {
                 player.processMove(event, MonsterServer.board);
             }
         }

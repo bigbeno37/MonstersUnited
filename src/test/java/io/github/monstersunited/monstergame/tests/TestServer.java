@@ -42,5 +42,20 @@ public class TestServer {
         server.addPlayer("nick");
     }
 
+    @Test
+    public void addPlayerCorrectlySetsID() {
+        MonsterServer.start(4);
 
+        try {
+            MonsterServerHandler server = new MonsterServerHandler();
+            server.addPlayer("Hello");
+            server.addPlayer("World!");
+
+            assertEquals(MonsterServer.board.getAmountOfPlayers(), 2);
+            assertEquals(MonsterServer.board.getPlayers().get(0).getID(), 1);
+            assertEquals(MonsterServer.board.getPlayers().get(1).getID(), 2);
+        } catch (RemoteException | ServerFullException e) {
+            e.printStackTrace();
+        }
+    }
 }
