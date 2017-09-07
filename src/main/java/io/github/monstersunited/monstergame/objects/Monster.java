@@ -69,9 +69,9 @@ public class Monster extends Entity implements Serializable {
         for (i = 0; i < 9; i++) {
             for (j = 0; j < 9; j++) {
                 if (board.getBoard()[i][j] instanceof Monster) {
-                    openSet.add(new Position(i, j));
                     monsterPosition.setX(i);
                     monsterPosition.setY(j);
+                    openSet.add(monsterPosition);
                     //Saves the current position of the monster
                 } else if (board.getBoard()[i][j] instanceof Player)
 
@@ -83,10 +83,10 @@ public class Monster extends Entity implements Serializable {
                     closedSet.add(new Position(i, j));
                     //walls are added to closed set
                 }
-                else
+               /* else
                 {
                     openSet.add(new Position(i,j));
-                }
+                }*/
             }
         }
     }
@@ -117,7 +117,7 @@ public class Monster extends Entity implements Serializable {
                 getPath(player,target);
                 return path.size();
             }
-
+            //Problem in this for loop
             for(Position neighbour: getNeighbours(currentPosition))
             {
                 if(closedSet.contains(neighbour))
