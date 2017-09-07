@@ -1,5 +1,6 @@
 package io.github.monstersunited.monstergame.tests;
 
+import io.github.monstersunited.monstergame.client.MonsterGame;
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Player;
 import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;

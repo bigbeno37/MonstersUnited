@@ -32,25 +32,25 @@ public class Monster extends Entity implements Serializable {
         /*playerX and playerY are the co-ordinates of the player who is closest to monster and minDistance
           is the distance between that player and monster.
           */
-        addPositions(board);
-        for (Position tempPlayers : players)
-        {
-            distance.add(findPath(board, tempPlayers, this));
-            i++;
-        }
-        playerX = players.get(0).getX();
-        playerY = players.get(0).getY();
-        minDistance = distance.get(0);
-        /*The first player found is set to have the minimum distance and then the player with minimum distance
-        and the minimum distance from distance list is found using a for loop and an if loop
-        */
-        for (int j = 1; j < distance.size(); j++) {
-            if (distance.get(j) < minDistance) {
-                playerX = players.get(j).getX();
-                playerY = players.get(j).getY();
-                minDistance = distance.get(j);
-            }
-        }
+//        addPositions(board);
+//        for (Position tempPlayers : players)
+//        {
+//            distance.add(findPath(board, tempPlayers, this));
+//            i++;
+//        }
+//        playerX = players.get(0).getX();
+//        playerY = players.get(0).getY();
+//        minDistance = distance.get(0);
+//        /*The first player found is set to have the minimum distance and then the player with minimum distance
+//        and the minimum distance from distance list is found using a for loop and an if loop
+//        */
+//        for (int j = 1; j < distance.size(); j++) {
+//            if (distance.get(j) < minDistance) {
+//                playerX = players.get(j).getX();
+//                playerY = players.get(j).getY();
+//                minDistance = distance.get(j);
+//            }
+//        }
 
     }
     // TODO
