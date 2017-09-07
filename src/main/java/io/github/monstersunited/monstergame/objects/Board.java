@@ -64,7 +64,6 @@ public class Board implements Serializable{
 
     public void update() {
         // TODO
-        // Parse through players and update their positions on this board
-        // as well as the monster
+        // Parse through the boardPieces list and update their positions on this board
     }
 }

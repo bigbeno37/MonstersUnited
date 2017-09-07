@@ -100,7 +100,7 @@ public class MonsterServer {
         timer = new Timer();
     }
 
-    public static boolean checkEatenPlayers() {
+    public static boolean isThereOnlyOnePlayerLeft() {
         int playersDead = 0;
 
         for (Player player: board.getPlayers()) {

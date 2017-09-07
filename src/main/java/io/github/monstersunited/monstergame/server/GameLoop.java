@@ -17,6 +17,20 @@ public class GameLoop extends TimerTask {
         // player, and each player have their position updated
         // according to what direction they input
 
+        if (!MonsterServer.isThereOnlyOnePlayerLeft()) {
+
+            removeBoxIfTimerExpired();
+
+            MonsterServer.board.getMonster().moveTowardsClosestPlayer(MonsterServer.board);
+            MonsterServer.board.update();
+
+            updateClients();
+        } else {
+            this.cancel();
+        }
+    }
+
+    private void removeBoxIfTimerExpired() {
         for (Player player: MonsterServer.board.getPlayers()) {
             if (player.getBox() != null) {
 
@@ -26,16 +40,9 @@ public class GameLoop extends TimerTask {
 
             }
         }
+    }
 
-        MonsterServer.board.getMonster().moveTowardsClosestPlayer(MonsterServer.board);
-        MonsterServer.board.update();
-
-        // Check to see if there's only one player alive
-        if(MonsterServer.checkEatenPlayers()) {
-            this.cancel();
-        }
-
-        // Afterwards, send the new positions to the clients
+    private void updateClients() {
         for (MonsterGameInterface client: MonsterServer.clients) {
             try {
                 client.update(MonsterServer.board);
