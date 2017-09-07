@@ -9,6 +9,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static io.github.monstersunited.monstergame.objects.enums.Corner.*;
 import static io.github.monstersunited.monstergame.objects.enums.PlayerState.DEAD;
@@ -18,6 +20,9 @@ public class MonsterServer {
     // game lobby
     public static int maxPlayers;
     public static Board board;
+
+    private static int fps = 60;
+    private static Timer timer;
 
     // Currently connected clients; used for callbacks through RMI
     public static List<MonsterGameInterface> clients;
@@ -80,40 +85,23 @@ public class MonsterServer {
 
         }
 
-        // Enter the actual loop of the game
-        gameLoop();
-    }
-
-    private static void gameLoop() {
-        // TODO
-        // Every 5 ticks
-
-        // Every loop, the monster should move towards the closest
-        // player, and each player have their position updated
-        // according to what direction they input
-        board.getMonster().moveTowardsClosestPlayer(board);
-        board.update();
-
-        // Check to see if there's only one player alive
-        checkEatenPlayers();
-
-        // Afterwards, send the new positions to the clients
-        for (MonsterGameInterface client: clients) {
-            try {
-                client.update(board);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
+        // Run GameLoop every 'fps'th of a second
+        timer.schedule(new GameLoop(), 0, 1000/fps);
     }
 
     // Reset variables back to an empty default
     public static void reset() {
         clients = new ArrayList<>();
         board = new Board();
+
+        if (timer != null) {
+            timer.cancel();
+        }
+
+        timer = new Timer();
     }
 
-    public static void checkEatenPlayers() {
+    public static boolean checkEatenPlayers() {
         int playersDead = 0;
 
         for (Player player: board.getPlayers()) {
@@ -125,10 +113,14 @@ public class MonsterServer {
             for (MonsterGameInterface client: clients) {
                 try {
                     client.endGame();
+
+                    return true;
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
             }
         }
+
+        return false;
     }
 }
