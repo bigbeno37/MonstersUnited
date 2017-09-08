@@ -35,8 +35,10 @@ public class Board implements Serializable{
                 .collect(Collectors.toList());
     }
 
-    public void addPlayer(Player player) {
-        this.boardPieces.add(player);
+    public void addBoardPiece(BoardPiece piece) {
+        if (!(piece instanceof Monster)) {
+            this.boardPieces.add(piece);
+        }
     }
 
     public int getAmountOfPlayers() {
@@ -47,6 +49,14 @@ public class Board implements Serializable{
         return (Monster) filterByBoardPiece(Monster.class).get(0);
     }
 
+    public void setMonster(Monster monster) {
+        for(BoardPiece piece: boardPieces) {
+            if (piece instanceof Monster) {
+                piece = monster;
+            }
+        }
+    }
+
     public BoardPiece[][] getBoard() {
         return board;
     }
@@ -55,7 +65,7 @@ public class Board implements Serializable{
         this.board = board;
     }
 
-    public void setPieceAt(int x, int y, BoardPiece pieceToBePlaced) {
+    private void setPieceAt(int x, int y, BoardPiece pieceToBePlaced) {
         this.board[x][y] = pieceToBePlaced;
     }
     

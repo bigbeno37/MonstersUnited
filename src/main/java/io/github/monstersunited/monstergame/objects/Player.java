@@ -144,4 +144,7 @@ public class Player extends Entity implements Serializable {
     }
 
 
+    public void setBox(Box box) {
+        this.box = box;
+    }
 }
