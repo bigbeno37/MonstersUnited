@@ -23,8 +23,6 @@ public class Monster extends Entity implements Serializable {
         // direction to go
 
 
-
-
 //        List<Integer> distance = new ArrayList<Integer>();
 //        int i = 0;
 //        int playerX, playerY, minDistance;

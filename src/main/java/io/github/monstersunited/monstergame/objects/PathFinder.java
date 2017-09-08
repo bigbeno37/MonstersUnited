@@ -5,17 +5,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class PathFinder {
-    public List<Position> openSet = new ArrayList<Position>();
-    public List<Position> closedSet = new ArrayList<Position>();
-    public List<Position> players = new ArrayList<>();
-    public List<Position> path = new ArrayList<Position>();
-    public List<Position> neighbours = new ArrayList<Position>();
-    public Position monsterPosition = new Position(4,4);
+    public static List<Position> openSet = new ArrayList<Position>();
+    public static List<Position> closedSet = new ArrayList<Position>();
+    public static List<Position> players = new ArrayList<>();
+    public static List<Position> path = new ArrayList<Position>();
+    public static List<Position> neighbours = new ArrayList<Position>();
+    public static Position monsterPosition = new Position(4,4);
 
     /*addPositions creates all the Positions objects necessary for the a star algorithm to work.
      It creates a monster,players,closedSet,openSet objects for the a star algorithm*/
 
-    public void addPositions(Board board) {
+    public static void addPositions(Board board) {
         int i, j;
         for (i = 0; i < 9; i++) {
             for (j = 0; j < 9; j++) {
@@ -42,7 +42,7 @@ public class PathFinder {
         }
     }
 
-    public int findPath(Board board, Position player, Monster monster)
+    public static int findPath(Board board, Position player, Monster monster)
     {
         Position target = new Position(monster.getX(),monster.getY());
         for(int i = 0;i<openSet.size();i++)
@@ -91,7 +91,7 @@ public class PathFinder {
         return 0;
     }
 
-    public List<Position> getNeighbours(Position position)
+    public static List<Position> getNeighbours(Position position)
     {
         neighbours.clear();
         //neighbours list is cleared to remove previous neighbours
@@ -117,7 +117,7 @@ public class PathFinder {
         return neighbours;
     }
 
-    public int getDistance(Position a, Position b)
+    public static int getDistance(Position a, Position b)
     {
         int dstX = Math.abs(a.getX()-b.getX());
         int dstY = Math.abs(a.getY()-b.getY());
@@ -130,7 +130,7 @@ public class PathFinder {
     }
 
 
-    void getPath(Position monster,Position player)
+    public static void getPath(Position monster,Position player)
     {
         Position currentPosition = player;
         while(currentPosition != monster) {
