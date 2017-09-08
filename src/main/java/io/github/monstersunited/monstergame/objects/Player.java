@@ -47,7 +47,7 @@ public class Player extends Entity implements Serializable {
                 //check if player move out of bound
                 if (!(super.getY() - 1 < 0)) {
                     //if position that player moving to has something, stop player moving to that position
-                    if (board.getPieceAt(super.getX(), super.getY() - 1) instanceof Entity) {
+                    if (board.getPieceAt(super.getX(), super.getY() - 1) != null) {
                         System.out.println("Can't move!");
                         break;
                     } else {
@@ -56,7 +56,7 @@ public class Player extends Entity implements Serializable {
                     }
                 } else {
                     //stop player wrap position if the position player wrapping to has something
-                    if (board.getPieceAt(super.getX(), 8) instanceof Entity) {
+                    if (board.getPieceAt(super.getX(), 8) != null) {
                         System.out.println("Can't move!");
                         break;
                     } else {
@@ -68,7 +68,7 @@ public class Player extends Entity implements Serializable {
                 break;
             case KeyEvent.VK_S:
                 if (!(super.getY() + 1 > 8)) {
-                    if (board.getPieceAt(super.getX(), super.getY() + 1) instanceof Entity) {
+                    if (board.getPieceAt(super.getX(), super.getY() + 1) != null) {
                         System.out.println("Can't move!");
                         break;
                     } else {
@@ -76,7 +76,7 @@ public class Player extends Entity implements Serializable {
                         moveDown();
                     }
                 } else {
-                    if (board.getPieceAt(super.getX(), 0) instanceof Entity) {
+                    if (board.getPieceAt(super.getX(), 0) != null) {
                         System.out.println("Can't move!");
                         break;
                     } else {
@@ -88,7 +88,7 @@ public class Player extends Entity implements Serializable {
                 break;
             case KeyEvent.VK_A:
                 if (!(super.getX() - 1 < 0)) {
-                    if (board.getPieceAt(super.getX() - 1, super.getY()) instanceof Entity) {
+                    if (board.getPieceAt(super.getX() - 1, super.getY()) != null) {
                         System.out.println("Can't move!");
                         break;
                     } else {
@@ -96,7 +96,7 @@ public class Player extends Entity implements Serializable {
                         moveLeft();
                     }
                 } else {
-                    if (board.getPieceAt(8, super.getY()) instanceof Entity) {
+                    if (board.getPieceAt(8, super.getY()) != null) {
                         System.out.println("Can't move!");
                         break;
                     } else {
@@ -107,7 +107,7 @@ public class Player extends Entity implements Serializable {
                 break;
             case KeyEvent.VK_D:
                 if (!(super.getX() + 1 > 8)) {
-                    if (board.getPieceAt(super.getX() + 1, super.getY()) instanceof Entity) {
+                    if (board.getPieceAt(super.getX() + 1, super.getY()) != null) {
                         System.out.println("Can't move!");
                         break;
                     } else {
@@ -115,7 +115,7 @@ public class Player extends Entity implements Serializable {
                         moveRight();
                     }
                 } else {
-                    if (board.getPieceAt(0, super.getY()) instanceof Entity) {
+                    if (board.getPieceAt(0, super.getY()) != null) {
                         System.out.println("Can't move!");
                         break;
                     } else {

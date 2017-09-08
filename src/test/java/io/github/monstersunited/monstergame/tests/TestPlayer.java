@@ -1,7 +1,6 @@
 package io.github.monstersunited.monstergame.tests;
 
 import io.github.monstersunited.monstergame.objects.Board;
-import io.github.monstersunited.monstergame.objects.Entity;
 import io.github.monstersunited.monstergame.objects.Player;
 import org.junit.Test;
 
@@ -27,13 +26,12 @@ public class TestPlayer {
 
         //initialize board
         Board board = new Board();
-
         //update exceptY, check if there are some pieces on the position that player moving to
         //if so, reject to move player
         if (player.getY() - 1 < 0) {
             //if the position that player going to move to has something on is already
             //keep the exceptY as where player standing at the moment
-            if (board.getPieceAt(player.getX(), 8) instanceof Entity) {
+            if (board.getPieceAt(player.getX(), 8) != null) {
                 System.out.println("The position player move to has something on it already! Invalid Move");
                 exceptY = player.getY();
             } else {
@@ -63,7 +61,7 @@ public class TestPlayer {
 
         Board board = new Board();
         if (player.getY() + 1 > 8) {
-            if (board.getPieceAt(player.getX(), 0) instanceof Entity) {
+            if (board.getPieceAt(player.getX(), 0) != null) {
                 System.out.println("The position player move to has something on it already! Invalid Move");
                 exceptY = player.getY();
             } else {
@@ -92,7 +90,7 @@ public class TestPlayer {
 
         Board board = new Board();
         if (player.getX() - 1 < 0) {
-            if (board.getPieceAt(8, player.getY()) instanceof Entity) {
+            if (board.getPieceAt(8, player.getY()) != null) {
                 System.out.println("The position player move to has something on it already! Invalid Move");
                 exceptX = player.getX();
             } else {
@@ -121,7 +119,7 @@ public class TestPlayer {
 
         Board board = new Board();
         if (player.getX() + 1 > 8) {
-            if (board.getPieceAt(0, player.getY()) instanceof Entity) {
+            if (board.getPieceAt(0, player.getY()) != null) {
                 System.out.println("The position player move to has something on it already! Invalid Move");
                 exceptX = player.getX();
             } else {
