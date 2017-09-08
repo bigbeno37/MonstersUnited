@@ -1,6 +1,5 @@
 package io.github.monstersunited.monstergame.tests;
 
-import io.github.monstersunited.monstergame.client.MonsterGame;
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Player;
 import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
@@ -9,7 +8,6 @@ import io.github.monstersunited.monstergame.server.MonsterServerHandler;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.rmi.RemoteException;
 
@@ -17,11 +15,7 @@ import static io.github.monstersunited.monstergame.objects.enums.EntityState.DEA
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class TestServer {
 
@@ -29,7 +23,9 @@ public class TestServer {
 
     @BeforeClass
     public static void setUpServer() {
-        MonsterServer.start(4);
+        if (!MonsterServer.isRunning) {
+            MonsterServer.start(4);
+        }
     }
 
     @Before
@@ -83,8 +79,11 @@ public class TestServer {
             server.addClient(client);
 
             server.addPlayer("Nick1");
+            assertFalse(server.isLobbyRunning());
             server.addPlayer("Nick1");
+            assertFalse(server.isLobbyRunning());
             server.addPlayer("Nick1");
+            assertFalse(server.isLobbyRunning());
             server.addPlayer("Nick1");
 
             assertTrue(server.isRunning());

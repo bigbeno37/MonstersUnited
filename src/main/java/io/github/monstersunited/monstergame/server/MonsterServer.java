@@ -4,6 +4,7 @@ import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Board;
 import io.github.monstersunited.monstergame.objects.Player;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -98,6 +99,7 @@ public class MonsterServer {
     public static void reset() {
         clients = new ArrayList<>();
         board = new Board();
+        lobbyRunning = false;
 
         if (timer != null) {
             timer.cancel();

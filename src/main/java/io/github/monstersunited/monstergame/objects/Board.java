@@ -60,7 +60,7 @@ public class Board implements Serializable{
     }
     
     public BoardPiece getPieceAt(int x, int y) {
-        return this.board[y][x];
+        return this.board[x][y];
     }
 
     public void resetBoard() {

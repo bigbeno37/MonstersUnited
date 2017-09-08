@@ -17,32 +17,6 @@ import static junit.framework.TestCase.assertNull;
 
 public class TestBoard {
 
-    @BeforeClass
-    public static void setUp() {
-        MonsterServer.start(4);
-    }
-
-    @Before
-    public void setUpBeforeTest() {
-        MonsterServer.reset();
-    }
-
-    @Test
-    public void updateBoardCorrectlyUpdatesBoard() {
-        Board board = new Board();
-
-        List<Player> players = new ArrayList<>();
-        players.add(new Player("nick", 2, 4, 1));
-        players.add(new Player("ncik2", 3, 6, 2));
-
-        Monster monster = new Monster(3, 4);
-
-        board.update();
-
-        // TODO
-        // Make this an actual check instead of always being correct
-        return;
-    }
     @Before
     public void TestResetBoard() {
         Board test = new Board();
@@ -58,9 +32,14 @@ public class TestBoard {
     @Test
     public void TestUpdate(){
         Board test = new Board();
+
+        Player player = new Player("Nick", 1, 2, 1);
+        test.addPlayer(player);
+
+        assertNull(test.getPieceAt(1, 2));
+
         test.update();
-        for (BoardPiece piece : MonsterServer.board.getBoardPieces()) {
-            test.setPieceAt(piece.getX(),piece.getY(),piece);
-        }
+
+        assertEquals(player, test.getPieceAt(1, 2));
     }
 }
