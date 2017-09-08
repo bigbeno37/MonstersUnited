@@ -25,6 +25,8 @@ public class MonsterServer {
 
     // Currently connected clients; used for callbacks through RMI
     public static List<MonsterGameInterface> clients;
+    public static boolean isRunning = false;
+    public static boolean lobbyRunning = false;
 
     public static void start(int amountOfPlayers) {
         MonsterServer.maxPlayers = amountOfPlayers;
@@ -35,6 +37,8 @@ public class MonsterServer {
         try {
             Registry registry = LocateRegistry.createRegistry(3000);
             registry.rebind("server", new MonsterServerHandler());
+
+            isRunning = true;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -83,6 +87,8 @@ public class MonsterServer {
             }
 
         }
+
+        lobbyRunning = true;
 
         // Run GameLoop every 'fps'th of a second
         timer.schedule(new GameLoop(), 0, 1000/fps);

@@ -68,4 +68,14 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
             }
         }
     }
+
+    @Override
+    public boolean isRunning() throws RemoteException {
+        return MonsterServer.isRunning;
+    }
+
+    @Override
+    public boolean isLobbyRunning() throws RemoteException {
+        return MonsterServer.lobbyRunning;
+    }
 }

@@ -15,6 +15,9 @@ import java.rmi.RemoteException;
 
 import static io.github.monstersunited.monstergame.objects.enums.EntityState.DEAD;
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
@@ -37,8 +40,11 @@ public class TestServer {
 
     @Test
     public void addUserCorrectlyAddsUser() throws RemoteException, ServerFullException {
+        assertEquals(0, server.getAllPlayers().size());
+
         server.addPlayer("nick");
 
+        assertEquals(1, server.getAllPlayers().size());
         assertEquals("nick", server.getAllPlayers().get(0).getName());
     }
 
@@ -54,6 +60,8 @@ public class TestServer {
     @Test
     public void addPlayerCorrectlySetsID() {
         try {
+            assertEquals(0, server.getAllPlayers().size());
+
             Player playerOne = server.addPlayer("Hello");
             Player playerTwo = server.addPlayer("World!");
 
@@ -69,12 +77,18 @@ public class TestServer {
     public void gameStartsAfterPlayersHaveConnected() {
         MonsterGameInterface client = mock(MonsterGameInterface.class);
         try {
+
+            assertFalse(server.isLobbyRunning());
+
             server.addClient(client);
 
             server.addPlayer("Nick1");
             server.addPlayer("Nick1");
             server.addPlayer("Nick1");
             server.addPlayer("Nick1");
+
+            assertTrue(server.isRunning());
+            assertTrue(server.isLobbyRunning());
 
             verify(client).beginGame(any());
         } catch (RemoteException | ServerFullException e) {

@@ -26,6 +26,8 @@ public class GameLoop extends TimerTask {
 
             updateClients();
         } else {
+            MonsterServer.lobbyRunning = false;
+
             this.cancel();
         }
     }
