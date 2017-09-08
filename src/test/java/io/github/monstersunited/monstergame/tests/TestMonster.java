@@ -3,9 +3,6 @@ package io.github.monstersunited.monstergame.tests;
 import io.github.monstersunited.monstergame.objects.*;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static junit.framework.TestCase.assertEquals;
 
 public class TestMonster {
@@ -13,15 +10,18 @@ public class TestMonster {
     public void TESTaddPositions(){
         Board board = new Board();
         Monster monster = new Monster(4,4);
-        board.setPieceAt(4,4,monster);
+        board.setMonster(monster);
         Player playerOne = new Player("One",6,4,1);
         Player playerTwo = new Player("Two",5,4,2);
-        board.setPieceAt(6,4,playerOne);
-        board.setPieceAt(5,4,playerTwo);
+        board.addBoardPiece(playerOne);
+        board.addBoardPiece(playerTwo);
         Wall wallOne = new Wall();
         Wall wallTwo = new Wall();
-        board.setPieceAt(2,8,wallOne);
-        board.setPieceAt(4,6,wallTwo);
+        board.addBoardPiece(wallOne);
+        board.addBoardPiece(wallTwo);
+
+        board.update();
+
         monster.addPositions(board);
         //Since there are only 5 objects in board, all other position objects should be in openSet.
         // So,there should be 77 objects in openSet
@@ -39,11 +39,14 @@ public class TestMonster {
     {
         Board board = new Board();
         Monster monster = new Monster(1,2);
-        board.setPieceAt(1,2,monster);
+        board.setMonster(monster);
         Player playerOne = new Player("One",7,7,1);
-        board.setPieceAt(7,7,playerOne);
+        board.addBoardPiece(playerOne);
         Player playerTwo = new Player("Two",6,7,2);
-        board.setPieceAt(6,7,playerTwo);
+        board.addBoardPiece(playerTwo);
+
+        board.update();
+
         monster.addPositions(board);
         //(7,7) and (6,7) is just one straight position away. So, 10 is the distance.
         assertEquals(monster.getDistance(monster.players.get(1),monster.players.get(0)),10);
@@ -58,9 +61,9 @@ public class TestMonster {
     {
         Board board = new Board();
         Monster monster = new Monster(4,4);
-        board.setPieceAt(4,4,monster);
+        board.setMonster(monster);
         Player playerOne = new Player("One",7,7,1);
-        board.setPieceAt(7,7,playerOne);
+        board.addBoardPiece(playerOne);
         monster.addPositions(board);
 
         monster.getNeighbours(monster.monsterPosition);
@@ -100,9 +103,11 @@ public class TestMonster {
         //Still needs work
         Board board = new Board();
         Monster monster = new Monster(4,4);
-        board.setPieceAt(4,4,monster);
+        board.setMonster(monster);
         Player playerOne = new Player("One",7,7,1);
-        board.setPieceAt(7,7,playerOne);
+        board.addBoardPiece(playerOne);
+
+        board.update();
 
 //        monster.moveTowardsClosestPlayer(board);
 //        assertEquals(monster.path.size(),3);

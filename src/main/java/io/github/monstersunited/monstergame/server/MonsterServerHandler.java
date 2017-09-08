@@ -34,7 +34,7 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
         // i.e. the first player has id 1 and not 0
         Player player = new Player(nickname, 0, 0, MonsterServer.board.getAmountOfPlayers()+1);
 
-        MonsterServer.board.addPlayer(player);
+        MonsterServer.board.addBoardPiece(player);
 
         // Once the player has been added, refresh the player lists
         // on all connected clients
