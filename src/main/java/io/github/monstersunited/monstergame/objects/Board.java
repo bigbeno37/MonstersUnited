@@ -19,6 +19,7 @@ public class Board implements Serializable{
         boardPieces.add(new Monster(5,5));
         // TODO
         // Initialise the board to include walls
+        //this.boardPiece(1,1,new wall());
     }
 
     public List<Player> getPlayers() {
@@ -62,8 +63,24 @@ public class Board implements Serializable{
         return this.board[y][x];
     }
 
+    public void resetBoard() {
+        for (int i=0; i<9 ; i++){
+            for (int j=0; j<9;j++){
+                board[i][j] = null;
+            }
+        }
+    }
+
     public void update() {
         // TODO
         // Parse through the boardPieces list and update their positions on this board
+        resetBoard();
+        for (BoardPiece piece : boardPieces) {
+            setPieceAt(piece.getX(), piece.getY(), piece);
+        }
+    }
+
+    public List<BoardPiece> getBoardPieces() {
+        return boardPieces;
     }
 }
