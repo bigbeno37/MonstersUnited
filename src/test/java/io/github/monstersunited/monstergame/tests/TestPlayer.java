@@ -64,6 +64,7 @@ public class TestPlayer {
         Board board = new Board();
         if (player.getY() + 1 > 8) {
             if (board.getPieceAt(player.getX(), 0) instanceof Entity) {
+                System.out.println("The position player move to has something on it already! Invalid Move");
                 exceptY = player.getY();
             } else {
                 exceptY = 0;
@@ -92,6 +93,7 @@ public class TestPlayer {
         Board board = new Board();
         if (player.getX() - 1 < 0) {
             if (board.getPieceAt(8, player.getY()) instanceof Entity) {
+                System.out.println("The position player move to has something on it already! Invalid Move");
                 exceptX = player.getX();
             } else {
                 exceptX = 8;
@@ -120,6 +122,7 @@ public class TestPlayer {
         Board board = new Board();
         if (player.getX() + 1 > 8) {
             if (board.getPieceAt(0, player.getY()) instanceof Entity) {
+                System.out.println("The position player move to has something on it already! Invalid Move");
                 exceptX = player.getX();
             } else {
                 exceptX = 0;
