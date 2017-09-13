@@ -1,6 +1,7 @@
 package io.github.monstersunited.monstergame.objects;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import static io.github.monstersunited.monstergame.objects.enums.EntityState.CHASING;
 
@@ -22,6 +23,34 @@ public class Monster extends Entity implements Serializable {
         // Call methods in PathFinder to determine which
         // direction to go
 
+        //initilizae the min distance from player to Monster
+        int minDistance = 100;
+
+        //a list for every pieces on boards
+        ArrayList<BoardPiece> piecesList = new ArrayList<>();
+
+        //run through board to add all entity to piecesList
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board.getPieceAt(i, j) instanceof Entity) {
+                    piecesList.add(board.getPieceAt(i, j));
+                }
+            }
+        }
+
+        //calculate distance for Monster to each player
+        for (BoardPiece pieces: piecesList) {
+            int tempDistance = 0;
+            if (!(pieces instanceof Player)) {
+                continue;
+            } else {
+                //calculate distance from each player to Monster
+                tempDistance = Math.abs(pieces.getX() - super.getX()) + Math.abs(pieces.getY() - super.getY());
+                if (tempDistance < minDistance) {
+                    minDistance = tempDistance;
+                }
+            }
+        }
 
 //        List<Integer> distance = new ArrayList<Integer>();
 //        int i = 0;
