@@ -1,9 +1,6 @@
 package io.github.monstersunited.monstergame.client.gui.features;
 
-import io.github.monstersunited.monstergame.objects.Board;
-import io.github.monstersunited.monstergame.objects.Box;
-import io.github.monstersunited.monstergame.objects.Entity;
-import io.github.monstersunited.monstergame.objects.Player;
+import io.github.monstersunited.monstergame.objects.*;
 
 import java.awt.*;
 
@@ -48,11 +45,13 @@ public class world {
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (board.getPieceAt(i,j) instanceof Player){
-                    tiles[i][j] = 2;
-                } else if (board.getPieceAt(i,j) instanceof Box) {
+                if (board.getPieceAt(i, j) instanceof Player) {
+                    tiles[i][j] = 3;
+                } else if (board.getPieceAt(i, j) instanceof Box) {
                     tiles[i][j] = 1;
-                } else {
+                } else if(board.getPieceAt(i, j) instanceof Wall){
+                    tiles[i][j] = 2;
+                }else {
                     tiles[i][j] = 0;
                 }
 
