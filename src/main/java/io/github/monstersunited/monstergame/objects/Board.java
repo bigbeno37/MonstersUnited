@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 // convenience methods such as getPieceAt and setPieceAt
 // to help development
 public class Board implements Serializable{
+    //private
     private BoardPiece[][] board;
     private List<BoardPiece> boardPieces;
 
@@ -26,13 +27,12 @@ public class Board implements Serializable{
                     if (i == 4 || j == 4) {
                         continue;
                     }
-                    setPieceAt(i,j,new Wall());
+                    setPieceAt(i,j,new Wall(i,j));
                 }
 
             }
-            update();
-
         }
+        update();
     }
 
     public List<Player> getPlayers() {
@@ -53,6 +53,7 @@ public class Board implements Serializable{
             this.boardPieces.add(piece);
         }
     }
+
 
     public int getAmountOfPlayers() {
         return filterByBoardPiece(Player.class).size();
@@ -77,7 +78,7 @@ public class Board implements Serializable{
     private void setBoard(BoardPiece[][] board) {
         this.board = board;
     }
-
+    //private
     private void setPieceAt(int x, int y, BoardPiece pieceToBePlaced) {
         this.board[x][y] = pieceToBePlaced;
     }

@@ -15,8 +15,8 @@ public class TestMonster {
         Player playerTwo = new Player("Two",5,4,2);
         board.addBoardPiece(playerOne);
         board.addBoardPiece(playerTwo);
-        Wall wallOne = new Wall();
-        Wall wallTwo = new Wall();
+        Wall wallOne = new Wall(1,1);
+        Wall wallTwo = new Wall(2,2);
         board.addBoardPiece(wallOne);
         board.addBoardPiece(wallTwo);
 
