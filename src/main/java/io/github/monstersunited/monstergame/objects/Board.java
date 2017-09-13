@@ -19,7 +19,20 @@ public class Board implements Serializable{
         boardPieces.add(new Monster(5,5));
         // TODO
         // Initialise the board to include walls
-        //this.boardPiece(1,1,new wall());
+        //this double forloop should place the walls in the corrrect positions
+        for (int i = 0 ; i<8; i++) {
+            for (int j = 0 ; j<8; j++) {
+                if ((i >= 1 && j >= 1) || (i <=7 && j <= 7)) {
+                    if (i == 4 || j == 4) {
+                        continue;
+                    }
+                    setPieceAt(i,j,new Wall());
+                }
+
+            }
+            update();
+
+        }
     }
 
     public List<Player> getPlayers() {
