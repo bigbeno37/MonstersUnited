@@ -1,5 +1,7 @@
 package io.github.monstersunited.monstergame.objects;
 
+import io.github.monstersunited.monstergame.client.gui.features.Assets;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ public class Board implements Serializable{
         boardPieces.add(new Monster(5,5));
         // TODO
         // Initialise the board to include walls
-        //this.boardPiece(1,1,new wall());
+
     }
 
     public List<Player> getPlayers() {

@@ -14,6 +14,9 @@ public class Box extends BoardPiece implements Serializable {
         this.timer = time;
     }
 
+    public Box(int x,int y){
+
+    }
     public int getTimeLeft() {
         return timer;
     }
