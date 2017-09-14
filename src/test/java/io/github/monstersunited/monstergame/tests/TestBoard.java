@@ -25,6 +25,7 @@ public class TestBoard {
                 assertNull(test.getPieceAt(i, j));
             }
         }
+        test.update();
     }
 
     //incomplete make it print correctly- Simon
@@ -33,11 +34,11 @@ public class TestBoard {
         Board test = new Board();
         for (int i = 0 ; i<8; i++) {
             for (int j = 0 ; j<8; j++) {
-                if ((i >= 1 && j >= 1) || (i <=7 && j <= 7)) {
-                    if (i == 4 || j == 4) {
-                        continue;
+                if ((i >= 1 && j >= 1) && (i <=7 && j <= 7)) {
+                    if (i != 4 && j != 4) {
+                        test.addBoardPiece(new Wall(i,j));
                     }
-                    test.addBoardPiece(new Wall(i,j));
+
                 }
 
             }
@@ -47,13 +48,8 @@ public class TestBoard {
         //TESTING
         for (int i = 0 ; i<8; i++) {
             for (int j = 0 ; j<8; j++) {
-                if ((i >= 1 && j >= 1) || (i <=7 && j <= 7)) {
-                    if (i == 4 || j == 4) {
-                        continue;
-                    }
-                    System.out.println(test.getPieceAt(i,j));
 
-                }
+                    System.out.println(test.getPieceAt(i,j) + "\t cords"+i+ " " +j);
 
             }
         }
