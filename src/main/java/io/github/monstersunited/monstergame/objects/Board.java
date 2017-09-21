@@ -66,7 +66,8 @@ public class Board implements Serializable{
     public void setMonster(Monster monster) {
         for(BoardPiece piece: boardPieces) {
             if (piece instanceof Monster) {
-                piece = monster;
+               piece = monster;
+
             }
         }
     }

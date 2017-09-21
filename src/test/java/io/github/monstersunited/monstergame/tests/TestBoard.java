@@ -1,9 +1,6 @@
 package io.github.monstersunited.monstergame.tests;
 
-import io.github.monstersunited.monstergame.objects.Board;
-import io.github.monstersunited.monstergame.objects.Box;
-import io.github.monstersunited.monstergame.objects.Player;
-import io.github.monstersunited.monstergame.objects.Wall;
+import io.github.monstersunited.monstergame.objects.*;
 import io.github.monstersunited.monstergame.server.MonsterServer;
 import org.junit.Before;
 import org.junit.Test;
@@ -90,4 +87,18 @@ public class TestBoard {
         test.update();
         assertEquals(box, test.getPieceAt(1, 1));
     }
+    @Test
+    public void TestSetMonster(){
+        int j =0;
+        Board board = new Board();
+        Monster monster = new Monster(7,5);
+        board.setMonster(monster);
+        if(board.getPieceAt(7,5) instanceof Monster){
+            j=2;
+        }
+        assertEquals(2,j);
+
+
+    }
 }
+

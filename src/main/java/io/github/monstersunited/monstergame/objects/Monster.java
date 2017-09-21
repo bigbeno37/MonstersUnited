@@ -22,6 +22,8 @@ public class Monster extends Entity implements Serializable {
         // TODO
         // Call methods in PathFinder to determine which
         // direction to go
+        PathFinder path = new PathFinder();
+
 
 //        List<Integer> distance = new ArrayList<Integer>();
 //        int i = 0;

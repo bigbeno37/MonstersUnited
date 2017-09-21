@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PathFinder {
+public class PathFinder
+{
     public static List<Position> openSet = new ArrayList<Position>();
     public static List<Position> closedSet = new ArrayList<Position>();
     public static List<Position> players = new ArrayList<>();
@@ -15,17 +16,18 @@ public class PathFinder {
     /*addPositions creates all the Positions objects necessary for the a star algorithm to work.
      It creates a monster,players,closedSet,openSet objects for the a star algorithm*/
 
-    public static void addPositions(Board board) {
+    public static void addPositions(Board board)
+    {
         int i, j;
         for (i = 0; i < 9; i++) {
             for (j = 0; j < 9; j++) {
-                if (board.getBoard()[i][j] instanceof Monster) {
+                if (board.getBoard()[i][j] instanceof Monster)
+                {
                     monsterPosition.setX(i);
                     monsterPosition.setY(j);
                     openSet.add(monsterPosition);
                     //Saves the current position of the monster
                 } else if (board.getBoard()[i][j] instanceof Player)
-
                 {
                     players.add(new Position(i, j));
                     //Saves the position of players
@@ -34,10 +36,6 @@ public class PathFinder {
                     closedSet.add(new Position(i, j));
                     //walls are added to closed set
                 }
-               /* else
-                {
-                    openSet.add(new Position(i,j));
-                }*/
             }
         }
     }
