@@ -21,8 +21,8 @@ public class Game extends Canvas implements Runnable {
     private world map;
 
 
-    private MonsterServerInterface server;
-    private io.github.monstersunited.monstergame.objects.Player player;
+    public static MonsterServerInterface server;
+    public static io.github.monstersunited.monstergame.objects.Player player;
 
     public Game(MonsterServerInterface server, io.github.monstersunited.monstergame.objects.Player player) {
         handler = new Handler();

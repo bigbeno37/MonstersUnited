@@ -23,16 +23,24 @@ public class Board implements Serializable{
         //this double forloop should place the walls in the corrrect positions
         for (int i = 0 ; i<8; i++) {
             for (int j = 0 ; j<8; j++) {
-                if ((i >= 1 && j >= 1) || (i <=7 && j <= 7)) {
-                    if (i == 4 || j == 4) {
-                        continue;
+                if ((i >= 1 && j >= 1) && (i <=7 && j <= 7)) {
+                    if (i != 4 && j != 4) {
+                        addBoardPiece(new Wall(i,j));
                     }
-                    setPieceAt(i,j,new Wall(i,j));
+
                 }
 
             }
         }
         update();
+
+        /*for (int i = 0 ; i<8; i++) {
+            for (int j = 0; j < 8; j++) {
+
+                System.out.println(getPieceAt(i, j) + "\t cords" + i + " " + j);
+
+            }
+        }*/
     }
 
     public List<Player> getPlayers() {

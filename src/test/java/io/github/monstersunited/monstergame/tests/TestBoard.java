@@ -25,7 +25,6 @@ public class TestBoard {
         test.update();
     }
 
-    //incomplete make it print correctly- Simon
     @Test
     public void TestWallPlacement() {
         Board test = new Board();

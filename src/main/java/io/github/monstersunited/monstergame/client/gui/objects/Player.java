@@ -19,9 +19,9 @@ public class Player extends GameObject {
 
     }
 
-
+    public void render(Graphics g) {}
     //to be fixed
-    public void render(Graphics g) {
+ /*   public void render(Graphics g) {
         int counter = 0;
         if (counter == 0) {
             x = 1;
@@ -42,5 +42,5 @@ public class Player extends GameObject {
         }
 
         g.drawImage(Assets.player, x, y, null);
-    }
+    }*/
 }
