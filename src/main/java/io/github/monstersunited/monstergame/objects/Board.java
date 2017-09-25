@@ -1,9 +1,13 @@
 package io.github.monstersunited.monstergame.objects;
 
+import io.github.monstersunited.monstergame.client.gui.Game;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static io.github.monstersunited.monstergame.objects.enums.Corner.TOP_LEFT;
 
 // The instance that hosts the board itself. It contains all
 // current BoardPieces that occupy the board, and contain
@@ -13,7 +17,7 @@ public class Board implements Serializable{
     //private
     private BoardPiece[][] board;
     private List<BoardPiece> boardPieces;
-
+    int p=1;
     public Board() {
         board = new BoardPiece[9][9];
         boardPieces = new ArrayList<>();
@@ -30,8 +34,26 @@ public class Board implements Serializable{
 
                 }
 
+                if (i == 0 && j == 0) {
+                    addBoardPiece(new Player("topL",i,j, p));
+                    p++;
+                } else if (i==8 && j==0) {
+                    addBoardPiece(new Player("topR",i,j, p));
+                    p++;
+                } else if (i==8 && j==8) {
+                    addBoardPiece(new Player("bottomR",i,j, p));
+                    p++;
+                } else if (i==0 && j==8) {
+                    addBoardPiece(new Player("bottomL",i,j, p));
+                    p++;
+                }
+
+
             }
         }
+
+
+
         update();
 
         /*for (int i = 0 ; i<8; i++) {

@@ -38,9 +38,8 @@ public class world {
                     g.drawImage(Assets.wall, i*TILEWIDTH, j*TILEHEIGHT, null);
 
                 }else {
-                    tiles[i][j] = 0;
+                    tiles[i][j] = 1;
                     g.drawImage(Assets.tile, i*TILEWIDTH, j*TILEHEIGHT, null);
-                    //getTile(i, j).render(g, i * TILEWIDTH, j * TILEHEIGHT);
                 }
 
             }
@@ -56,7 +55,6 @@ public class world {
                 if (board.getPieceAt(i, j) instanceof Player) {
                     tiles[i][j] = 3;
 
-                    Game.player.getID();
                 } else if (board.getPieceAt(i, j) instanceof Box) {
                     tiles[i][j] = 1;
                 } else if(board.getPieceAt(i, j) instanceof Wall){

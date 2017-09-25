@@ -5,6 +5,7 @@ import io.github.monstersunited.monstergame.client.gui.ID;
 import io.github.monstersunited.monstergame.client.gui.features.Assets;
 
 import java.awt.*;
+import java.util.Scanner;
 
 public class Player extends GameObject {
 
@@ -14,6 +15,7 @@ public class Player extends GameObject {
         y = 0;
 
     }
+    
 
     public void tick() {
 
