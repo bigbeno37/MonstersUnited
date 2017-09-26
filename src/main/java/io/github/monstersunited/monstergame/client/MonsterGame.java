@@ -15,7 +15,6 @@ public class MonsterGame {
     // create a new lobby, or join one
     public static void main(String[] args) {
         System.out.println("Client started!");
-
         boolean createGame = State.createOrJoinGame();
 
         // If the user chose to create a game...

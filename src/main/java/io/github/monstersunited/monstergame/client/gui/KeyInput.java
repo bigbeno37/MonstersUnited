@@ -11,13 +11,16 @@ public class KeyInput extends KeyAdapter{
     private Handler handler;
 
     public KeyInput(Handler handler){
+
         this.handler = handler;
     }
 
     public void keyPressed(KeyEvent e){
         //Keycode for pressed key
+
         try {
             Game.server.sendInput(e, Game.player);
+
         } catch (RemoteException e1) {
             e1.printStackTrace();
         }
@@ -25,7 +28,11 @@ public class KeyInput extends KeyAdapter{
 
     public void keyReleased(KeyEvent e){
         //Keycode for released key
-        int key = e.getKeyCode();
+        try {
+            Game.server.sendInput(e, Game.player);
+        } catch (RemoteException e1) {
+            e1.printStackTrace();
+        }
 
     }
 
