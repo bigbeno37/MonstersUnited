@@ -15,17 +15,6 @@ public class KeyInput extends KeyAdapter{
         this.handler = handler;
     }
 
-    public void keyPressed(KeyEvent e){
-        //Keycode for pressed key
-
-        try {
-            Game.server.sendInput(e, Game.player);
-
-        } catch (RemoteException e1) {
-            e1.printStackTrace();
-        }
-    }
-
     public void keyReleased(KeyEvent e){
         //Keycode for released key
         try {
