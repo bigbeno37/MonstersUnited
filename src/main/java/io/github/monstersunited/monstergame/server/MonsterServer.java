@@ -4,13 +4,16 @@ import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Board;
 import io.github.monstersunited.monstergame.objects.Player;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 import static io.github.monstersunited.monstergame.objects.enums.Corner.*;
+import static io.github.monstersunited.monstergame.objects.enums.EntityState.DEAD;
 
 public class MonsterServer {
     // The amount of players allowed to connect to the current
@@ -18,8 +21,13 @@ public class MonsterServer {
     public static int maxPlayers;
     public static Board board;
 
+    private static int fps = 60;
+    private static Timer timer;
+
     // Currently connected clients; used for callbacks through RMI
     public static List<MonsterGameInterface> clients;
+    public static boolean isRunning = false;
+    public static boolean lobbyRunning = false;
 
     public static void start(int amountOfPlayers) {
         MonsterServer.maxPlayers = amountOfPlayers;
@@ -30,6 +38,8 @@ public class MonsterServer {
         try {
             Registry registry = LocateRegistry.createRegistry(3000);
             registry.rebind("server", new MonsterServerHandler());
+
+            isRunning = true;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -79,33 +89,45 @@ public class MonsterServer {
 
         }
 
-        // Enter the actual loop of the game
-        gameLoop();
-    }
+        lobbyRunning = true;
 
-    private static void gameLoop() {
-        // TODO
-        // Every 5 ticks
-
-        // Every loop, the monster should move towards the closest
-        // player, and each player have their position updated
-        // according to what direction they input
-        board.getMonster().moveTowardsClosestPlayer(board);
-        board.update();
-
-        // Afterwards, send the new positions to the clients
-        for (MonsterGameInterface client: clients) {
-            try {
-                client.update(board);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
+        // Run GameLoop every 'fps'th of a second
+        timer.schedule(new GameLoop(), 0, 1000/fps);
     }
 
     // Reset variables back to an empty default
     public static void reset() {
         clients = new ArrayList<>();
         board = new Board();
+        lobbyRunning = false;
+
+        if (timer != null) {
+            timer.cancel();
+        }
+
+        timer = new Timer();
+    }
+
+    public static boolean isThereOnlyOnePlayerLeft() {
+        int playersDead = 0;
+
+        for (Player player: board.getPlayers()) {
+            // If the player is dead, add one to playersDead
+            playersDead += (player.getState() == DEAD) ? 1 : 0;
+        }
+
+        if (playersDead == maxPlayers-1) {
+            for (MonsterGameInterface client: clients) {
+                try {
+                    client.endGame();
+
+                    return true;
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return false;
     }
 }

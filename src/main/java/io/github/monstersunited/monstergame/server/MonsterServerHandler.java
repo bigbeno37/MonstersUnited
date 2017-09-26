@@ -30,9 +30,11 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
             throw new ServerFullException();
         }
 
-        Player player = new Player(nickname, 0, 0);
+        // Set the id to the length of the amount of players plus 1
+        // i.e. the first player has id 1 and not 0
+        Player player = new Player(nickname, 0, 0, MonsterServer.board.getAmountOfPlayers()+1);
 
-        MonsterServer.board.addPlayer(player);
+        MonsterServer.board.addBoardPiece(player);
 
         // Once the player has been added, refresh the player lists
         // on all connected clients
@@ -61,9 +63,19 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
     @Override
     public void sendInput(KeyEvent event, Player currentPlayer) throws RemoteException {
         for (Player player: MonsterServer.board.getPlayers()) {
-            if (player == currentPlayer) {
+            if (player.getID() == currentPlayer.getID()) {
                 player.processMove(event, MonsterServer.board);
             }
         }
+    }
+
+    @Override
+    public boolean isRunning() throws RemoteException {
+        return MonsterServer.isRunning;
+    }
+
+    @Override
+    public boolean isLobbyRunning() throws RemoteException {
+        return MonsterServer.lobbyRunning;
     }
 }

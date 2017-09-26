@@ -5,36 +5,11 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class
-
-
-
-
-TestBlock {
+public class TestBlock {
     @Test
-    public void getBoxType() {
-        Box test = new Box();
-        String result = test.name("FIN","ISHED");
-        assertEquals("FINISHED",result);
+    public void reduceTimerCorrectlyReducesTimer() {
+        Box box = new Box(10);
+        assertEquals(box.reduceTimer(), 9);
     }
-    @Test
-    public void TESTDeathAnimation() {
-        Box testDeath = new Box();
-        int result = testDeath.deathAnimation(0);
-        assertEquals(1,result);
-    }
-    @Test
-    public void TESTPlaceBoxes() {
-        Box testPlace = new Box();
-        int result = testPlace.placeBoxes(60);
-        assertEquals(0,result);
-    }
-    @Test
-    public void TESTBoxRecharge() {
-        Box testReCharge = new Box();
-        boolean result = testReCharge.boxRecharge(false);
-        assertEquals(false,result);
-    }
-
 
 }

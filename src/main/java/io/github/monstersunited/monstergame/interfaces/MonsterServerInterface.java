@@ -21,4 +21,8 @@ public interface MonsterServerInterface extends Remote {
     List<Player> getAllPlayers() throws RemoteException;
 
     void sendInput(KeyEvent event, Player currentPlayer) throws RemoteException;
+
+    boolean isRunning() throws RemoteException;
+
+    boolean isLobbyRunning() throws RemoteException;
 }

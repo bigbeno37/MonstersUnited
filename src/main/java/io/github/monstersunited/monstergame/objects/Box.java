@@ -1,54 +1,27 @@
 package io.github.monstersunited.monstergame.objects;
 
+import io.github.monstersunited.monstergame.client.gui.features.Assets;
+import io.github.monstersunited.monstergame.client.gui.features.TileGrid;
+import io.github.monstersunited.monstergame.client.gui.features.boxTile;
+
+import java.awt.*;
 import java.io.Serializable;
 
-public class Box extends BoardPiece implements Serializable{
+public class Box extends BoardPiece implements Serializable {
+    private int timer;
 
-    public int death =1;
-    public boolean alive=true;
-    public int placed = 1;
-    public int health=5;
-
-    public String name(String fin, String ished) {
-        return fin+ished;
-
+    public Box(int time) {
+        this.timer = time;
     }
 
-    public int deathAnimation(int health) {
-        if (health< death){
-            alive = false;
-           /*playDeathAnimation();*/
-            return death;
-        }
-
-        return health;
+    public Box(int x,int y){
 
     }
-
-    public void playAnimationBox() {
-        System.out.println("placeholder");
+    public int getTimeLeft() {
+        return timer;
     }
 
-    public int placeBoxes(int placed){
-        if (placed>0 && placed <3) {
-            /*playAnimationBox();*/
-            return placed;
-        } else {
-            System.out.printf("your Box is on recharge!");
-            placed =0;
-        }
-
-        return placed;
-    }
-
-    public boolean boxRecharge(boolean recharged){
-        if (recharged==true){
-            placeBoxes(placed);
-        } else {
-            System.out.printf("please wait for recharge");
-            recharged=false;
-        }
-
-        return recharged;
+    public int reduceTimer() {
+        return --timer;
     }
 }
