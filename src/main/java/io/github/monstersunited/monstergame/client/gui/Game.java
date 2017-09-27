@@ -19,11 +19,11 @@ public class Game extends Canvas implements Runnable {
     private Handler handler;
     private World map;
     private MainMenu mainMenu;
-    private enum STATE{
+    public enum STATE{
         MENU, GAME
     };
 
-    private STATE State = STATE.GAME;
+    public static STATE State = STATE.MENU;
 
 
     public static MonsterServerInterface server;
@@ -34,9 +34,12 @@ public class Game extends Canvas implements Runnable {
         map = new World(board);
         mainMenu = new MainMenu();
         new Window(WIDTH, HEIGHT, "Monsters United", this);
-
+        /*
         //Temporary Object Placement
         handler.addObject(new Player(WIDTH / 2 - 16, HEIGHT / 2 - 16, ID.Player));
+        */
+        //Adds Mouse
+        this.addMouseListener(new MouseInput());
 
         this.server = server;
         this.player = player;
@@ -51,7 +54,7 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(new Player(WIDTH/2-16,HEIGHT/2-16,ID.Player));
     }
 
-        //Starts Thread
+    //Starts Thread
     public synchronized void start(){
         //Initialized as new thread
         thread = new Thread(this);
