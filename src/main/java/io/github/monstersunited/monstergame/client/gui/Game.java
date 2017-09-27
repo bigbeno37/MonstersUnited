@@ -4,7 +4,6 @@ import io.github.monstersunited.monstergame.client.gui.features.Assets;
 import io.github.monstersunited.monstergame.client.gui.features.world;
 import io.github.monstersunited.monstergame.client.gui.objects.Player;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
-import io.github.monstersunited.monstergame.objects.Board;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -14,11 +13,17 @@ import static io.github.monstersunited.monstergame.server.MonsterServer.board;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 295, HEIGHT = WIDTH+28;
+    public static final int WIDTH = 640, HEIGHT = 480;
     private Thread thread;
     public boolean running = false;
     private Handler handler;
     private world map;
+    private MainMenu mainMenu;
+    private enum STATE{
+        MENU, GAME
+    };
+
+    private STATE State = STATE.GAME;
 
 
     public static MonsterServerInterface server;
@@ -27,6 +32,7 @@ public class Game extends Canvas implements Runnable {
     public Game(MonsterServerInterface server, io.github.monstersunited.monstergame.objects.Player player) {
         handler = new Handler();
         map = new world(board);
+        mainMenu = new MainMenu();
         new Window(WIDTH, HEIGHT, "Monsters United", this);
 
         //Temporary Object Placement
@@ -99,31 +105,48 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick(){
-        map.tick();
-        //This should be the GM equivelant of "Step"
-        handler.tick();
+        if(State == STATE.GAME){
+            map.tick();
+            //This should be the GM equivelant of "Step"
+            handler.tick();
+        }
+
 
     }
 
     private void render(){
-        //This should be the GM equivelant of "Draw"
 
-        //The amount of frames drawn ahead of time
-        BufferStrategy bs = this.getBufferStrategy();
-        if (bs == null){
-            this.createBufferStrategy(3);
-            return;
+            //This should be the GM equivelant of "Draw"
+
+            //The amount of frames drawn ahead of time
+            BufferStrategy bs = this.getBufferStrategy();
+            if (bs == null){
+                this.createBufferStrategy(3);
+                return;
+            }
+
+            Graphics g = bs.getDrawGraphics();
+        if (State == STATE.GAME) {
+            //Background
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, getWidth(), getHeight());
+            map.render(g);
+
+            handler.render(g);
+            g.dispose();
+            bs.show();
+        } else if(State == STATE.MENU){
+            //Background
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, getWidth(), getHeight());
+
+
+            mainMenu.render(g);
+            g.dispose();
+            bs.show();
+
         }
 
-        Graphics g = bs.getDrawGraphics();
-        //Background
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getWidth(), getHeight());
-        map.render(g);
-
-        handler.render(g);
-        g.dispose();
-        bs.show();
     }
 
 }

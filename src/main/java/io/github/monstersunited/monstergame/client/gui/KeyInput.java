@@ -16,6 +16,7 @@ public class KeyInput extends KeyAdapter{
     }
 
     public void keyReleased(KeyEvent e){
+
         //Keycode for released key
         try {
             Game.server.sendInput(e, Game.player);
