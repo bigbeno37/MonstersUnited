@@ -1,6 +1,6 @@
 package io.github.monstersunited.monstergame.client;
 
-import io.github.monstersunited.monstergame.client.gui.features.world;
+import io.github.monstersunited.monstergame.client.gui.features.World;
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Board;
 import io.github.monstersunited.monstergame.objects.Player;
@@ -34,7 +34,7 @@ public class MonsterGameHandler extends UnicastRemoteObject implements MonsterGa
     @Override
     public void update(Board board) throws RemoteException {
         // TODO
-        new world(board);
+        new World(board);
         // Update board with new positions of players and monster
     }
 

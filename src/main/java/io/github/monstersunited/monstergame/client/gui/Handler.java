@@ -1,7 +1,6 @@
 package io.github.monstersunited.monstergame.client.gui;
 
-import io.github.monstersunited.monstergame.client.gui.features.world;
-import io.github.monstersunited.monstergame.objects.Board;
+import io.github.monstersunited.monstergame.client.gui.features.World;
 
 import java.util.LinkedList;
 import java.awt.Graphics;
@@ -12,11 +11,11 @@ public class Handler {
 
     //Linked List of all gameobjects to be handled
     LinkedList<GameObject> object = new LinkedList<GameObject>();
-    private world map;
-    public void setWorld(world map){
+    private World map;
+    public void setWorld(World map){
         this.map=map;
     }
-    public world getWorld(){
+    public World getWorld(){
         return map;
     }
 

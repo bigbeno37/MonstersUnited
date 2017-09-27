@@ -1,7 +1,7 @@
 package io.github.monstersunited.monstergame.client.gui;
 
 import io.github.monstersunited.monstergame.client.gui.features.Assets;
-import io.github.monstersunited.monstergame.client.gui.features.world;
+import io.github.monstersunited.monstergame.client.gui.features.World;
 import io.github.monstersunited.monstergame.client.gui.objects.Player;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 
@@ -17,7 +17,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     public boolean running = false;
     private Handler handler;
-    private world map;
+    private World map;
     private MainMenu mainMenu;
     private enum STATE{
         MENU, GAME
@@ -31,7 +31,7 @@ public class Game extends Canvas implements Runnable {
 
     public Game(MonsterServerInterface server, io.github.monstersunited.monstergame.objects.Player player) {
         handler = new Handler();
-        map = new world(board);
+        map = new World(board);
         mainMenu = new MainMenu();
         new Window(WIDTH, HEIGHT, "Monsters United", this);
 
@@ -130,6 +130,26 @@ public class Game extends Canvas implements Runnable {
             //Background
             g.setColor(Color.BLACK);
             g.fillRect(0, 0, getWidth(), getHeight());
+
+            Font fnt0 = new Font("arial", Font.BOLD, 25);
+            g.setFont(fnt0);
+            g.setColor(Color.BLUE);
+            g.drawString("PPPPLACEHOLDER", 208, 25);
+
+            Font fnt1 = new Font("times", Font.PLAIN, 15);
+            g.setFont(fnt1);
+            g.setColor(Color.WHITE);
+            g.drawString("Connected Players", 480, 96);
+
+            Font fnt2 = new Font("times", Font.PLAIN, 20);
+            g.setFont(fnt2);
+            g.drawString("Server Condition:", 64, 424);
+
+
+
+
+
+
             map.render(g);
 
             handler.render(g);

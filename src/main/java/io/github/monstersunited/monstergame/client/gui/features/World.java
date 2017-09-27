@@ -9,10 +9,10 @@ import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.
 import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEWIDTH;
 import static io.github.monstersunited.monstergame.server.MonsterServer.board;
 
-public class world {
+public class World {
     private int[][] tiles;
 
-    public world(Board board) {
+    public World(Board board) {
         tiles = new int[9][9];
         loadWorld(board);
     }
@@ -27,19 +27,19 @@ public class world {
 
                 if (board.getPieceAt(i, j) instanceof Player) {
                     tiles[i][j] = 3;
-                    g.drawImage(Assets.player, i*TILEWIDTH, j*TILEHEIGHT, null);
+                    g.drawImage(Assets.player, i*TILEWIDTH+64, j*TILEHEIGHT+96, null);
                     Game.player.getID();
                 } else if (board.getPieceAt(i, j) instanceof Box) {
                     tiles[i][j] = 1;
-                    g.drawImage(Assets.box, i*TILEWIDTH, j*TILEHEIGHT, null);
+                    g.drawImage(Assets.box, i*TILEWIDTH+64, j*TILEHEIGHT+96, null);
 
                 } else if(board.getPieceAt(i, j) instanceof Wall){
                     tiles[i][j] = 2;
-                    g.drawImage(Assets.wall, i*TILEWIDTH, j*TILEHEIGHT, null);
+                    g.drawImage(Assets.wall, i*TILEWIDTH+64, j*TILEHEIGHT+96, null);
 
                 }else {
                     tiles[i][j] = 1;
-                    g.drawImage(Assets.tile, i*TILEWIDTH, j*TILEHEIGHT, null);
+                    g.drawImage(Assets.tile, i*TILEWIDTH+64, j*TILEHEIGHT+96, null);
                 }
 
             }
