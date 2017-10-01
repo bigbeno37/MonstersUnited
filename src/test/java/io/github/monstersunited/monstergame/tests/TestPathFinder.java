@@ -14,6 +14,9 @@ public class TestPathFinder {
     public void TESTgetDistance() {
         Board board = new Board();
         Monster monster = new Monster(1, 2);
+        board.getMonster().setX(1);
+        board.getMonster().setY(2);
+        board.addBoardPiece(monster);
         PathFinder path = new PathFinder();
         board.getMonster().setPosition(1, 2);
         Player playerOne = new Player("One", 7, 7, 1);
@@ -25,11 +28,11 @@ public class TestPathFinder {
 
         path.addPositions(board);
         //(7,7) and (6,7) is just one straight position away. So, 10 is the distance.
-        assertEquals(path.getDistance(path.players.get(1), path.players.get(0)), 10);
+        assertEquals(path.getDistance(path.players.get(1), path.players.get(2)), 10);
         //(6,7) to (1,2) is 5 diagonal positions and zero straight positions which should be 14*5=70
-        assertEquals(path.getDistance(path.monsterPosition, path.players.get(1)), 70);
+        assertEquals(path.getDistance(path.monsterPosition, path.players.get(2)), 70);
         //(7,7) to (1,2) is 5 diagonal positions and one straight position which should be 14*5+10=80
-        assertEquals(path.getDistance(path.monsterPosition, path.players.get(0)), 80);
+        assertEquals(path.getDistance(path.monsterPosition, path.players.get(1)), 80);
 
     }
 

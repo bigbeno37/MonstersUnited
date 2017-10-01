@@ -110,7 +110,7 @@ public class Board implements Serializable{
         this.board = board;
     }
     //private
-    private void setPieceAt(int x, int y, BoardPiece pieceToBePlaced) {
+    public void setPieceAt(int x, int y, BoardPiece pieceToBePlaced) {
         this.board[x][y] = pieceToBePlaced;
     }
     

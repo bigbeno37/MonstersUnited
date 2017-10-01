@@ -13,7 +13,7 @@ public class Monster extends Entity implements Serializable {
     */
 
     public Monster(int x, int y) {
-        super.setPosition(x, y);
+        super.setPosition(y, x);
         super.setState(CHASING);
     }
 

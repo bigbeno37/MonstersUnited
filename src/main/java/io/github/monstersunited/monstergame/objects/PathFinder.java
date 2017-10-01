@@ -11,7 +11,7 @@ public class PathFinder
     public static List<Position> players = new ArrayList<>();
     public static List<Position> path = new ArrayList<Position>();
     public static List<Position> neighbours = new ArrayList<Position>();
-    public static Position monsterPosition = new Position(4,4);
+    public static Position monsterPosition;
 
     /*addPositions creates all the Positions objects necessary for the a star algorithm to work.
      It creates a monster,players,closedSet,openSet objects for the a star algorithm*/
@@ -23,6 +23,7 @@ public class PathFinder
             for (j = 0; j < 9; j++) {
                 if (board.getBoard()[i][j] instanceof Monster)
                 {
+                    monsterPosition = new Position(i,j);
                     monsterPosition.setX(i);
                     monsterPosition.setY(j);
                     openSet.add(monsterPosition);
@@ -40,7 +41,7 @@ public class PathFinder
         }
     }
 
-    public static int findPath(Board board, Position player, Monster monster)
+    public static void findPath(Board board, Position player, Monster monster)
     {
         Position target = new Position(monster.getX(),monster.getY());
         for(int i = 0;i<openSet.size();i++)
@@ -64,7 +65,7 @@ public class PathFinder
 
             if (currentPosition == player) {
                 getPath(player,target);
-                return path.size();
+
             }
             //Problem in this for loop
             for(Position neighbour: getNeighbours(currentPosition))
@@ -86,7 +87,7 @@ public class PathFinder
 
 
         }
-        return 0;
+
     }
 
     public static List<Position> getNeighbours(Position position)
