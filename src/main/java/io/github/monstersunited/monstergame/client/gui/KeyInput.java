@@ -16,6 +16,7 @@ public class KeyInput extends KeyAdapter{
     }
 
     public void keyReleased(KeyEvent e){
+        System.out.println("Key was entered!");
 
         //Keycode for released key
         try {
