@@ -3,7 +3,6 @@ package io.github.monstersunited.monstergame.interfaces;
 import io.github.monstersunited.monstergame.objects.Player;
 import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
 
-import java.awt.event.KeyEvent;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -20,7 +19,7 @@ public interface MonsterServerInterface extends Remote {
 
     List<Player> getAllPlayers() throws RemoteException;
 
-    void sendInput(KeyEvent event, Player currentPlayer) throws RemoteException;
+    void sendInput(int event, Player currentPlayer) throws RemoteException;
 
     boolean isRunning() throws RemoteException;
 

@@ -41,9 +41,7 @@ public class TestPlayer {
             exceptY = player.getY() - 1;
         }
 
-        KeyEvent event = new KeyEvent(new Button(""), 0, 0, 0, KeyEvent.VK_W, 'a', 0);
-
-        player.processMove(event, board);
+        player.processMove(KeyEvent.VK_W, board);
         assertEquals(exceptX, player.getX());
         assertEquals(exceptY, player.getY());
     }
@@ -70,9 +68,8 @@ public class TestPlayer {
         } else {
             exceptY = player.getY() + 1;
         }
-        KeyEvent event = new KeyEvent(new Button(""), 0, 0, 0, KeyEvent.VK_S, 'a', 0);
 
-        player.processMove(event, board);
+        player.processMove(KeyEvent.VK_S, board);
         assertEquals(exceptX, player.getX());
         assertEquals(exceptY, player.getY());
     }
@@ -99,9 +96,8 @@ public class TestPlayer {
         } else {
             exceptX = player.getX() - 1;
         }
-        KeyEvent event = new KeyEvent(new Button(""), 0, 0, 0, KeyEvent.VK_A, 'a', 0);
 
-        player.processMove(event, board);
+        player.processMove(KeyEvent.VK_A, board);
         assertEquals(exceptX, player.getX());
         assertEquals(exceptY, player.getY());
     }
@@ -128,9 +124,8 @@ public class TestPlayer {
         } else {
             exceptX = player.getX() + 1;
         }
-        KeyEvent event = new KeyEvent(new Button(""), 0, 0, 0, KeyEvent.VK_D, 'a', 0);
 
-        player.processMove(event, board);
+        player.processMove(KeyEvent.VK_D, board);
         assertEquals(exceptX, player.getX());
         assertEquals(exceptY, player.getY());
     }

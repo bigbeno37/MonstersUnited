@@ -5,7 +5,6 @@ import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 import io.github.monstersunited.monstergame.objects.Player;
 import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
 
-import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -61,9 +60,9 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
     // player sent it and process that input to form a new position
     // if possible
     @Override
-    public void sendInput(KeyEvent event, Player currentPlayer) throws RemoteException {
+    public void sendInput(int event, Player currentPlayer) throws RemoteException {
         System.out.println("Input was received!");
-        System.out.println(event.getKeyCode());
+        System.out.println(event);
 
         for (Player player: MonsterServer.board.getPlayers()) {
             if (player.getID() == currentPlayer.getID()) {

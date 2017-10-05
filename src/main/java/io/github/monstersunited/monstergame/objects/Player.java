@@ -41,8 +41,8 @@ public class Player extends Entity implements Serializable {
         super.setPosition(corner.x, corner.y);
     }
 
-    public void processMove(KeyEvent event, Board board) {
-        switch (event.getKeyCode()) {
+    public void processMove(int event, Board board) {
+        switch (event) {
             case KeyEvent.VK_W:
                 //check if player move out of bound
                 if (!(super.getY() - 1 < 0)) {

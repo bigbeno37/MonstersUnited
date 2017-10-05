@@ -32,7 +32,7 @@ public class KeyInput extends KeyAdapter{
 
         //Keycode for released key
         try {
-            Game.server.sendInput(e, Game.player);
+            Game.server.sendInput(e.getKeyCode(), Game.player);
         } catch (RemoteException e1) {
             e1.printStackTrace();
         }
