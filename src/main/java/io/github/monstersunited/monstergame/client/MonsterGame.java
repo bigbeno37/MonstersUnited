@@ -52,11 +52,8 @@ public class MonsterGame {
             // Gain access to the server with RMI
             MonsterServerInterface server = (MonsterServerInterface) LocateRegistry.getRegistry(serverAddress, port).lookup("server");
 
-            // Add callbacks for use with the Observer pattern
-            server.addClient(new MonsterGameHandler());
-
             String nickname = State.getNickname();
-            Player player = server.addPlayer(nickname);
+            Player player = server.addPlayer(nickname, new MonsterGameHandler());
 
             // TODO
             // Temporary, we need to start the client MUCH earlier

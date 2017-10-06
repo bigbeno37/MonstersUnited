@@ -13,9 +13,7 @@ import java.util.List;
  */
 
 public interface MonsterServerInterface extends Remote {
-    void addClient(MonsterGameInterface client) throws RemoteException;
-
-    Player addPlayer(String nickname) throws RemoteException, ServerFullException;
+    Player addPlayer(String nickname, MonsterGameInterface client) throws RemoteException, ServerFullException;
 
     List<Player> getAllPlayers() throws RemoteException;
 

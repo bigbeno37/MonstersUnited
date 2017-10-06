@@ -27,6 +27,7 @@ public class MonsterGameHandler extends UnicastRemoteObject implements MonsterGa
     public void beginGame(Board board) throws RemoteException {
         // TODO
         // Switch scene to showing the board and players
+        System.out.println("Begin game was called");
     }
 
     // Method is called only AFTER beginGame has been called, and is called
@@ -36,6 +37,8 @@ public class MonsterGameHandler extends UnicastRemoteObject implements MonsterGa
         // TODO
         new World(board);
         // Update board with new positions of players and monster
+
+        System.out.println("Update was called");
     }
 
     // Method is called once all players but one are eaten

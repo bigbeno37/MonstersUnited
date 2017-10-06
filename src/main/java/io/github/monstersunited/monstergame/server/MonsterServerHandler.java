@@ -14,20 +14,16 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
         super();
     }
 
-    // Add callback functionality to the server
-    @Override
-    public void addClient(MonsterGameInterface client) throws RemoteException {
-        MonsterServer.clients.add(client);
-    }
-
     // Add a new player to the lobby if the lobby is not full
     // otherwise returning an exception
     @Override
-    public Player addPlayer(String nickname) throws RemoteException, ServerFullException {
+    public Player addPlayer(String nickname, MonsterGameInterface client) throws RemoteException, ServerFullException {
 
         if (MonsterServer.board.getAmountOfPlayers() + 1 > MonsterServer.maxPlayers) {
             throw new ServerFullException();
         }
+
+        MonsterServer.clients.add(client);
 
         // Set the id to the length of the amount of players plus 1
         // i.e. the first player has id 1 and not 0
@@ -37,8 +33,10 @@ public class MonsterServerHandler extends UnicastRemoteObject implements Monster
 
         // Once the player has been added, refresh the player lists
         // on all connected clients
-        for (MonsterGameInterface client: MonsterServer.clients) {
-            client.refreshPlayerList(MonsterServer.board.getPlayers());
+        for (MonsterGameInterface clientGame: MonsterServer.clients) {
+            if (clientGame != null) {
+                clientGame.refreshPlayerList(MonsterServer.board.getPlayers());
+            }
         }
 
         // If this was the last necessary client to connect,

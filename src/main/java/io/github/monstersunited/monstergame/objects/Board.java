@@ -17,7 +17,6 @@ public class Board implements Serializable{
     //private
     private BoardPiece[][] board;
     private List<BoardPiece> boardPieces;
-    int p=1;
     public Board() {
         board = new BoardPiece[9][9];
         boardPieces = new ArrayList<>();
@@ -33,36 +32,10 @@ public class Board implements Serializable{
                     }
 
                 }
-
-                if (i == 0 && j == 0) {
-                    addBoardPiece(new Player("topL",i,j, p));
-                    p++;
-                } else if (i==8 && j==0) {
-                    addBoardPiece(new Player("topR",i,j, p));
-                    p++;
-                } else if (i==8 && j==8) {
-                    addBoardPiece(new Player("bottomR",i,j, p));
-                    p++;
-                } else if (i==0 && j==8) {
-                    addBoardPiece(new Player("bottomL",i,j, p));
-                    p++;
-                }
-
-
             }
         }
 
-
-
         update();
-
-        /*for (int i = 0 ; i<8; i++) {
-            for (int j = 0; j < 8; j++) {
-
-                System.out.println(getPieceAt(i, j) + "\t cords" + i + " " + j);
-
-            }
-        }*/
     }
 
     public List<Player> getPlayers() {

@@ -17,7 +17,7 @@ public class GameLoop extends TimerTask {
         // player, and each player have their position updated
         // according to what direction they input
 
-        if (!MonsterServer.isThereOnlyOnePlayerLeft()) {
+        if (/*!MonsterServer.onePlayerLeft()*/true) {
 
             removeBoxIfTimerExpired();
 

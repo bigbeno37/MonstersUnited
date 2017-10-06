@@ -4,7 +4,6 @@ import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Board;
 import io.github.monstersunited.monstergame.objects.Player;
 
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -21,7 +20,7 @@ public class MonsterServer {
     public static int maxPlayers;
     public static Board board;
 
-    private static int fps = 60;
+    private static final int fps = 20;
     private static Timer timer;
 
     // Currently connected clients; used for callbacks through RMI
@@ -91,6 +90,8 @@ public class MonsterServer {
 
         lobbyRunning = true;
 
+
+
         // Run GameLoop every 'fps'th of a second
         timer.schedule(new GameLoop(), 0, 1000/fps);
     }
@@ -108,7 +109,7 @@ public class MonsterServer {
         timer = new Timer();
     }
 
-    public static boolean isThereOnlyOnePlayerLeft() {
+    public static boolean onePlayerLeft() {
         int playersDead = 0;
 
         for (Player player: board.getPlayers()) {

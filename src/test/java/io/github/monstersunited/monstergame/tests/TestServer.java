@@ -1,5 +1,6 @@
 package io.github.monstersunited.monstergame.tests;
 
+import io.github.monstersunited.monstergame.client.MonsterGameHandler;
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Player;
 import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
@@ -38,7 +39,7 @@ public class TestServer {
     public void addUserCorrectlyAddsUser() throws RemoteException, ServerFullException {
         assertEquals(0, server.getAllPlayers().size());
 
-        server.addPlayer("nick");
+        server.addPlayer("nick", null);
 
         assertEquals(1, server.getAllPlayers().size());
         assertEquals("nick", server.getAllPlayers().get(0).getName());
@@ -46,11 +47,11 @@ public class TestServer {
 
     @Test(expected = ServerFullException.class)
     public void newUserWillThrowExceptionIfTooManyPlayers() throws ServerFullException, RemoteException {
-        server.addPlayer("nick");
-        server.addPlayer("nick");
-        server.addPlayer("nick");
-        server.addPlayer("nick");
-        server.addPlayer("nick");
+        server.addPlayer("nick", null);
+        server.addPlayer("nick", null);
+        server.addPlayer("nick",  null);
+        server.addPlayer("nick", null);
+        server.addPlayer("nick", null);
     }
 
     @Test
@@ -58,8 +59,8 @@ public class TestServer {
         try {
             assertEquals(0, server.getAllPlayers().size());
 
-            Player playerOne = server.addPlayer("Hello");
-            Player playerTwo = server.addPlayer("World!");
+            Player playerOne = server.addPlayer("Hello", null);
+            Player playerTwo = server.addPlayer("World!", null);
 
             assertEquals(MonsterServer.board.getAmountOfPlayers(), 2);
             assertEquals(playerOne.getID(), 1);
@@ -76,15 +77,13 @@ public class TestServer {
 
             assertFalse(server.isLobbyRunning());
 
-            server.addClient(client);
-
-            server.addPlayer("Nick1");
+            server.addPlayer("Nick1", client);
             assertFalse(server.isLobbyRunning());
-            server.addPlayer("Nick1");
+            server.addPlayer("Nick1", client);
             assertFalse(server.isLobbyRunning());
-            server.addPlayer("Nick1");
+            server.addPlayer("Nick1", client);
             assertFalse(server.isLobbyRunning());
-            server.addPlayer("Nick1");
+            server.addPlayer("Nick1", client);
 
             assertTrue(server.isRunning());
             assertTrue(server.isLobbyRunning());
@@ -100,12 +99,10 @@ public class TestServer {
         MonsterGameInterface client = mock(MonsterGameInterface.class);
 
         try {
-            server.addClient(client);
-
-            Player one = server.addPlayer("Nick1");
-            Player two = server.addPlayer("Nick1");
-            Player three = server.addPlayer("Nick1");
-            server.addPlayer("Nick1");
+            Player one = server.addPlayer("Nick1", client);
+            Player two = server.addPlayer("Nick1", client);
+            Player three = server.addPlayer("Nick1", client);
+            server.addPlayer("Nick1", client);
 
             one.setState(DEAD);
             two.setState(DEAD);
