@@ -36,6 +36,7 @@ public class MonsterGameHandler extends UnicastRemoteObject implements MonsterGa
     public void update(Board board) throws RemoteException {
         // TODO
         new World(board);
+
         // Update board with new positions of players and monster
 
         System.out.println("Update was called");

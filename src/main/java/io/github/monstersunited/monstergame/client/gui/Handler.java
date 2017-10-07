@@ -1,7 +1,10 @@
 package io.github.monstersunited.monstergame.client.gui;
 
 import io.github.monstersunited.monstergame.client.gui.features.World;
+import io.github.monstersunited.monstergame.objects.Player;
 
+import java.awt.event.KeyEvent;
+import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.awt.Graphics;
 

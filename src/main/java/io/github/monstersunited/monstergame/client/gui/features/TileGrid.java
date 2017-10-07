@@ -10,8 +10,12 @@ public class TileGrid {
     public static TileGrid[] tile = new TileGrid[256];
     public static TileGrid boardTile = new boardTile(0);
     public static TileGrid boxTile = new boxTile(1);
-    public static TileGrid wallTile = new playerTiles(2);
-    public static TileGrid playerTile = new playerTiles(3);
+    public static TileGrid wallTile = new player1Tiles(2);
+    public static TileGrid player1Tile = new player1Tiles(3);
+    public static TileGrid player2Tile = new player1Tiles(4);
+    public static TileGrid player3Tile = new player1Tiles(5);
+    public static TileGrid player4Tile = new player1Tiles(6);
+    public static TileGrid monsterTile = new player1Tiles(7);
 
     //class
     public static final int TILEWIDTH = 32, TILEHEIGHT = 32;

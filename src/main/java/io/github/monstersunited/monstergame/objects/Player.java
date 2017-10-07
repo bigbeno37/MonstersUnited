@@ -1,10 +1,14 @@
 package io.github.monstersunited.monstergame.objects;
 
+import io.github.monstersunited.monstergame.client.gui.features.Assets;
 import io.github.monstersunited.monstergame.objects.enums.Corner;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
+import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEHEIGHT;
+import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEWIDTH;
 import static io.github.monstersunited.monstergame.objects.enums.EntityState.ALIVE;
 
 // The player instance itself, housing position, state, velocity, and name
@@ -147,4 +151,5 @@ public class Player extends Entity implements Serializable {
     public void setBox(Box box) {
         this.box = box;
     }
+
 }

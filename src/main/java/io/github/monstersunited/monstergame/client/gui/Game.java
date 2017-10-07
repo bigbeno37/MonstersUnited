@@ -84,7 +84,6 @@ public class Game extends Canvas implements Runnable {
         long timer = System.currentTimeMillis();
         int frames = 0;
         Assets.init();
-        Assets.initPlayer();
         while(running){
 
             long now = System.nanoTime();
