@@ -13,26 +13,26 @@ public class TestPathFinder {
     @Test
     public void TESTgetDistance() {
         Board board = new Board();
-        Monster monster = new Monster(1, 2);
-        board.getMonster().setX(1);
-        board.getMonster().setY(2);
+        Monster monster = new Monster(4, 4);
+        board.getMonster().setX(4);
+        board.getMonster().setY(4);
         board.addBoardPiece(monster);
         PathFinder path = new PathFinder();
-        board.getMonster().setPosition(1, 2);
-        Player playerOne = new Player("One", 7, 7, 1);
+        board.getMonster().setPosition(4, 4);
+        Player playerOne = new Player("One", 5, 0, 1);
         board.addBoardPiece(playerOne);
-        Player playerTwo = new Player("Two", 6, 7, 2);
+        Player playerTwo = new Player("Two", 2, 0, 2);
         board.addBoardPiece(playerTwo);
 
         board.update();
 
         path.addPositions(board);
-        //(7,7) and (6,7) is just one straight position away. So, 10 is the distance.
-        assertEquals(path.getDistance(path.players.get(1), path.players.get(2)), 10);
-        //(6,7) to (1,2) is 5 diagonal positions and zero straight positions which should be 14*5=70
-        assertEquals(path.getDistance(path.monsterPosition, path.players.get(2)), 70);
-        //(7,7) to (1,2) is 5 diagonal positions and one straight position which should be 14*5+10=80
-        assertEquals(path.getDistance(path.monsterPosition, path.players.get(1)), 80);
+        //(2,0) and (5,0) is just thre straight position away. So, 30 is the distance.
+        assertEquals(30, path.getDistance(path.players.get(1), path.players.get(0)));
+        //(2,0) to (4,4) is 2 diagonal positions and 2 straight positions which should be 2*14+2*10=48
+        assertEquals(48,path.getDistance(path.monsterPosition, path.players.get(0)));
+        //(5,0) to (4,4) is 1 diagonal position and 3 straight position which should be 14*1+10*3=44
+        assertEquals(44,path.getDistance(path.monsterPosition, path.players.get(1)));
 
     }
 
@@ -82,12 +82,17 @@ public class TestPathFinder {
     public void TESTfindPath() {
         //Still needs work
         Board board = new Board();
-        Monster monster = new Monster(3, 2);
+        Monster monster = new Monster(4, 4);
         PathFinder path = new PathFinder();
-        board.getMonster().setPosition(3, 2);
-        Player playerOne = new Player("One", 7, 7, 1);
+        board.getMonster().setPosition(4, 4);
+        Player playerOne = new Player("One", 2, 4, 1);
         board.addBoardPiece(playerOne);
         board.update();
+        path.addPositions(board);
+        path.findPath(board,path.players.get(0),monster);
+        assertEquals(3,path.path.get(0).getX());
+        assertEquals(4,path.path.get(0).getY());
+
 
 //        monster.moveTowardsClosestPlayer(board);
 //        assertEquals(monster.path.size(),3);
