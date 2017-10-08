@@ -20,7 +20,7 @@ public class Board implements Serializable{
     public Board() {
         board = new BoardPiece[9][9];
         boardPieces = new ArrayList<>();
-        boardPieces.add(new Monster(5,5));
+        boardPieces.add(new Monster(4,4));
         // TODO
         // Initialise the board to include walls
         //this double forloop should place the walls in the corrrect positions

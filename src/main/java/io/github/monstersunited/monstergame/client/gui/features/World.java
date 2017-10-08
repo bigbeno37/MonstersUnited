@@ -11,10 +11,10 @@ import static io.github.monstersunited.monstergame.server.MonsterServer.board;
 import io.github.monstersunited.monstergame.objects.Player;
 public class World {
     Player player1 = new Player("jaia",1*TILEWIDTH,1*TILEHEIGHT,3);
-    Player player2 = new Player("Tiff",1*TILEWIDTH,9*TILEHEIGHT,4);
+    Player player2 = new Player("Tiff",1*TILEWIDTH,1*TILEHEIGHT,4);
     Player player3 = new Player("Urio",9*TILEWIDTH,1*TILEHEIGHT,5);
     Player player4 = new Player("Raein",9*TILEWIDTH,9*TILEHEIGHT,6);
-    Monster monster = new Monster(5*TILEWIDTH,5*TILEHEIGHT);
+    Monster monster = new Monster(4*TILEWIDTH,4*TILEHEIGHT);
     private int[][] tiles;
 
     public World(Board board) {
@@ -30,7 +30,7 @@ public class World {
             for (int j = 0; j < 9; j++) {
                 for (int i = 0; i < 9; i++) {
 
-                    if (board.getPieceAt(i, j) instanceof Player) {
+                    if (board.getPieceAt(i, j) instanceof Player){
                         tiles[i][j] = 3;
                         g.drawImage(Assets.player1, i * TILEWIDTH + 64, j * TILEHEIGHT + 96, null);
                     } else if (board.getPieceAt(i, j) instanceof Player) {
@@ -84,7 +84,7 @@ public class World {
                 } else if (board.getPieceAt(i, j) instanceof Monster) {
                     tiles[i][j] = 7;
 
-                } else if (board.getPieceAt(i, j) instanceof Box) {
+                }else if (board.getPieceAt(i, j) instanceof Box) {
                     tiles[i][j] = 1;
                 } else if(board.getPieceAt(i, j) instanceof Wall){
                     tiles[i][j] = 2;

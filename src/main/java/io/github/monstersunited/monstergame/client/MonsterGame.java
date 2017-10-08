@@ -39,7 +39,7 @@ public class MonsterGame {
         int amountOfPlayers = State.getAmountOfPlayers();
 
         // Initialise the RMI Registry and other variables
-        // on the server
+        // on thRe server
         MonsterServer.start(amountOfPlayers);
 
         // Join the locally hosted server

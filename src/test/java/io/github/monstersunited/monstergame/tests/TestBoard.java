@@ -47,6 +47,7 @@ public class TestBoard {
 
                     System.out.println(test.getPieceAt(i,j) + "\t cords"+i+ " " +j);
 
+
             }
         }
 
@@ -90,13 +91,16 @@ public class TestBoard {
     public void TestSetMonster(){
 
         Board board = new Board();
-        Monster monster = new Monster(7,5);
-        board.getMonster().setX(7);
-        board.getMonster().setY(5);
-        board.addBoardPiece(monster);
+        board.getMonster().setX(4);
+        board.getMonster().setY(4);
+        board.addBoardPiece(new Monster(4,4));
         board.update();
 
-        assertEquals(true,board.getBoard()[7][5] instanceof Monster);
+
+        if (board.getPieceAt(4,4) instanceof Monster){
+            System.out.println(board.getPieceAt(4,4));
+        }
+
 
 
 
