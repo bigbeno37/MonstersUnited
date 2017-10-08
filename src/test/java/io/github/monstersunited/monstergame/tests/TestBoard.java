@@ -88,17 +88,16 @@ public class TestBoard {
     }
     @Test
     public void TestSetMonster(){
-        boolean monsterIsSet=false;
+
         Board board = new Board();
         Monster monster = new Monster(7,5);
-       // board.getMonster().setX(7);
-       // board.getMonster().setY(5);
+        board.getMonster().setX(7);
+        board.getMonster().setY(5);
         board.addBoardPiece(monster);
         board.update();
 
+        assertEquals(true,board.getBoard()[7][5] instanceof Monster);
 
-        assertEquals(board.getMonster().getX(),7);
-        assertEquals(board.getMonster().getY(),5);
 
 
     }

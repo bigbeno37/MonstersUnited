@@ -79,23 +79,23 @@ public class TestPathFinder {
     }
 
     @Test
-    public void TESTfindPath() {
-        //Still needs work
+    public void TESTfindPath()
+    {
+        //Still needs work. Monster should move only when a player is at the same line as monster
         Board board = new Board();
         Monster monster = new Monster(4, 4);
         PathFinder path = new PathFinder();
         board.getMonster().setPosition(4, 4);
-        Player playerOne = new Player("One", 2, 4, 1);
+        Player playerOne = new Player("One", 0, 4, 1);
+
+
         board.addBoardPiece(playerOne);
         board.update();
         path.addPositions(board);
+
+
         path.findPath(board,path.players.get(0),monster);
-        assertEquals(3,path.path.get(0).getX());
-        assertEquals(4,path.path.get(0).getY());
-
-
-//        monster.moveTowardsClosestPlayer(board);
-//        assertEquals(monster.path.size(),3);
-
+        assertEquals(3,monster.getX());
+        assertEquals(4,monster.getY());
     }
 }

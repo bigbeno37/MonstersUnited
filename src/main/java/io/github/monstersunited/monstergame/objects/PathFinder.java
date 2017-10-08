@@ -26,7 +26,6 @@ public class PathFinder
                     monsterPosition = new Position(i,j);
                     monsterPosition.setX(i);
                     monsterPosition.setY(j);
-                    openSet.add(monsterPosition);
                     //Saves the current position of the monster
                 } else if (board.getBoard()[i][j] instanceof Player)
                 {
@@ -37,42 +36,55 @@ public class PathFinder
                     closedSet.add(new Position(i, j));
                     //walls are added to closed set
                 }
+
             }
         }
     }
 
     public static void findPath(Board board, Position player, Monster monster)
     {
-        Position target = new Position(monster.getX(),monster.getY());
-        for(int i = 0;i<openSet.size();i++)
-        {
-            openSet.get(i).setGCost(getDistance(openSet.get(i),monsterPosition));
-            openSet.get(i).setHCost(getDistance(openSet.get(i),player));
-            //Sets the gCost and fCost of all positions in the openSet
-        }
+        Position start = new Position(monster.getX(),monster.getY());
+
+        openSet.add(start);
+
+        //There should be one position in openset at this point which is the monsterposition
         while (openSet.size()>0)
         {
             Position currentPosition = openSet.get(0);
+            //First time currentposition is set to openset first element
+
+
+            for(int i = 0;i<openSet.size();i++)
+            {
+                openSet.get(i).setGCost(getDistance(openSet.get(i),monsterPosition));
+                openSet.get(i).setHCost(getDistance(openSet.get(i),player));
+                //Sets the gCost and fCost of all positions in the openSet
+            }
             for (int i = 1; i < openSet.size(); i++) {
-                if (openSet.get(i).fCost() < currentPosition.fCost() || openSet.get(i).fCost() == currentPosition.fCost()
-                        && openSet.get(i).getHCost() < currentPosition.getHCost()) {
+                if (openSet.get(i).fCost() < currentPosition.fCost() || (openSet.get(i).fCost() == currentPosition.fCost()
+                        && openSet.get(i).getHCost() < currentPosition.getHCost())) {
                     currentPosition = openSet.get(i);
                 }
             }
 
+            path.add(currentPosition);
             openSet.remove(currentPosition);
             closedSet.add(currentPosition);
 
-            if (currentPosition == player) {
-                getPath(player,target);
-
+            if ((currentPosition.getX() == player.getX()) && currentPosition.getY() == player.getY())
+            {
+                monster.setX(path.get(1).getX());
+                monster.setY(path.get(1).getY());
+                return;
             }
-            //Problem in this for loop
+
+
             for(Position neighbour: getNeighbours(currentPosition))
             {
-                if(closedSet.contains(neighbour))
+                if (closedSet.contains(neighbour) || (board.getBoard()[neighbour.getX()][neighbour.getY()] instanceof Wall))
+                {
                     continue;
-
+                }
                 int newMovementCostToNeighbour = currentPosition.getGCost() + getDistance(currentPosition,neighbour);
                 if(newMovementCostToNeighbour < neighbour.getGCost() || !openSet.contains(neighbour))
                 {
@@ -81,7 +93,9 @@ public class PathFinder
                     neighbour.parent = currentPosition;
 
                     if(!openSet.contains(neighbour))
+                    {
                         openSet.add(neighbour);
+                    }
                 }
             }
 
@@ -132,7 +146,8 @@ public class PathFinder
     public static void getPath(Position monster,Position player)
     {
         Position currentPosition = player;
-        while(currentPosition != monster) {
+        while(currentPosition != monster)
+        {
             path.add(currentPosition);
             currentPosition = currentPosition.parent;
         }
