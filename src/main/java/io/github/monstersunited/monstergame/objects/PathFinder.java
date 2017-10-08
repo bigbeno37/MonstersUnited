@@ -71,49 +71,69 @@ public class PathFinder
         //There should be one position in openset at this point which is the monsterposition
         while (openSet.size()>0)
         {
+
             Position currentPosition = openSet.get(0);
             //First time currentposition is set to openset first element
 
 
-            for(int i = 0;i<openSet.size();i++)
+
+            for (int i = 1; i < openSet.size(); i++)
             {
-                openSet.get(i).setGCost(getDistance(openSet.get(i),monsterPosition));
-                openSet.get(i).setHCost(getDistance(openSet.get(i),player));
-                //Sets the gCost and fCost of all positions in the openSet
-            }
-            for (int i = 1; i < openSet.size(); i++) {
-                if (openSet.get(i).fCost() < currentPosition.fCost() || (openSet.get(i).fCost() == currentPosition.fCost()
-                        && openSet.get(i).getHCost() < currentPosition.getHCost())) {
-                    currentPosition = openSet.get(i);
+                for(int j=0;j<closedSet.size();j++)
+                {
+                    if (openSet.get(i).fCost() < currentPosition.fCost() || ((openSet.get(i).fCost() == currentPosition.fCost())
+                            && (openSet.get(i).getHCost() < currentPosition.getHCost()) ))
+                    {
+                        currentPosition = openSet.get(i);
+                    }
                 }
+
             }
 
-            path.add(currentPosition);
+
             openSet.remove(currentPosition);
             closedSet.add(currentPosition);
 
             if ((currentPosition.getX() == player.getX()) && currentPosition.getY() == player.getY())
             {
-                setNewMonsterX(path.get(1).getX());
-                setNewMonsterY(path.get(1).getY());
+                getPath(start,currentPosition);
+                setNewMonsterX(path.get(0).getX());
+                setNewMonsterY(path.get(0).getY());
                 return path.size();
             }
 
 
             for(Position neighbour: getNeighbours(currentPosition))
             {
-                if (closedSet.contains(neighbour) || (board.getBoard()[neighbour.getX()][neighbour.getY()] instanceof Wall))
+                boolean openSetContainsNeighbour = false;
+                boolean closedSetContainsNeighbour = false;
+                for(int i=0; i<closedSet.size();i++)
+                {
+                    if(closedSet.get(i).getX()==neighbour.getX() && closedSet.get(i).getY()==neighbour.getY())
+                    {
+                        closedSetContainsNeighbour = true;
+                    }
+                }
+                for(int i=0; i<openSet.size();i++)
+                {
+                    if(openSet.get(i).getX()==neighbour.getX() && openSet.get(i).getY()==neighbour.getY())
+                    {
+                        openSetContainsNeighbour = true;
+                    }
+                }
+                if (closedSetContainsNeighbour || (board.getBoard()[neighbour.getX()][neighbour.getY()] instanceof Wall))
                 {
                     continue;
                 }
                 int newMovementCostToNeighbour = currentPosition.getGCost() + getDistance(currentPosition,neighbour);
-                if(newMovementCostToNeighbour < neighbour.getGCost() || !openSet.contains(neighbour))
+                if(newMovementCostToNeighbour < neighbour.getGCost() || !openSetContainsNeighbour)
                 {
                     neighbour.setGCost(newMovementCostToNeighbour);
                     neighbour.setHCost(getDistance(neighbour,player));
                     neighbour.parent = currentPosition;
 
-                    if(!openSet.contains(neighbour))
+
+                    if(!openSetContainsNeighbour)
                     {
                         openSet.add(neighbour);
                     }
@@ -122,7 +142,7 @@ public class PathFinder
 
 
         }
-        return 0;
+        return path.size();
     }
 
     public static List<Position> getNeighbours(Position position)
@@ -140,7 +160,7 @@ public class PathFinder
                 int checkX = position.getX() + x;
                 int checkY = position.getY() + y;
 
-                if (checkX >= 0 && checkX < 9 && checkY < 9)
+                if (checkX >= 0 && checkX < 9 && checkY < 9 && checkY>=0)
                 //9 is board height and breadth
                 {
                     neighbours.add(new Position(checkX, checkY));

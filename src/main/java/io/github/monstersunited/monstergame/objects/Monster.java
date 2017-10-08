@@ -28,11 +28,15 @@ public class Monster extends Entity implements Serializable {
         {
             for (int j = 0; j < 9; j++)
             {
-                if (board.getBoard()[i][j] instanceof Player && shortestDistance>path.findPath(board,(Player)board.getBoard()[i][j],this))
+                if (board.getBoard()[i][j] instanceof Player)
                 {
-                    shortestDistance=path.findPath(board,(Player)board.getBoard()[i][j],this);
-                    nearPlayerX=i;
-                    nearPlayerY=j;
+                    if(shortestDistance>path.findPath(board,(Player)board.getBoard()[i][j],this))
+                    {
+                        shortestDistance=path.findPath(board,(Player)board.getBoard()[i][j],this);
+                        nearPlayerX=i;
+                        nearPlayerY=j;
+                    }
+
                 }
             }
         }
