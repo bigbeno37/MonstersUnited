@@ -6,11 +6,11 @@ import java.util.List;
 
 public class PathFinder
 {
-    public static List<Position> openSet = new ArrayList<Position>();
-    public static List<Position> closedSet = new ArrayList<Position>();
-    public static List<Position> players = new ArrayList<>();
-    public static List<Position> path = new ArrayList<Position>();
-    public static List<Position> neighbours = new ArrayList<Position>();
+    private List<Position> openSet = new ArrayList<Position>();
+    private List<Position> closedSet = new ArrayList<Position>();
+    public List<Position> players = new ArrayList<>();
+    static List<Position> path = new ArrayList<>();
+    public static List<Position> neighbours = new ArrayList<>();
     public static Position monsterPosition;
     public int newMonsterX=0,newMonsterY=0;
     public void setNewMonsterX(int x)   {this.newMonsterX = x;}
@@ -28,6 +28,10 @@ public class PathFinder
 
     public void addPositions(Board board)
     {
+        players.clear();
+        closedSet.clear();
+        openSet.clear();
+        monsterPosition = null;
         int i, j;
         for (i = 0; i < 9; i++) {
             for (j = 0; j < 9; j++) {
@@ -96,7 +100,7 @@ public class PathFinder
 
             if ((currentPosition.getX() == player.getX()) && currentPosition.getY() == player.getY())
             {
-                getPath(start,currentPosition);
+                retracePath(start,currentPosition);
                 setNewMonsterX(path.get(0).getX());
                 setNewMonsterY(path.get(0).getY());
                 return path.size();
@@ -184,7 +188,7 @@ public class PathFinder
     }
 
 
-    public static void getPath(Position monster,Position player)
+    public static void retracePath(Position monster,Position player)
     {
         Position currentPosition = player;
         while(currentPosition != monster)
