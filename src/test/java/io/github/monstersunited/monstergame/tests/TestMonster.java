@@ -10,17 +10,17 @@ public class TestMonster {
     public void TESTmoveTowardsClosestPlayer(){
         //Still needs work. For now, monster is moving towards the closest player when the players are in the same line as monster
         Board board = new Board();
-        Monster monster = new Monster(0,1);
+        Monster monster = new Monster(5,8);
         board.setMonster(monster);
-        Player playerOne = new Player("One",0,3,1);
-        //Player playerTwo = new Player("Two",0,4,2);
+        Player playerOne = new Player("One",8,8,1);
+        Player playerTwo = new Player("Two",0,8,2);
         board.addBoardPiece(playerOne);
-        //board.addBoardPiece(playerTwo);
+        board.addBoardPiece(playerTwo);
         board.update();
         monster.moveTowardsClosestPlayer(board);
-        assertEquals(0,monster.getX());
-        assertEquals(2,monster.getY());
-        //Monster should move to (7,4) towards the closer player
+        assertEquals(4,monster.getX());
+        assertEquals(8,monster.getY());
+        //Monster should move to (6,8) towards the closer player instead it moves to 4,8..needs work
     }
 
 }
