@@ -14,15 +14,14 @@ public class TestPathFinder {
     public void TESTgetDistance() {
         Board board = new Board();
         Monster monster = new Monster(4, 4);
-        board.getMonster().setX(4);
-        board.getMonster().setY(4);
-        board.addBoardPiece(monster);
+
+        board.setMonster(monster);
         PathFinder path = new PathFinder();
         board.getMonster().setPosition(4, 4);
-        Player playerOne = new Player("One", 5, 0, 1);
-        board.addBoardPiece(playerOne);
-        Player playerTwo = new Player("Two", 2, 0, 2);
-        board.addBoardPiece(playerTwo);
+        Player plaOne = new Player("One", 5, 0, 1);
+        board.addBoardPiece(plaOne);
+        Player plaTwo = new Player("Two", 2, 0, 2);
+        board.addBoardPiece(plaTwo);
 
         board.update();
 
@@ -40,40 +39,38 @@ public class TestPathFinder {
     public void TESTgetNeighbours() {
         Board board = new Board();
         Monster monster = new Monster(4, 4);
-        PathFinder path = new PathFinder();
+        PathFinder path1 = new PathFinder();
         board.getMonster().setPosition(4, 4);
-        Player playerOne = new Player("One", 7, 7, 1);
-        board.addBoardPiece(playerOne);
         board.update();
-        path.addPositions(board);
+        path1.addPositions(board);
 
-        path.getNeighbours(path.monsterPosition);
+        path1.getNeighbours(path1.monsterPosition);
         //neighbour positions of monster is added to the neighbour list. The list should have size 8
-        assertEquals(path.neighbours.size(), 8);
+        assertEquals(path1.neighbours.size(), 8);
         //neighbour at neighbour.get(0) should be (4-1,4-1)=(3,3)
         //assertEquals(path.neighbours.get(0).getX(),3);
-        assertEquals(path.neighbours.get(0).getY(), 3);
+        assertEquals(path1.neighbours.get(0).getY(), 3);
         //neighbour at neighbour.get(1) should be (4-1,4-0)=(3,4)
-        assertEquals(path.neighbours.get(1).getX(), 3);
-        assertEquals(path.neighbours.get(1).getY(), 4);
+        assertEquals(path1.neighbours.get(1).getX(), 3);
+        assertEquals(path1.neighbours.get(1).getY(), 4);
         //neighbour at neighbour.get(2) should be (4-1,4+1)=(3,5)
-        assertEquals(path.neighbours.get(2).getX(), 3);
-        assertEquals(path.neighbours.get(2).getY(), 5);
+        assertEquals(path1.neighbours.get(2).getX(), 3);
+        assertEquals(path1.neighbours.get(2).getY(), 5);
         //neighbour at neighbour.get(3) should be (4+0,4-1)=(4,3)
-        assertEquals(path.neighbours.get(3).getX(), 4);
-        assertEquals(path.neighbours.get(3).getY(), 3);
+        assertEquals(path1.neighbours.get(3).getX(), 4);
+        assertEquals(path1.neighbours.get(3).getY(), 3);
         //neighbour at neighbour.get(4) should be (4+0,4-1)=(4,5)
-        assertEquals(path.neighbours.get(4).getX(), 4);
-        assertEquals(path.neighbours.get(4).getY(), 5);
+        assertEquals(path1.neighbours.get(4).getX(), 4);
+        assertEquals(path1.neighbours.get(4).getY(), 5);
         //neighbour at neighbour.get(5) should be (4+1,4-1)=(5,3)
-        assertEquals(path.neighbours.get(5).getX(), 5);
-        assertEquals(path.neighbours.get(5).getY(), 3);
+        assertEquals(path1.neighbours.get(5).getX(), 5);
+        assertEquals(path1.neighbours.get(5).getY(), 3);
         //neighbour at neighbour.get(5) should be (4+1,4+0)=(5,4)
-        assertEquals(path.neighbours.get(6).getX(), 5);
-        assertEquals(path.neighbours.get(6).getY(), 4);
+        assertEquals(path1.neighbours.get(6).getX(), 5);
+        assertEquals(path1.neighbours.get(6).getY(), 4);
         //neighbour at neighbour.get(5) should be (4+1,4+1)=(5,5)
-        assertEquals(path.neighbours.get(7).getX(), 5);
-        assertEquals(path.neighbours.get(7).getY(), 5);
+        assertEquals(path1.neighbours.get(7).getX(), 5);
+        assertEquals(path1.neighbours.get(7).getY(), 5);
 
 
     }
@@ -84,18 +81,19 @@ public class TestPathFinder {
         //Still needs work. Monster should move only when a player is at the same line as monster
         Board board = new Board();
         Monster monster = new Monster(4, 4);
-        PathFinder path = new PathFinder();
+        PathFinder path2 = new PathFinder();
         board.getMonster().setPosition(4, 4);
-        Player playerOne = new Player("One", 0, 4, 1);
+        Player playerne = new Player("One", 4, 1, 1);
 
 
-        board.addBoardPiece(playerOne);
+        board.addBoardPiece(playerne);
         board.update();
-        path.addPositions(board);
+        path2.addPositions(board);
 
 
-        path.findPath(board,path.players.get(0),monster);
-        assertEquals(3,monster.getX());
-        assertEquals(4,monster.getY());
+
+        assertEquals(4,path2.findPath(board,playerne,monster));
+        assertEquals(4,path2.getNewMonsterX());
+        assertEquals(3,path2.getNewMonsterY());
     }
 }

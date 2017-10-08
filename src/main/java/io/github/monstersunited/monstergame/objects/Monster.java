@@ -20,36 +20,26 @@ public class Monster extends Entity implements Serializable {
     public void moveTowardsClosestPlayer(Board board) {
 
         // TODO
-        // Call methods in PathFinder to determine which
-        // direction to go
+        int shortestDistance = 100;
+        int nearPlayerX=0,nearPlayerY=0;
         PathFinder path = new PathFinder();
+        path.addPositions(board);
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (board.getBoard()[i][j] instanceof Player && shortestDistance>path.findPath(board,(Player)board.getBoard()[i][j],this))
+                {
+                    shortestDistance=path.findPath(board,(Player)board.getBoard()[i][j],this);
+                    nearPlayerX=i;
+                    nearPlayerY=j;
+                }
+            }
+        }
+        path.findPath(board,(Player)board.getBoard()[nearPlayerX][nearPlayerY],this);
+        this.setX(path.getNewMonsterX());
+        this.setY(path.getNewMonsterY());
 
-
-//        List<Integer> distance = new ArrayList<Integer>();
-//        int i = 0;
-//        int playerX, playerY, minDistance;
-//        /*playerX and playerY are the co-ordinates of the player who is closest to monster and minDistance
-//          is the distance between that player and monster.
-//          */
-//        addPositions(board);
-//        for (Position tempPlayers : players)
-//        {
-//            distance.add(findPath(board, tempPlayers, this));
-//            i++;
-//        }
-//        playerX = players.get(0).getX();
-//        playerY = players.get(0).getY();
-//        minDistance = distance.get(0);
-//        /*The first player found is set to have the minimum distance and then the player with minimum distance
-//        and the minimum distance from distance list is found using a for loop and an if loop
-//        */
-//        for (int j = 1; j < distance.size(); j++) {
-//            if (distance.get(j) < minDistance) {
-//                playerX = players.get(j).getX();
-//                playerY = players.get(j).getY();
-//                minDistance = distance.get(j);
-//            }
-//        }
 
     }
 }

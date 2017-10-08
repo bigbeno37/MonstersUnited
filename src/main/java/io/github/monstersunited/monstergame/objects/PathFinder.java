@@ -12,11 +12,21 @@ public class PathFinder
     public static List<Position> path = new ArrayList<Position>();
     public static List<Position> neighbours = new ArrayList<Position>();
     public static Position monsterPosition;
-
+    public int newMonsterX=0,newMonsterY=0;
+    public void setNewMonsterX(int x)   {this.newMonsterX = x;}
+    public void setNewMonsterY(int y)   {this.newMonsterY = y;}
+    public int getNewMonsterX()
+    {
+        return newMonsterX;
+    }
+    public int getNewMonsterY()
+    {
+        return newMonsterY;
+    }
     /*addPositions creates all the Positions objects necessary for the a star algorithm to work.
      It creates a monster,players,closedSet,openSet objects for the a star algorithm*/
 
-    public static void addPositions(Board board)
+    public void addPositions(Board board)
     {
         int i, j;
         for (i = 0; i < 9; i++) {
@@ -41,8 +51,19 @@ public class PathFinder
         }
     }
 
-    public static void findPath(Board board, Position player, Monster monster)
+
+    public int findPath(Board board, Player play, Monster monster)
     {
+        Position player = new Position(0,0);
+        for(int i=0; i<players.size();i++)
+        {
+            if(play.getX()==players.get(i).getX() && play.getY()==players.get(i).getY())
+            {
+                player.setX(play.getX());
+                player.setY(play.getY());
+            }
+
+        }
         Position start = new Position(monster.getX(),monster.getY());
 
         openSet.add(start);
@@ -73,9 +94,9 @@ public class PathFinder
 
             if ((currentPosition.getX() == player.getX()) && currentPosition.getY() == player.getY())
             {
-                monster.setX(path.get(1).getX());
-                monster.setY(path.get(1).getY());
-                return;
+                setNewMonsterX(path.get(1).getX());
+                setNewMonsterY(path.get(1).getY());
+                return path.size();
             }
 
 
@@ -101,7 +122,7 @@ public class PathFinder
 
 
         }
-
+        return 0;
     }
 
     public static List<Position> getNeighbours(Position position)
