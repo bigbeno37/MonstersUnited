@@ -67,7 +67,7 @@ public class Monster extends Entity implements Serializable {
 
         for(int i=0;i<paths.size()-1;i++)
         {
-            if(pathSize[i+1] > pathSize[i])
+            if(pathSize[i+1] < pathSize[i])
             {
                 count = i+1;
             }
