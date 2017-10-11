@@ -22,8 +22,8 @@ public class TestMonster {
         board.addBoardPiece(four);
         board.update();
         monster.moveTowardsClosestPlayer(board);
-        assertEquals(4,monster.getX());
-        assertEquals(2,monster.getY());
+        assertEquals(5,monster.getX());
+        assertEquals(0,monster.getY());
         //Monster should move to (5,0) towards the closer player
     }
 

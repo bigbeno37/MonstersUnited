@@ -9,7 +9,7 @@ public class PathFinder
     private List<Position> openSet = new ArrayList<Position>();
     private List<Position> closedSet = new ArrayList<Position>();
     public List<Position> players = new ArrayList<>();
-    static List<Position> path = new ArrayList<>();
+    public List<Position> path = new ArrayList<>();
     public static List<Position> neighbours = new ArrayList<>();
     public static Position monsterPosition;
     public int newMonsterX=0,newMonsterY=0;
@@ -188,7 +188,7 @@ public class PathFinder
     }
 
 
-    public static void retracePath(Position monster,Position player)
+    public void retracePath(Position monster,Position player)
     {
         Position currentPosition = player;
         while(currentPosition != monster)

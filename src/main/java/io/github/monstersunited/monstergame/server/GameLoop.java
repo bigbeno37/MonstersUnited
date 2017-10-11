@@ -21,7 +21,7 @@ public class GameLoop extends TimerTask {
 
             removeBoxIfTimerExpired();
 
-//            MonsterServer.board.getMonster().moveTowardsClosestPlayer(MonsterServer.board);
+            MonsterServer.board.getMonster().moveTowardsClosestPlayer(MonsterServer.board);
             MonsterServer.board.update();
 
             updateClients();

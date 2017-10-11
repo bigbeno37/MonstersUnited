@@ -13,7 +13,8 @@ public class Monster extends Entity implements Serializable {
       closedSet stores the list of positions which are either walls or have been already evaluated
     */
     int[] pathSize = new int[4];
-    public static List<PathFinder> paths = new ArrayList<PathFinder>();
+    private int playerCount=0;
+    public static List<PathFinder> pathfinder = new ArrayList<PathFinder>();
     public Monster(int x, int y) {
         super.setPosition(x, y);
         super.setState(CHASING);
@@ -21,18 +22,15 @@ public class Monster extends Entity implements Serializable {
 
     public void moveTowardsClosestPlayer(Board board) {
 
-        // TODO
-        int nearPlayerX=0,nearPlayerY=0;
-
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
             {
                 if (board.getBoard()[i][j] instanceof Player)
                 {
-                    paths.add(new PathFinder());
-                    paths.get(paths.size()-1).addPositions(board);
-                    pathSize[paths.size()-1] = paths.get(paths.size()-1).findPath(board,(Player)board.getBoard()[i][j],this);
+                    pathfinder.add(new PathFinder());
+                    pathfinder.get(pathfinder.size()-1).addPositions(board);
+                    pathSize[pathfinder.size()-1] = pathfinder.get(pathfinder.size()-1).findPath(board,(Player)board.getBoard()[i][j],this);
 
                 }
             }
@@ -43,14 +41,11 @@ public class Monster extends Entity implements Serializable {
             {
                 if (board.getBoard()[i][j] instanceof Player)
                 {
-                    for(int z = 0; z < paths.size();z++)
+                    playerCount++;
+                    if(playerCount==getNearestPlayer())
                     {
-                        if(z==getNearestPlayer())
-                        {
-                            this.setX(paths.get(z).getNewMonsterX());
-                            this.setY(paths.get(z).getNewMonsterY());
-                        }
-
+                        this.setX(pathfinder.get(playerCount-1).getNewMonsterX());
+                        this.setY(pathfinder.get(playerCount-1).getNewMonsterY());
                     }
                 }
             }
@@ -61,14 +56,15 @@ public class Monster extends Entity implements Serializable {
 
 
     }
-    private int getNearestPlayer()
-    {
-        int count=0;
 
-        for(int i=0;i<paths.size()-1;i++)
+    private int getNearestPlayer() {
+        int minValue = pathSize[0];
+        int count=0;
+        for (int i = 0; i < pathfinder.size(); i++)
         {
-            if(pathSize[i+1] < pathSize[i])
+            if (pathSize[i] <= minValue)
             {
+                minValue = pathSize[i];
                 count = i+1;
             }
         }
