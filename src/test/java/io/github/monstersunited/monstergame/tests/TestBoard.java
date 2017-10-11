@@ -44,8 +44,8 @@ public class TestBoard {
         //TESTING
         for (int i = 0 ; i<8; i++) {
             for (int j = 0 ; j<8; j++) {
-
                     System.out.println(test.getPieceAt(i,j) + "\t cords"+i+ " " +j);
+                    assertEquals(true,test.getPieceAt(5,5) instanceof Wall);
 
 
             }

@@ -10,11 +10,7 @@ import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.
 import static io.github.monstersunited.monstergame.server.MonsterServer.board;
 import io.github.monstersunited.monstergame.objects.Player;
 public class World {
-    Player player1 = new Player("jaia",1*TILEWIDTH,1*TILEHEIGHT,3);
-    Player player2 = new Player("Tiff",1*TILEWIDTH,1*TILEHEIGHT,4);
-    Player player3 = new Player("Urio",9*TILEWIDTH,1*TILEHEIGHT,5);
-    Player player4 = new Player("Raein",9*TILEWIDTH,9*TILEHEIGHT,6);
-    Monster monster = new Monster(4*TILEWIDTH,4*TILEHEIGHT);
+
     private int[][] tiles;
 
     public World(Board board) {

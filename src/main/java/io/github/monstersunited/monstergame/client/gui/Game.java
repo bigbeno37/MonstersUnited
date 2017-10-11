@@ -5,9 +5,11 @@ import io.github.monstersunited.monstergame.client.gui.features.World;
 import io.github.monstersunited.monstergame.client.gui.objects.Player;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
+import static io.github.monstersunited.monstergame.client.gui.Game.STATE.EMPTY;
 import static io.github.monstersunited.monstergame.server.MonsterServer.board;
 
 
@@ -20,7 +22,7 @@ public class Game extends Canvas implements Runnable {
     private World map;
     private MainMenu mainMenu;
     public enum STATE{
-        MENU, GAME, NICK, PLAYER, IP
+        MENU, GAME, NICK, PLAYER, IP,HOST,EMPTY
     };
 
     public static STATE State = STATE.MENU;
@@ -85,16 +87,17 @@ public class Game extends Canvas implements Runnable {
         int frames = 0;
         Assets.init();
         while(running){
-
             long now = System.nanoTime();
             delta += (now -lastTime) / ns;
             lastTime = now;
-            while(delta >= 1){
+            while(delta >=1){
                 tick();
                 delta--;
             }
-            if(running)
+            if(running) {
                 render();
+                HostGameSelection();
+            }
             frames++;
 
             if(System.currentTimeMillis() - timer > 1000){
@@ -115,6 +118,20 @@ public class Game extends Canvas implements Runnable {
 
 
     }
+
+    public void HostGameSelection() {
+
+        if (State == STATE.HOST) {
+            UserInput p  = new UserInput();
+            p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            p.setSize(300,150);
+            p.setTitle("Host");
+            p.setVisible(true);
+            State = EMPTY;
+        }
+
+    }
+
 
     private void render(){
 
@@ -167,6 +184,8 @@ public class Game extends Canvas implements Runnable {
             g.dispose();
             bs.show();
 
+        } else if (State == State.HOST) {
+            //placeholder
         }
 
     }

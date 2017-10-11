@@ -33,7 +33,7 @@ public class MouseInput implements MouseListener{
         //Host Game Button Not Implemented
         if(mx >= Game.WIDTH / 2 - 50 && mx <= Game.WIDTH / 2 + 50){
             if(my >= 250 && my <= 300){
-                Game.State = Game.STATE.GAME;
+                Game.State = Game.STATE.HOST;
             }
         }
 
