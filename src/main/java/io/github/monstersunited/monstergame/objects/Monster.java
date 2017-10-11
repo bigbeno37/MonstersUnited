@@ -14,14 +14,14 @@ public class Monster extends Entity implements Serializable {
     */
     int[] pathSize = new int[4];
     private int playerCount=0;
-    public static List<PathFinder> pathfinder = new ArrayList<PathFinder>();
+
     public Monster(int x, int y) {
         super.setPosition(x, y);
         super.setState(CHASING);
     }
 
     public void moveTowardsClosestPlayer(Board board) {
-
+        List<PathFinder> pathfinder = new ArrayList<PathFinder>();
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
@@ -42,7 +42,7 @@ public class Monster extends Entity implements Serializable {
                 if (board.getBoard()[i][j] instanceof Player)
                 {
                     playerCount++;
-                    if(playerCount==getNearestPlayer())
+                    if(playerCount==getNearestPlayer(pathfinder))
                     {
                         this.setX(pathfinder.get(playerCount-1).getNewMonsterX());
                         this.setY(pathfinder.get(playerCount-1).getNewMonsterY());
@@ -57,7 +57,7 @@ public class Monster extends Entity implements Serializable {
 
     }
 
-    private int getNearestPlayer() {
+    private int getNearestPlayer(List<PathFinder> pathfinder) {
         int minValue = pathSize[0];
         int count=0;
         for (int i = 0; i < pathfinder.size(); i++)
