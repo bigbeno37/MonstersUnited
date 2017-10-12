@@ -48,10 +48,11 @@ public class Monster extends Entity implements Serializable {
                         this.setY(pathfinder.get(playerCount-1).getNewMonsterY());
                     }
                 }
-            }
 
             }
 
+        }
+        playerCount=0;
 
 
 
