@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
         TestClient.class,
         TestMonster.class,
         TestPlayer.class,
-        TestServer.class
+        //TestServer.class
 })
 
 public class TestAll {

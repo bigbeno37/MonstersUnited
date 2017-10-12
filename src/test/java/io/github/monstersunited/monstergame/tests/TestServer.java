@@ -17,7 +17,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
-public class TestServer {
+/*public class TestServer {
 
     MonsterServerHandler server;
 
@@ -114,3 +114,4 @@ public class TestServer {
         }
     }
 }
+*/

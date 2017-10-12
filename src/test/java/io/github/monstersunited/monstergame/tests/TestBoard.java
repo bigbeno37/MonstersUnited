@@ -44,9 +44,17 @@ public class TestBoard {
         //TESTING
         for (int i = 0 ; i<8; i++) {
             for (int j = 0 ; j<8; j++) {
-                    System.out.println(test.getPieceAt(i,j) + "\t cords"+i+ " " +j);
                     assertEquals(true,test.getPieceAt(5,5) instanceof Wall);
+            }
+        }
+        for (int i = 0 ; i<8; i++) {
+            for (int j = 0 ; j<8; j++) {
+                if ((i >= 1 && j >= 1) && (i <=7 && j <= 7)) {
+                    if (i != 4 && j != 4) {
+                        assertEquals(true,test.getPieceAt(i,j) instanceof Wall);
+                    }
 
+                }
 
             }
         }
@@ -98,7 +106,8 @@ public class TestBoard {
 
 
         if (board.getPieceAt(4,4) instanceof Monster){
-            System.out.println(board.getPieceAt(4,4));
+            assertEquals(true,board.getPieceAt(4,4) instanceof Monster);
+            assertEquals(false,board.getPieceAt(5,5) instanceof Monster);
         }
 
     }
