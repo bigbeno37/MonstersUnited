@@ -10,6 +10,7 @@ import java.awt.image.BufferStrategy;
 
 import static io.github.monstersunited.monstergame.client.gui.Game.STATE.EMPTY;
 import static io.github.monstersunited.monstergame.server.MonsterServer.board;
+import static java.lang.Thread.sleep;
 
 
 public class Game extends Canvas implements Runnable {
@@ -94,6 +95,11 @@ public class Game extends Canvas implements Runnable {
                 delta--;
             }
             if(running) {
+                try{
+                    sleep(16);
+                } catch(Exception e) {
+
+                }
                 render();
                 HostGameSelection();
             }
