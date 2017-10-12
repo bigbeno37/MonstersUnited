@@ -5,10 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import io.github.monstersunited.monstergame.client.MonsterGame;
+import io.github.monstersunited.monstergame.client.State;
+
 public class UserInput extends JFrame{
     JLabel label;
     JTextField tf;
     JButton button;
+    String word = "";
 
     public UserInput() {
         setLayout(new FlowLayout());
@@ -32,11 +36,17 @@ public class UserInput extends JFrame{
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             try {
+                word = tf.getText();
+                State state = new State();
+                MonsterGame address = new MonsterGame();
+                state.enterServerAddress(word);
+                address.HostAddress(word);
 
-                String word = tf.getText();
             } catch(Exception e) {
                 System.out.println("lol error"+e);
             }
+
+
         }
     }
 

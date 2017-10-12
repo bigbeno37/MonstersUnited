@@ -62,18 +62,18 @@ public class TestBoard {
         Player player = new Player("Nick", 1, 2, 1);
         test.addBoardPiece(player);
 
-        assertNull(test.getPieceAt(1, 2));
+        assertEquals(false,test.getPieceAt(1, 2) instanceof Player);
 
         test.update();
 
-        assertEquals(player, test.getPieceAt(1, 2));
+        assertEquals(true, test.getPieceAt(1, 2) instanceof Player);
     }
 
     @Test
     public void doPlayerBlocksShowOnBoard() {
         Board test = new Board();
 
-        assertNull(test.getPieceAt(1,1));
+        assertEquals(false,test.getPieceAt(1,1) instanceof Box);
 
         Player player = new Player("Nick", 0, 0, 1);
         Box box = new Box(10);
@@ -83,9 +83,9 @@ public class TestBoard {
         test.addBoardPiece(player);
         test.addBoardPiece(box);
 
-        assertNull(test.getPieceAt(1,1));
+        assertEquals(false,test.getPieceAt(1,1) instanceof Box);
         test.update();
-        assertEquals(box, test.getPieceAt(1, 1));
+        assertEquals(true, test.getPieceAt(1, 1) instanceof Box);
     }
     @Test
     public void TestSetMonster(){
@@ -100,9 +100,6 @@ public class TestBoard {
         if (board.getPieceAt(4,4) instanceof Monster){
             System.out.println(board.getPieceAt(4,4));
         }
-
-
-
 
     }
 }

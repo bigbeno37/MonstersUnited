@@ -25,8 +25,14 @@ public class MouseInput implements MouseListener{
 
         //Join Game Button
         if(mx >= Game.WIDTH / 2 - 50 && mx <= Game.WIDTH / 2 + 50){
-            if(my >= 150 && my <= 200){
+            if(my >= 0 && my <= 100){
                 Game.State = Game.STATE.GAME;
+            }
+        }
+
+        if(mx >= Game.WIDTH / 2 - 50 && mx <= Game.WIDTH / 2 + 50){
+            if(my >= 150 && my <= 200){
+                Game.State = Game.STATE.JOIN;
             }
         }
 

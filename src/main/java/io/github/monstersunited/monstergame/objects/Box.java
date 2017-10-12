@@ -1,22 +1,18 @@
 package io.github.monstersunited.monstergame.objects;
 
-import io.github.monstersunited.monstergame.client.gui.features.Assets;
-import io.github.monstersunited.monstergame.client.gui.features.TileGrid;
-import io.github.monstersunited.monstergame.client.gui.features.boxTile;
-
-import java.awt.*;
 import java.io.Serializable;
 
 public class Box extends BoardPiece implements Serializable {
     private int timer;
-
-    public Box(int time) {
+    private int x;
+    private int y;
+    public Box(int time,int x, int y) {
         this.timer = time;
+        this.x = x;
+        this.y =y;
+        super.setPosition(x,y);
     }
 
-    public Box(int x,int y){
-
-    }
     public int getTimeLeft() {
         return timer;
     }
