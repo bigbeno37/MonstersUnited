@@ -14,12 +14,12 @@ public class TestMonster {
         board.setMonster(monster);
         Player playerOne = new Player("One",1,0,1);
         Player playerTwo = new Player("Two",0,4,2);
-        Player three = new Player("Three",8,7,3);
-        Player four = new Player("Three",6,0,4);
+        Player playerThree = new Player("Three",8,7,3);
+        Player playerFour = new Player("Three",6,0,4);
         board.addBoardPiece(playerOne);
         board.addBoardPiece(playerTwo);
-        board.addBoardPiece(three);
-        board.addBoardPiece(four);
+        board.addBoardPiece(playerThree);
+        board.addBoardPiece(playerFour);
         board.update();
         monster.moveTowardsClosestPlayer(board);
         assertEquals(5,monster.getX());
@@ -27,26 +27,23 @@ public class TestMonster {
         //Monster is at (4,1) and Monster should move to (5,0) towards the closer player four at(6,0)
 
 
-        
+
         playerOne.setX(2);
         playerOne.setY(0);
         //PlayerOne moves right
         playerTwo.setX(8);
         playerTwo.setY(4);
         //playerTwo moves left
-        three.setX(8);
-        three.setY(6);
+        playerThree.setX(8);
+        playerThree.setY(6);
         //three moves up
-        four.setX(6);
-        four.setY(8);
+        playerFour.setX(6);
+        playerFour.setY(8);
 
 
         //four moves up
         board.update();
-        board.addBoardPiece(playerOne);
-        board.addBoardPiece(playerTwo);
-        board.addBoardPiece(three);
-        board.addBoardPiece(four);
+
         monster.moveTowardsClosestPlayer(board);
         assertEquals(4,monster.getX());
         assertEquals(0,monster.getY());
@@ -60,17 +57,14 @@ public class TestMonster {
         playerTwo.setX(0);
         playerTwo.setY(4);
         //playerTwo moves right
-        three.setX(7);
-        three.setY(6);
+        playerThree.setX(7);
+        playerThree.setY(6);
         //three moves left
-        four.setX(6);
-        four.setY(0);
+        playerFour.setX(6);
+        playerFour.setY(0);
         //four moves down
         board.update();
-        board.addBoardPiece(playerOne);
-        board.addBoardPiece(playerTwo);
-        board.addBoardPiece(three);
-        board.addBoardPiece(four);
+
         monster.moveTowardsClosestPlayer(board);
         assertEquals(5,monster.getX());
         assertEquals(0,monster.getY());
