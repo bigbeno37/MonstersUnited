@@ -25,10 +25,10 @@ to work with.
 
 Name: Boxuan Lu StudentId:s3654900
 In charge of: player movement
-
-
-
-
+Contribution: I take charge of player movement due to what user input.
+The main thing that I've done is to calculate if the move user want to make is valid or not.
+If it is a valid move, process the move and assign the new position value to user.
+If it is not valid, keep to player at the position and wait for next player input
 
 Name: Tanzim Shahriar StudentId:
 
