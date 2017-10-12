@@ -43,9 +43,6 @@ public class TestPlayer {
         }
         player.processMove(KeyEvent.VK_W, board);
 
-        board.update();
-        assertTrue(board.getPieceAt(0,8) instanceof Player);
-
         assertEquals(exceptX, player.getX());
         assertEquals(exceptY, player.getY());
     }

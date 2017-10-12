@@ -13,22 +13,23 @@ import static io.github.monstersunited.monstergame.objects.enums.Corner.TOP_LEFT
 // current BoardPieces that occupy the board, and contain
 // convenience methods such as getPieceAt and setPieceAt
 // to help development
-public class Board implements Serializable{
+public class Board implements Serializable {
     //private
     private BoardPiece[][] board;
     private List<BoardPiece> boardPieces;
+
     public Board() {
         board = new BoardPiece[9][9];
         boardPieces = new ArrayList<>();
-        boardPieces.add(new Monster(4,4));
+        boardPieces.add(new Monster(4, 4));
         // TODO
         // Initialise the board to include walls
         //this double forloop should place the walls in the corrrect positions
-        for (int i = 0 ; i<8; i++) {
-            for (int j = 0 ; j<8; j++) {
-                if ((i >= 1 && j >= 1) && (i <=7 && j <= 7)) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if ((i >= 1 && j >= 1) && (i <= 7 && j <= 7)) {
                     if (i != 4 && j != 4) {
-                        addBoardPiece(new Wall(i,j));
+                        addBoardPiece(new Wall(i, j));
                     }
 
                 }
@@ -67,9 +68,9 @@ public class Board implements Serializable{
     }
 
     public void setMonster(Monster monster) {
-        for(BoardPiece piece: boardPieces) {
+        for (BoardPiece piece : boardPieces) {
             if (piece instanceof Monster) {
-               piece = monster;
+                piece = monster;
 
             }
         }
@@ -82,18 +83,19 @@ public class Board implements Serializable{
     private void setBoard(BoardPiece[][] board) {
         this.board = board;
     }
+
     //private
     public void setPieceAt(int x, int y, BoardPiece pieceToBePlaced) {
         this.board[x][y] = pieceToBePlaced;
     }
-    
+
     public BoardPiece getPieceAt(int x, int y) {
         return this.board[x][y];
     }
 
     public void resetBoard() {
-        for (int i=0; i<9 ; i++){
-            for (int j=0; j<9;j++){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 board[i][j] = null;
             }
         }
