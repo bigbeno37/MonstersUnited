@@ -13,6 +13,12 @@ import java.rmi.registry.LocateRegistry;
 public class MonsterGame {
     // Where everything begins. Here the user can choose whether to
     // create a new lobby, or join one
+    static String IPaddress = "";
+
+    public static void HostAddress(String word) {
+        IPaddress = word;
+    }
+
     public static void main(String[] args) {
         System.out.println("Client started!");
         boolean createGame = State.createOrJoinGame();
@@ -28,7 +34,7 @@ public class MonsterGame {
     // Display a field to enter a server address, and attempt
     // to connect to a lobby if it exists
     private static void joinGame() {
-        String[] address = State.enterServerAddress();
+        String[] address = State.enterServerAddress(IPaddress);
 
         joinLobby(address[0], Integer.parseInt(address[1]));
     }
@@ -43,7 +49,7 @@ public class MonsterGame {
         MonsterServer.start(amountOfPlayers);
 
         // Join the locally hosted server
-        joinLobby("localhost", 3000);
+        joinLobby(IPaddress, 3000);
     }
 
     // Connect to a lobby if it exists on serverAddress:port

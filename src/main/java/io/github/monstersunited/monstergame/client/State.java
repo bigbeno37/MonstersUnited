@@ -1,12 +1,14 @@
 package io.github.monstersunited.monstergame.client;
 
+import io.github.monstersunited.monstergame.client.gui.UserInput;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 import io.github.monstersunited.monstergame.objects.Player;
 
+import javax.swing.*;
 import java.rmi.RemoteException;
 import java.util.List;
 
-class State {
+public class State {
     // Switch scene to one that features a field for text input
     // and a submit button
     public static String getNickname() {
@@ -34,7 +36,7 @@ class State {
     public static int getAmountOfPlayers() {
         // TODO
         // Get input
-        return 1;
+        return 2;
     }
 
     // Display a field to input a server address in the form
@@ -43,10 +45,10 @@ class State {
     //
     // Returns the address in the first position of the array,
     // and the port in the second position
-    public static String[] enterServerAddress() {
+    public static String[] enterServerAddress(String word) {
         // TODO
         // Actually get input
-        return new String[] {"localhost", "3000"};
+        return new String[] {word, "3000"};
     }
 
     // Display two buttons to either create a new game lobby

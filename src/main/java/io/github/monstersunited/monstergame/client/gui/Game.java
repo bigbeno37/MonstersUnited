@@ -22,7 +22,7 @@ public class Game extends Canvas implements Runnable {
     private World map;
     private MainMenu mainMenu;
     public enum STATE{
-        MENU, GAME, NICK, PLAYER, IP,HOST,EMPTY
+        MENU, GAME, NICK, PLAYER, IP,HOST,EMPTY,JOIN
     };
 
     public static STATE State = STATE.MENU;
@@ -121,11 +121,11 @@ public class Game extends Canvas implements Runnable {
 
     public void HostGameSelection() {
 
-        if (State == STATE.HOST) {
+        if (State == STATE.JOIN) {
             UserInput p  = new UserInput();
-            p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            p.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             p.setSize(300,150);
-            p.setTitle("Host");
+            p.setTitle("Join");
             p.setVisible(true);
             State = EMPTY;
         }
