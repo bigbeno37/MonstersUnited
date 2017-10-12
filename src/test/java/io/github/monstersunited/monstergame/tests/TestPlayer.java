@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestPlayer {
 
@@ -129,4 +130,30 @@ public class TestPlayer {
         assertEquals(exceptX, player.getX());
         assertEquals(exceptY, player.getY());
     }
+
+    @Test
+    public void TestPlayerChangesInBoard() {
+        Board board = new Board();
+        Player player = new Player("one",0,0,1);
+        board.addBoardPiece(player);
+        board.update();
+
+        player.moveRight();
+        board.update();
+        assertTrue(board.getBoard()[1][0] instanceof Player);
+
+        player.moveRight();
+        board.update();
+        assertTrue(board.getBoard()[2][0] instanceof Player);
+
+        player.moveUp();
+
+        assertEquals(8,player.getY());
+        board.update();
+
+        assertTrue(board.getBoard()[2][8] instanceof Player);
+
+    }
+
+
 }
