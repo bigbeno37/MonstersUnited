@@ -17,13 +17,13 @@ public class UserInput extends JFrame{
     public UserInput() {
         setLayout(new FlowLayout());
 
-        label = new JLabel("Please enter yo ip address");
+        label = new JLabel("Please enter your IP Address");
         add(label);
 
         tf = new JTextField(20);
         add(tf);
 
-        button = new JButton("HELLO HAHAHAHAHA~~~~!!! <3");
+        button = new JButton("Submit");
         add(button);
 
         KeyAction e = new KeyAction();

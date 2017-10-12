@@ -1,15 +1,10 @@
 package io.github.monstersunited.monstergame.client.gui.features;
 
-
-import sun.awt.image.BufferedImageDevice;
-
 import java.awt.image.BufferedImage;
 
 public class Assets {
     private static final int width = 32, height = 32;
     public static BufferedImage player1, player2, player3, player4, tile, box, wall, monster;
-    private static int counter;
-
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(getResources.loadImage("/monster-tile08.png"));
 
