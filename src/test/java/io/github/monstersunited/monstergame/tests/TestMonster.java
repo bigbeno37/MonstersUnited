@@ -26,6 +26,8 @@ public class TestMonster {
         assertEquals(0,monster.getY());
         //Monster is at (4,1) and Monster should move to (5,0) towards the closer player four at(6,0)
 
+
+        
         playerOne.setX(2);
         playerOne.setY(0);
         //PlayerOne moves right
@@ -49,7 +51,7 @@ public class TestMonster {
         assertEquals(4,monster.getX());
         assertEquals(0,monster.getY());
 
-        //Monster is at (5,0) and Monster should move to (4,0) towards the closer player one at (2,0) 
+        //Monster is at (5,0) and Monster should move to (4,0) towards the closer player one at (2,0)
 
 
         playerOne.setX(2);
