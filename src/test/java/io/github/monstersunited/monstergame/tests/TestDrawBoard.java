@@ -21,5 +21,11 @@ public class TestDrawBoard {
         assertNotSame(path2,path);
     }
 
+    @Test
+    public void CropImage() {
+
+
+    }
+
 }
 

@@ -6,16 +6,12 @@ import io.github.monstersunited.monstergame.objects.enums.Corner;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
-
-import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEHEIGHT;
-import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEWIDTH;
 import static io.github.monstersunited.monstergame.objects.enums.EntityState.ALIVE;
 
 // The player instance itself, housing position, state, velocity, and name
 public class Player extends Entity implements Serializable {
     private final int id;
     private final String name;
-    private Box box;
 
     public Player(String name, int x, int y, int id) {
         this.name = name;
@@ -31,14 +27,6 @@ public class Player extends Entity implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public Box getBox() {
-        return box;
-    }
-
-    public void removeBox() {
-        this.box = null;
     }
 
     public void setCorner(Corner corner) {
@@ -145,11 +133,6 @@ public class Player extends Entity implements Serializable {
 
     public void moveRight() {
         super.setX(super.getX() + 1);
-    }
-
-
-    public void setBox(Box box) {
-        this.box = box;
     }
 
 }
