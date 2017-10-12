@@ -26,14 +26,29 @@ public class TestMonster {
         assertEquals(0,monster.getY());
         //Monster should move to (5,0) towards the closer player four at(6,0)
 
-        playerOne.moveRight();
-        playerTwo.moveLeft();
-        three.moveUp();
-        four.moveUp();
+        playerOne.setX(2);
+        playerOne.setY(0);
+        //PlayerOne moves right
+        playerTwo.setX(8);
+        playerTwo.setY(4);
+        //playerTwo moves left
+        three.setX(8);
+        three.setY(6);
+        //three moves up
+        four.setX(6);
+        four.setY(8);
 
+
+        //four moves up
+        board.update();
+        board.addBoardPiece(playerOne);
+        board.addBoardPiece(playerTwo);
+        board.addBoardPiece(three);
+        board.addBoardPiece(four);
         monster.moveTowardsClosestPlayer(board);
-        assertEquals(5,monster.getX());
+        assertEquals(4,monster.getX());
         assertEquals(0,monster.getY());
+
         //Monster should move to (4,0) towards the closer player one at (2,0) but doesn't move cos board[i][j] isnt updated
         //when player moves
 
