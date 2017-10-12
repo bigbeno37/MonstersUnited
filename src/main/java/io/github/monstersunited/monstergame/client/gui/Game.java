@@ -2,7 +2,6 @@ package io.github.monstersunited.monstergame.client.gui;
 
 import io.github.monstersunited.monstergame.client.gui.features.Assets;
 import io.github.monstersunited.monstergame.client.gui.features.World;
-import io.github.monstersunited.monstergame.client.gui.objects.Player;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 
 import javax.swing.*;
@@ -153,7 +152,7 @@ public class Game extends Canvas implements Runnable {
             Font fnt0 = new Font("arial", Font.BOLD, 25);
             g.setFont(fnt0);
             g.setColor(Color.BLUE);
-            g.drawString("PPPPLACEHOLDER", 208, 25);
+            g.drawString("Monster Game", 208, 25);
 
             Font fnt1 = new Font("times", Font.PLAIN, 15);
             g.setFont(fnt1);
