@@ -4,11 +4,15 @@ import io.github.monstersunited.monstergame.client.gui.Game;
 import io.github.monstersunited.monstergame.objects.*;
 
 import java.awt.*;
+
+import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEHEIGHT;
+import static io.github.monstersunited.monstergame.client.gui.features.TileGrid.TILEWIDTH;
 import static io.github.monstersunited.monstergame.server.MonsterServer.board;
 import io.github.monstersunited.monstergame.objects.Player;
 public class World {
-    public static final int TILEWIDTH = 32, TILEHEIGHT = 32;
+
     private int[][] tiles;
+
     public World(Board board) {
         tiles = new int[9][9];
         loadWorld(board);
@@ -38,6 +42,10 @@ public class World {
                     else if (board.getPieceAt(i, j) instanceof Monster) {
                         tiles[i][j] = 7;
                         g.drawImage(Assets.monster, i * TILEWIDTH + 64, j * TILEHEIGHT + 96, null);
+                    }
+                    else if (board.getPieceAt(i, j) instanceof Box) {
+                        tiles[i][j] = 1;
+                        g.drawImage(Assets.box, i * TILEWIDTH + 64, j * TILEHEIGHT + 96, null);
                     }
                     else if (board.getPieceAt(i, j) instanceof Wall) {
                         tiles[i][j] = 2;
@@ -72,6 +80,8 @@ public class World {
                 } else if (board.getPieceAt(i, j) instanceof Monster) {
                     tiles[i][j] = 7;
 
+                }else if (board.getPieceAt(i, j) instanceof Box) {
+                    tiles[i][j] = 1;
                 } else if(board.getPieceAt(i, j) instanceof Wall){
                     tiles[i][j] = 2;
 

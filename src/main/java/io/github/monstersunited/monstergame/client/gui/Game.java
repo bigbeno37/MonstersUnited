@@ -2,6 +2,7 @@ package io.github.monstersunited.monstergame.client.gui;
 
 import io.github.monstersunited.monstergame.client.gui.features.Assets;
 import io.github.monstersunited.monstergame.client.gui.features.World;
+import io.github.monstersunited.monstergame.client.gui.objects.Player;
 import io.github.monstersunited.monstergame.interfaces.MonsterServerInterface;
 
 import javax.swing.*;
@@ -114,9 +115,12 @@ public class Game extends Canvas implements Runnable {
             //This should be the GM equivelant of "Step"
             handler.tick();
         }
+
+
     }
 
     public void HostGameSelection() {
+
         if (State == STATE.JOIN) {
             UserInput p  = new UserInput();
             p.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -125,7 +129,9 @@ public class Game extends Canvas implements Runnable {
             p.setVisible(true);
             State = EMPTY;
         }
+
     }
+
 
     private void render(){
 
