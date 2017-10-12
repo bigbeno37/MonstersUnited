@@ -24,18 +24,56 @@ public class TestMonster {
         monster.moveTowardsClosestPlayer(board);
         assertEquals(5,monster.getX());
         assertEquals(0,monster.getY());
-        //Monster should move to (5,0) towards the closer player four at(6,0)
+        //Monster is at (4,1) and Monster should move to (5,0) towards the closer player four at(6,0)
 
-        playerOne.moveRight();
-        playerTwo.moveLeft();
-        three.moveUp();
-        four.moveUp();
+        playerOne.setX(2);
+        playerOne.setY(0);
+        //PlayerOne moves right
+        playerTwo.setX(8);
+        playerTwo.setY(4);
+        //playerTwo moves left
+        three.setX(8);
+        three.setY(6);
+        //three moves up
+        four.setX(6);
+        four.setY(8);
 
+
+        //four moves up
+        board.update();
+        board.addBoardPiece(playerOne);
+        board.addBoardPiece(playerTwo);
+        board.addBoardPiece(three);
+        board.addBoardPiece(four);
+        monster.moveTowardsClosestPlayer(board);
+        assertEquals(4,monster.getX());
+        assertEquals(0,monster.getY());
+
+        //Monster is at (5,0) and Monster should move to (4,0) towards the closer player one at (2,0) 
+
+
+        playerOne.setX(2);
+        playerOne.setY(8);
+        //PlayerOne moves up
+        playerTwo.setX(0);
+        playerTwo.setY(4);
+        //playerTwo moves right
+        three.setX(7);
+        three.setY(6);
+        //three moves left
+        four.setX(6);
+        four.setY(0);
+        //four moves down
+        board.update();
+        board.addBoardPiece(playerOne);
+        board.addBoardPiece(playerTwo);
+        board.addBoardPiece(three);
+        board.addBoardPiece(four);
         monster.moveTowardsClosestPlayer(board);
         assertEquals(5,monster.getX());
         assertEquals(0,monster.getY());
-        //Monster should move to (4,0) towards the closer player one at (2,0) but doesn't move cos board[i][j] isnt updated
-        //when player moves
+
+        //Monster is at (4,0) and should move to (5,0)towards the closer player one at (6,0)
 
     }
 
