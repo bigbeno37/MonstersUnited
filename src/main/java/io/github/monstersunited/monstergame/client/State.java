@@ -36,7 +36,7 @@ public class State {
     public static int getAmountOfPlayers() {
         // TODO
         // Get input
-        return 2;
+        return 1;
     }
 
     // Display a field to input a server address in the form

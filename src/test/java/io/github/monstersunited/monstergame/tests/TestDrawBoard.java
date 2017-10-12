@@ -1,14 +1,16 @@
 package io.github.monstersunited.monstergame.tests;
 
-import io.github.monstersunited.monstergame.client.gui.features.TileGrid;
-import io.github.monstersunited.monstergame.client.gui.features.boxTile;
+import io.github.monstersunited.monstergame.client.gui.features.SpriteSheet;
 import io.github.monstersunited.monstergame.client.gui.features.getResources;
+import junit.framework.TestCase;
 import org.junit.Test;
 
-import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
+import static io.github.monstersunited.monstergame.client.gui.features.World.TILEHEIGHT;
+import static io.github.monstersunited.monstergame.client.gui.features.World.TILEWIDTH;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.TestCase.assertEquals;
 
@@ -21,5 +23,14 @@ public class TestDrawBoard {
         assertNotSame(path2,path);
     }
 
+    public static BufferedImage image,image2;
+
+    @Test
+    public void TestCropping() {
+        SpriteSheet p = new SpriteSheet(getResources.loadImage("/monster-tile08.png"));
+        image = p.crop(0, 0, TILEWIDTH, TILEHEIGHT);
+        image2 = p.crop(288, 0, TILEWIDTH, TILEHEIGHT);
+        assertNotSame(image,image2);
+    }
 }
 

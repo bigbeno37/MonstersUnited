@@ -1,3 +1,4 @@
+
 package io.github.monstersunited.monstergame.client.gui.features;
 
 import javax.imageio.ImageIO;

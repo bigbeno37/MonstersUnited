@@ -78,24 +78,6 @@ public class TestBoard {
     }
 
     @Test
-    public void doPlayerBlocksShowOnBoard() {
-        Board test = new Board();
-
-        assertEquals(false,test.getPieceAt(1,1) instanceof Box);
-
-        Player player = new Player("Nick", 0, 0, 1);
-        Box box = new Box(10);
-        box.setPosition(1,1);
-        player.setBox(box);
-
-        test.addBoardPiece(player);
-        test.addBoardPiece(box);
-
-        assertEquals(false,test.getPieceAt(1,1) instanceof Box);
-        test.update();
-        assertEquals(true, test.getPieceAt(1, 1) instanceof Box);
-    }
-    @Test
     public void TestSetMonster(){
 
         Board board = new Board();
