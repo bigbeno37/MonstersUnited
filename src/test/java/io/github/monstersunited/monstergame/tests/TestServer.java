@@ -1,6 +1,5 @@
 package io.github.monstersunited.monstergame.tests;
 
-import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Player;
 import io.github.monstersunited.monstergame.objects.exceptions.ServerFullException;
 import io.github.monstersunited.monstergame.server.MonsterServer;
@@ -11,13 +10,10 @@ import org.junit.Test;
 
 import java.rmi.RemoteException;
 
-import static io.github.monstersunited.monstergame.objects.enums.EntityState.DEAD;
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
 /*import static org.mockito.Mockito.*;*/
 
-/*public class TestServer {
+public class TestServer {
 
     MonsterServerHandler server;
 
@@ -44,14 +40,14 @@ import static org.junit.Assert.assertFalse;
         assertEquals("nick", server.getAllPlayers().get(0).getName());
     }
 
-    @Test(expected = ServerFullException.class)
+   /* @Test(expected = ServerFullException.class)
     public void newUserWillThrowExceptionIfTooManyPlayers() throws ServerFullException, RemoteException {
         server.addPlayer("nick", null);
         server.addPlayer("nick", null);
         server.addPlayer("nick",  null);
         server.addPlayer("nick", null);
         server.addPlayer("nick", null);
-    }
+    }*/
 
     @Test
     public void addPlayerCorrectlySetsID() {
@@ -69,7 +65,7 @@ import static org.junit.Assert.assertFalse;
         }
     }
 
-    @Test
+    /*@Test
     public void gameStartsAfterPlayersHaveConnected() {
         MonsterGameInterface client = mock(MonsterGameInterface.class);
         try {
@@ -92,8 +88,8 @@ import static org.junit.Assert.assertFalse;
             e.printStackTrace();
         }
     }
-
-    @Test
+*/
+   /* @Test
     public void gameFinishesAfterPlayersAreEaten() {
         MonsterGameInterface client = mock(MonsterGameInterface.class);
 
@@ -112,6 +108,5 @@ import static org.junit.Assert.assertFalse;
         } catch (RemoteException | ServerFullException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
-*/
