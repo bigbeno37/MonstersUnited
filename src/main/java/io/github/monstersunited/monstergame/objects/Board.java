@@ -35,9 +35,9 @@ public class Board implements Serializable {
                 }
             }
         }
-
         update();
     }
+
 
     public List<Player> getPlayers() {
         return (List<Player>) filterByBoardPiece(Player.class);
