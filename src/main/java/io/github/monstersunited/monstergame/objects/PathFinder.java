@@ -103,7 +103,7 @@ public class PathFinder
                 retracePath(start,currentPosition);
                 setNewMonsterX(path.get(0).getX());
                 setNewMonsterY(path.get(0).getY());
-                return path.size();
+                break;
             }
 
 
