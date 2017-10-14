@@ -14,7 +14,7 @@ public class Assets {
         monster = sheet.crop(width*2, height, width, height);
         wall = sheet.crop(width, 0, width, height);
         player3 = sheet.crop(width, height, width, height);
-        player4 = sheet.crop(width*2, height, width, height);
+        player4 = sheet.crop(0, height, width, height);
     }
 
 }

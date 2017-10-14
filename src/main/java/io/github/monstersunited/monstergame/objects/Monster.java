@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static io.github.monstersunited.monstergame.objects.enums.EntityState.CHASING;
+import static java.lang.Thread.sleep;
 
 // The Monster that chases the nearest player around
 public class Monster extends Entity implements Serializable {
@@ -21,6 +22,10 @@ public class Monster extends Entity implements Serializable {
     }
 
     public void moveTowardsClosestPlayer(Board board) {
+        try{
+            sleep(1000);
+        } catch(Exception e) {
+        }
         List<PathFinder> pathfinder = new ArrayList<PathFinder>();
         for (int i = 0; i < 9; i++)
         {

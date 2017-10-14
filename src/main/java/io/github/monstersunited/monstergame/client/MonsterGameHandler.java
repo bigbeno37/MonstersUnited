@@ -28,6 +28,7 @@ public class MonsterGameHandler extends UnicastRemoteObject implements MonsterGa
         // TODO
         // Switch scene to showing the board and players
         System.out.println("Begin game was called");
+
     }
 
     // Method is called only AFTER beginGame has been called, and is called
