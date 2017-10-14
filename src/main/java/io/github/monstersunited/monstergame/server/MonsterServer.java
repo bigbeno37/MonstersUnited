@@ -3,6 +3,7 @@ package io.github.monstersunited.monstergame.server;
 import io.github.monstersunited.monstergame.interfaces.MonsterGameInterface;
 import io.github.monstersunited.monstergame.objects.Board;
 import io.github.monstersunited.monstergame.objects.Player;
+import io.github.monstersunited.monstergame.objects.enums.Corner;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -45,31 +46,11 @@ public class MonsterServer {
     }
 
     public static void beginGame() {
-        // Go through each player in the players list and set them
-        // in each corner
-        boolean topLeft = false, topRight = false,
-                bottomLeft = false;
-
-        for (Player player: board.getPlayers()) {
-
-            if (!topLeft) {
-
-                player.setCorner(TOP_LEFT);
-                topLeft = true;
-
-            } else if (!topRight) {
-
-                player.setCorner(TOP_RIGHT);
-                topRight = true;
-
-            } else if (!bottomLeft) {
-
-                player.setCorner(BOTTOM_LEFT);
-                bottomLeft = true;
-
-            } else {
-                player.setCorner(BOTTOM_RIGHT);
-            }
+        for (int i = 0; i < board.getPlayers().size(); i++) {
+            // Go through each player and set their corner to the respective
+            // corner value, EG Corner.values()[0] will set the 0th
+            // player to the TOP_LEFT corner
+            board.getPlayers().get(i).setCorner(Corner.values()[i]);
         }
 
         // Once the positions of players have been initialised, call
