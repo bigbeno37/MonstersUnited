@@ -34,10 +34,11 @@ Name: Tanzim Shahriar StudentId: s3642965
 In charge of: Monster Movement/AI
 Contribution: I have worked on the monster's movement based on the player,monster and wall instances present in board.
 The algorithm used to find the closest path is a* algorithm and its written in PathFinder and Position class.
+To update monster's position moveTowardsClosestPlayer is called in GameLoop in the server.
 The findPath() method in Pathfinder class finds the shortest path from a player and the monster that is passed in as
 argument and returns the size of that path. The monster class calls findPath() for all players and stores the
 sizes of those paths. The shortest player is found in the getNearestPlayer() method in Monster
-class. And then finally the monster position is updated.
+class. And then finally the monster position is updated
 
 
 Name: Tristan Mitchell StudentId:
