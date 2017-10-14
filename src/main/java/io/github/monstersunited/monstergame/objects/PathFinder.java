@@ -83,14 +83,14 @@ public class PathFinder
 
             for (int i = 1; i < openSet.size(); i++)
             {
-                for(int j=0;j<closedSet.size();j++)
-                {
+               // for(int j=0;j<closedSet.size();j++)
+                //{
                     if (openSet.get(i).fCost() < currentPosition.fCost() || ((openSet.get(i).fCost() == currentPosition.fCost())
                             && (openSet.get(i).getHCost() < currentPosition.getHCost()) ))
                     {
                         currentPosition = openSet.get(i);
                     }
-                }
+                //}
 
             }
 
