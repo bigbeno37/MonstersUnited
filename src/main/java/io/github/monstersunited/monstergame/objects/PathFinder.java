@@ -12,7 +12,7 @@ public class PathFinder
     public List<Position> path = new ArrayList<>();
     public static List<Position> neighbours = new ArrayList<>();
     public static Position monsterPosition;
-    public int newMonsterX=0,newMonsterY=0;
+    private int newMonsterX=0,newMonsterY=0;
     public void setNewMonsterX(int x)   {this.newMonsterX = x;}
     public void setNewMonsterY(int y)   {this.newMonsterY = y;}
     public int getNewMonsterX()
@@ -83,17 +83,13 @@ public class PathFinder
 
             for (int i = 1; i < openSet.size(); i++)
             {
-               // for(int j=0;j<closedSet.size();j++)
-                //{
-                    if (openSet.get(i).fCost() < currentPosition.fCost() || ((openSet.get(i).fCost() == currentPosition.fCost())
-                            && (openSet.get(i).getHCost() < currentPosition.getHCost()) ))
+
+                if (openSet.get(i).fCost() < currentPosition.fCost() || ((openSet.get(i).fCost() == currentPosition.fCost())
+                    && (openSet.get(i).getHCost() < currentPosition.getHCost()) ))
                     {
                         currentPosition = openSet.get(i);
                     }
-                //}
-
             }
-
 
             openSet.remove(currentPosition);
             closedSet.add(currentPosition);
@@ -105,7 +101,6 @@ public class PathFinder
                 setNewMonsterY(path.get(0).getY());
                 break;
             }
-
 
             for(Position neighbour: getNeighbours(currentPosition))
             {
@@ -136,15 +131,12 @@ public class PathFinder
                     neighbour.setHCost(getDistance(neighbour,player));
                     neighbour.parent = currentPosition;
 
-
                     if(!openSetContainsNeighbour)
                     {
                         openSet.add(neighbour);
                     }
                 }
             }
-
-
         }
         return path.size();
     }

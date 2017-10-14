@@ -59,8 +59,6 @@ public class Monster extends Entity implements Serializable {
         }
         playerCount=0;
 
-
-
     }
 
     private int getNearestPlayer(List<PathFinder> pathfinder) {
