@@ -7,12 +7,14 @@ Contribution: I have implemented the Assets and sprites for the game which requi
 of the sprite sheet and cropping them then incorporating each into the board,
 i've also made the methods to reset the board values and the class to print out the walls,
 players, monsters onto the game client gui. It would also update each sprite on the board depending on the
-frames per second. I've also attempted creating a user input field to connect the client to the server
-when you join the IP address.
+frames per second.
 
 Name: Ben O'Sullivan StudentId:s3662617
 In charge of: Server and Networking
-Contribution: I have implemented a server that communicates via RMI that enables many clients to connect to one server so as to enable realtime connections across all clients. I created MonsterServer, the related interfaces, the related handlers, the GameLoop, and implemented the BoardPiece heirarchy, including Entity, Monster, and Player.  
+Contribution: I have implemented a server that communicates via RMI that enables many clients to connect to
+one server so as to enable realtime connections across all clients.
+ I created MonsterServer, the related interfaces, the related handlers,
+the GameLoop, and implemented the BoardPiece heirarchy, including Entity, Monster, and Player.
 
 I have also created the base of the project and initialised all possible test cases for team members
 to work with.
