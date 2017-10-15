@@ -10,14 +10,9 @@ players, monsters onto the game client gui. It would also update each sprite on 
 frames per second. I've also attempted creating a user input field to connect the client to the server
 when you join the IP address.
 
-Name: Ben Osullivan StudentId:s3662617
-In charge of: server
-Contribution: I have implemented the whole server code which enables players to join the game
-and the client specifically MonsterGame,MonsterHandler and State.
-I have also implemented the interfaces for the monster game and server and also the
-the monster game enums. Since the server requires the board class to run, i have made the BoardPiece class
-for the other team members to use when they want to add an something to the grid and have coded most
-of the board class as well.
+Name: Ben O'Sullivan StudentId:s3662617
+In charge of: Server and Networking
+Contribution: I have implemented a server that communicates via RMI that enables many clients to connect to one server so as to enable realtime connections across all clients. I created MonsterServer, the related interfaces, the related handlers, the GameLoop, and implemented the BoardPiece heirarchy, including Entity, Monster, and Player.  
 
 I have also created the base of the project and initialised all possible test cases for team members
 to work with.
