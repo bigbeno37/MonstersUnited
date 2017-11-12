@@ -9,6 +9,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         TestBoard.class,
         TestClient.class,
+
         TestMonster.class,
         TestPlayer.class,
         TestServer.class

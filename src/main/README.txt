@@ -5,7 +5,7 @@ Name: Simon Lay StudentId:s3658769
 In charge of: Sprites/loading sprites to board
 Contribution: I have implemented the Assets and sprites for the game which required the development
 of the sprite sheet and cropping them then incorporating each into the board,
-i've also made the methods to reset the board values and the class to print out the walls,
+i've also made the methods to print the board and the method to print out the walls,
 players, monsters onto the game client gui. It would also update each sprite on the board depending on the
 frames per second.
 
